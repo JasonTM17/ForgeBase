@@ -1,0 +1,11 @@
+{
+  "id": "rust-axum",
+  "name": "Rust Axum Starter",
+  "language": "rust",
+  "framework": "axum",
+  "category": "backend",
+  "tags": ["api", "rest", "http"],
+  "version": "1.0.0",
+  "runtimeVersion": "rust stable / axum 0.8",
+  "description": "Production-oriented Axum + Tokio API starter with fail-fast configuration, health endpoints, envelope errors, an example resource, graceful shutdown, and a non-root Docker image."
+}
