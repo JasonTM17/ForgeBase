@@ -1,11 +1,24 @@
 #include "starter/greeter.h"
 
+#include <ctype.h>
 #include <stdio.h>
-#include <string.h>
 
 int starter_greeter_greet(const char *name, char *buffer, size_t buffer_size)
 {
-    if (name == NULL || buffer == NULL || name[0] == '\0') {
+    if (name == NULL || buffer == NULL) {
+        return -1;
+    }
+
+    /* Reject empty or whitespace-only names, matching the trim semantics of
+     * the other vanilla starters. */
+    int has_content = 0;
+    for (const char *cursor = name; *cursor != '\0'; cursor++) {
+        if (!isspace((unsigned char)*cursor)) {
+            has_content = 1;
+            break;
+        }
+    }
+    if (!has_content) {
         return -1;
     }
 
