@@ -1,0 +1,11 @@
+{
+  "id": "csharp-aspnetcore",
+  "name": "C# ASP.NET Core Starter",
+  "language": "csharp",
+  "framework": "aspnetcore",
+  "category": "backend",
+  "tags": ["api", "rest", "http"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=8.0",
+  "description": "Production-oriented ASP.NET Core minimal API starter with fail-fast configuration, RFC 9457 ProblemDetails errors, health endpoints, an example resource, and Docker."
+}
