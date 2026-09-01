@@ -1,0 +1,11 @@
+{
+  "id": "typescript-node",
+  "name": "TypeScript Node Starter",
+  "language": "typescript",
+  "framework": "node",
+  "category": "library",
+  "tags": ["cli", "zero-dependency", "strict-typescript"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Zero-runtime-dependency TypeScript library/CLI base with strict tsconfig, fail-fast env config, leveled JSON logging, vitest, ESLint, and Prettier."
+}

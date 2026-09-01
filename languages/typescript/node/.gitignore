@@ -1,0 +1,12 @@
+# Node / TypeScript
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
