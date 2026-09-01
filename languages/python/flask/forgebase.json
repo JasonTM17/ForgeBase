@@ -1,0 +1,11 @@
+{
+  "id": "python-flask",
+  "name": "Python Flask Starter",
+  "language": "python",
+  "framework": "flask",
+  "category": "backend",
+  "tags": ["api", "rest", "blueprints", "gunicorn"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=3.12",
+  "description": "Production-oriented Flask API base: application factory, fail-fast env config via FORGE_* variables, JSON logging, centralized error handling with a consistent envelope, health endpoints, and a multi-stage non-root Docker image."
+}
