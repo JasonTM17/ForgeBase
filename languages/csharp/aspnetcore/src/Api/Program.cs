@@ -56,6 +56,10 @@ app.MapHealthChecks("/health/ready", new HealthCheckOptions
     Predicate = check => check.Tags.Contains("ready"),
 });
 
+// Example resource: request -> validation -> store -> response, with
+// RFC 9457 ProblemDetails on the error paths.
+app.MapWidgetEndpoints();
+
 app.Run();
 return 0;
 
