@@ -1,0 +1,11 @@
+{
+  "id": "python-django",
+  "name": "Python Django Starter",
+  "language": "python",
+  "framework": "django",
+  "category": "backend",
+  "tags": ["api", "rest", "gunicorn", "api-only"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=3.12",
+  "description": "API-only Django base: env-driven settings with fail-fast production checks, JSON logging, error envelope middleware, health endpoints, in-memory example app, and a non-root Docker image."
+}
