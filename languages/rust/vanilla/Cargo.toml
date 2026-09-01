@@ -1,0 +1,17 @@
+[package]
+name = "starter"
+version = "0.1.0"
+edition = "2021"
+description = "ForgeBase zero-dependency Rust library/CLI starter"
+license = "MIT"
+
+[lib]
+name = "starter"
+path = "src/lib.rs"
+
+[[bin]]
+name = "starter"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
