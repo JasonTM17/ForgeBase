@@ -1,0 +1,11 @@
+{
+  "id": "csharp-vanilla",
+  "name": "C# Vanilla Starter",
+  "language": "csharp",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["library", "cli"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=8.0",
+  "description": "Zero-dependency C# library/CLI base with fail-fast environment configuration, structured console logging, an example service, and xunit tests."
+}
