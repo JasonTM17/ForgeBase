@@ -1,0 +1,14 @@
+# Normalize line endings: LF everywhere in the repository, checked out as-is.
+# Prevents Windows checkouts from breaking shell scripts and container builds.
+* text=auto eol=lf
+
+# Windows-only scripts keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.jar binary
