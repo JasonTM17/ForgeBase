@@ -1,0 +1,11 @@
+{
+  "id": "rust-actix-web",
+  "name": "Rust Actix Web Starter",
+  "language": "rust",
+  "framework": "actix-web",
+  "category": "backend",
+  "tags": ["api", "rest", "http"],
+  "version": "1.0.0",
+  "runtimeVersion": "rust stable / actix-web 4",
+  "description": "Production-oriented Actix Web 4 API starter with fail-fast configuration, health endpoints, envelope errors, an example resource, and a non-root Docker image."
+}
