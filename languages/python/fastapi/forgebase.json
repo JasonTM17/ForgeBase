@@ -1,0 +1,11 @@
+{
+  "id": "python-fastapi",
+  "name": "Python FastAPI Starter",
+  "language": "python",
+  "framework": "fastapi",
+  "category": "backend",
+  "tags": ["api", "rest", "pydantic", "uvicorn"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=3.12",
+  "description": "Production-oriented FastAPI REST base: fail-fast config via pydantic-settings, structured JSON logging, centralized error handling with a consistent envelope, liveness/readiness health endpoints, and a multi-stage non-root Docker image."
+}
