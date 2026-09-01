@@ -14,10 +14,17 @@ import logging
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.exceptions.base import DomainError
 
 logger = logging.getLogger("app.error")
+
+# Stable codes for framework-raised HTTP errors clients may branch on.
+HTTP_ERROR_CODES = {
+    404: "NOT_FOUND",
+    405: "METHOD_NOT_ALLOWED",
+}
 
 
 def _error_body(code: str, message: str, **extra: object) -> dict:
@@ -28,6 +35,14 @@ def _error_body(code: str, message: str, **extra: object) -> dict:
 
 
 def register_exception_handlers(app: FastAPI) -> None:
+    @app.exception_handler(StarletteHTTPException)
+    async def http_exception_handler(_: Request, exc: StarletteHTTPException) -> JSONResponse:
+        code = HTTP_ERROR_CODES.get(exc.status_code, "HTTP_ERROR")
+        return JSONResponse(
+            status_code=exc.status_code,
+            content=_error_body(code, str(exc.detail)),
+        )
+
     @app.exception_handler(DomainError)
     async def domain_error_handler(_: Request, exc: DomainError) -> JSONResponse:
         # Expected errors are safe to surface verbatim.

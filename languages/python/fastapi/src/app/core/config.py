@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import field_validator
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 AppEnv = Literal["development", "testing", "production"]
 LogLevel = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
@@ -30,7 +31,17 @@ class Settings(BaseSettings):
     app_port: int = 8000
     # Empty list keeps CORS fully disabled (secure default); origins are
     # provided as a comma-separated list, e.g. CORS_ORIGINS=https://a.com,https://b.com
-    cors_origins: list[str] = []
+    # NoDecode stops pydantic-settings from JSON-decoding the env string first.
+    cors_origins: Annotated[list[str], NoDecode] = []
+
+    @field_validator("cors_origins", mode="before")
+    @classmethod
+    def _split_comma_separated(cls, value: object) -> object:
+        # Accept comma-separated env values (pydantic-settings would otherwise
+        # require JSON arrays in the environment).
+        if isinstance(value, str):
+            return [item.strip() for item in value.split(",") if item.strip()]
+        return value
 
 
 @lru_cache
