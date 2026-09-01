@@ -75,6 +75,22 @@ BOUNDARY_PATTERNS = [
     (re.compile(r"languages/[a-z][a-z0-9_-]*/"), "reference to another template"),
 ]
 EXTERNAL_ROOT_WORKSPACES = {"go.work"}
+# Generated/dependency directories are gitignored and therefore never
+# committed — the validator only inspects what would be committed.
+IGNORED_DIRS = {
+    ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache",
+    ".ruff_cache", ".mypy_cache", "dist", "build", "target", "coverage",
+    "htmlcov", ".next", ".nuxt", ".output", ".svelte-kit", ".gradle",
+    ".angular", "vendor", ".turbo", ".cache",
+}
+
+
+def iter_template_files(template: Path):
+    """Yield files under the template, skipping gitignored artifact dirs."""
+    for path in sorted(template.rglob("*")):
+        if any(part in IGNORED_DIRS for part in path.relative_to(template).parts):
+            continue
+        yield path
 
 
 class Violation:
@@ -177,7 +193,7 @@ def require_files(template: Path, meta: dict, violations: list[Violation]) -> No
 
 def check_self_containment(template: Path, violations: list[Violation]) -> None:
     name = f"{template.parent.name}/{template.name}"
-    for path in sorted(template.rglob("*")):
+    for path in iter_template_files(template):
         if path.is_symlink():
             violations.append(Violation(name, f"symlink inside template: {path.relative_to(template)}"))
             continue
@@ -203,7 +219,7 @@ def check_self_containment(template: Path, violations: list[Violation]) -> None:
 
 def has_test_file(template: Path) -> bool:
     markers = ("test", "spec", "Test")
-    for path in template.rglob("*"):
+    for path in iter_template_files(template):
         if path.is_file() and any(m in path.name for m in markers):
             return True
     return False
