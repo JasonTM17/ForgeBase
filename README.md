@@ -77,7 +77,8 @@ independent project:
 | C          | Vanilla     | library/cli | 🚧 planned |
 | C++        | Vanilla     | library/cli | 🚧 planned |
 
-(✅ = implemented and verified; 🚧 = planned, see the
+(✅ = implemented and verified locally; 🧪 = implemented, verification
+NOT_RUN locally — CI is the verification path; 🚧 = planned, see the
 [roadmap](docs/roadmap.md).)
 
 ## Quick Start

@@ -17,6 +17,7 @@ ForgeBase/
 ├── docs/                       # repository documentation (not shipped with templates)
 ├── scripts/                    # repository tooling (template validator)
 ├── .github/workflows/          # path-filtered CI, one workflow per language
+│                               # (C and C++ share one combined workflow)
 ├── CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, LICENSE
 └── README.md
 ```
@@ -119,6 +120,8 @@ in `docs/roadmap.md` as `Planned`, never as placeholder code.
   `docs/adding-a-language.md`, plus a CI workflow and roadmap entry.
 - **Template variants** (`minimal`/`standard`/`production`): the layout does
   not block adding a variant level under a framework directory later; until
-  then each template is a single "standard" variant and says so in metadata.
+  then each template is a single "standard" variant (not represented in
+  metadata — the schema gains a `variant` field only when a real consumer
+  needs it).
 - **CLI (`forgebase create`)**: consumes `forgebase.json` metadata; the
   repository layout already treats templates as data.

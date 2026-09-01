@@ -22,6 +22,16 @@ metadata requirements; CI runs it on every change (`.github/workflows/repository
 - A working entrypoint — the template runs/builds as documented.
 - At least one meaningful test — a test that would fail if core behavior
   (config loading, service logic, bootstrap) broke. No vanity tests.
+- **Self-containment** — the template MUST NOT contain imports, includes,
+  symlinks, or file references that escape its own directory. Concretely:
+  no symlink anywhere inside the template; no absolute or host-specific
+  paths (`/Users/...`, `/home/...`, `C:\...`); no references to repository
+  tooling or other templates (`scripts/`, `.github/`, another
+  `languages/...` path); no `../../../`-level traversal out of the template
+  root; no workspace configs rooted outside the template (`go.work`, npm
+  `workspaces`, cargo workspaces). Documentation links to repository-level
+  docs are permitted — this is a static scan of tracked files, enforced by
+  the validator with a negative fixture.
 
 ### SHOULD
 
@@ -94,9 +104,10 @@ In addition to §1:
 - At least one example component/page demonstrating the framework's idiomatic
   structure — generic domain only.
 - Tests for the example component and config validation.
-- `Dockerfile` (except `react-native`): SPA starters serve static output via
-  nginx with SPA fallback, cache headers, and security headers; SSR starters
-  run a non-root Node runtime.
+- `Dockerfile` (web-deployable frontend starters — SPA and SSR — only;
+  mobile app starters such as `react-native` and `flutter` are exempt): SPA
+  starters serve static output via nginx with SPA fallback, cache headers,
+  and security headers; SSR starters run a non-root Node runtime.
 
 ### SHOULD
 
@@ -147,7 +158,9 @@ template:
 
 `forgebase.json` schema, field rules, and validation behavior are defined in
 [ADR 0002](adr/0002-template-metadata.md). The validator rejects unknown
-fields, duplicate ids, and id/path mismatches.
+fields, duplicate ids, id/path mismatches, and boundary violations
+(self-containment MUST above); category values come from the ADR 0002 enum —
+vanilla templates are categorized `library`.
 
 ## 7. Definition of done (per template)
 

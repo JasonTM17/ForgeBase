@@ -62,3 +62,8 @@ honest.
 - Template discovery is a two-line directory scan.
 - The future CLI needs no repository refactor.
 - Metadata correctness is a CI gate, not a convention.
+- `runtimeVersion` is a human-readable constraint string (e.g. `>=3.12`,
+  `21`, `>=1.25` — ecosystem-qualified semver ranges). When the CLI later
+  needs machine-readable compatibility, a new OPTIONAL structured field is
+  added alongside it; new fields always land optional-first so existing
+  metadata files never break.
