@@ -1,0 +1,11 @@
+{
+  "id": "c-vanilla",
+  "name": "C Vanilla Starter",
+  "language": "c",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["library", "cli", "cmake"],
+  "version": "1.0.0",
+  "runtimeVersion": "C11",
+  "description": "Zero-dependency C11 library + CLI base with CMake, fail-fast environment configuration, leveled logging, an example service, and CTest tests."
+}
