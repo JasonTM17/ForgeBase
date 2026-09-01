@@ -130,6 +130,8 @@ API templates keep an error contract consistent with their ecosystem:
   - error: `{"error": {"code": "RESOURCE_NOT_FOUND", "message": "..."}}`
 - Spring Boot uses RFC 9457 Problem Details (`spring-web` built-in).
 - Quarkus follows the MicroProfile/RESTEasy conventions.
+- ASP.NET Core uses RFC 9457 Problem Details (built-in `Problem()` / `IProblemDetailsService`).
+- Rust (axum, actix-web) and Kotlin (ktor) use the light envelope above.
 - Django, Laravel, Rails follow their framework's conventions for errors and
   health while keeping the MUST-level no-leak guarantees.
 
