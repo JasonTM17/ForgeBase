@@ -9,9 +9,10 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import health
+from app.api import examples, health
 from app.core.config import Settings, get_settings
 from app.core.logging import setup_logging
+from app.exceptions import register_exception_handlers
 
 logger = logging.getLogger("app")
 
@@ -46,7 +47,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
             allow_headers=["Authorization", "Content-Type"],
         )
+    register_exception_handlers(app)
     app.include_router(health.router)
+    app.include_router(examples.router)
     return app
 
 
