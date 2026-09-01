@@ -1,0 +1,11 @@
+{
+  "id": "php-vanilla",
+  "name": "PHP Vanilla Starter",
+  "language": "php",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["library", "cli"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=8.3",
+  "description": "Zero-dependency PHP 8.3+ library/CLI base with composer PSR-4 autoload, fail-fast environment configuration, leveled console logging, an example service, and a dependency-free test runner."
+}

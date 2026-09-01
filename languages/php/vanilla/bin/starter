@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require dirname(__DIR__) . '/bootstrap.php';
+
+use ForgeBase\Starter\EnvConfig;
+use ForgeBase\Starter\EnvConfigException;
+use ForgeBase\Starter\Greeter;
+use ForgeBase\Starter\ConsoleLogger;
+
+// Fail-fast demo: a missing or invalid configuration variable exits with a
+// clean message and a non-zero code instead of a stack trace.
+try {
+    $config = EnvConfig::fromEnvironment();
+    $logger = new ConsoleLogger($config->logLevel, $config->serviceName);
+
+    $logger->info('service starting');
+    echo (new Greeter())->greet('ForgeBase'), PHP_EOL;
+    $logger->info('service finished');
+
+    exit(0);
+} catch (EnvConfigException $exception) {
+    fwrite(STDERR, "configuration error: {$exception->getMessage()}\n");
+    exit(2);
+}

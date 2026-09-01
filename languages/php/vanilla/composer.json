@@ -1,0 +1,20 @@
+{
+  "name": "forgebase/starter",
+  "description": "Zero-dependency PHP library/CLI base from ForgeBase.",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "ForgeBase\\Starter\\": "src/"
+    }
+  },
+  "bin": [
+    "bin/starter"
+  ],
+  "scripts": {
+    "test": "php tests/run.php"
+  }
+}

@@ -1,0 +1,5 @@
+# Composer / PHP artifacts
+vendor/
+composer.phar
+.phpunit.result.cache
+.phpcs-cache/
