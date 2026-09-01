@@ -8,15 +8,22 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
+ios/
+android/
 
 # Native
 .kotlin/
 *.orig.*
 *.jks
+*.keystore
 *.p8
 *.p12
 *.key
 *.mobileprovision
+
+# Environment
+.env*
+!.env.example
 
 # Metro
 .metro-health-check*
@@ -28,14 +35,3 @@ yarn-error.*
 
 # macOS
 .DS_Store
-*.pem
-
-# local env files
-.env*.local
-
-# typescript
-*.tsbuildinfo
-
-# generated native folders
-/ios
-/android

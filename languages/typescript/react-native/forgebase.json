@@ -1,0 +1,11 @@
+{
+  "id": "typescript-react-native",
+  "name": "React Native Starter",
+  "language": "typescript",
+  "framework": "react-native",
+  "category": "frontend",
+  "tags": ["mobile", "expo"],
+  "version": "1.0.0",
+  "runtimeVersion": "Expo SDK ~57 / React 19.2",
+  "description": "Expo-based React Native starter with typed fail-fast environment config, an app-level error boundary, an example component, and jest tests. Native builds are CI/device-first."
+}
