@@ -1,0 +1,33 @@
+# AgentKit workspace (private tooling — intentionally not published)
+.agentkit/
+.agents/
+.codex/
+AGENTS.md
+plans/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ecosystem artifacts (each starter also carries its own .gitignore)
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist/
+build/
+target/
+coverage/
+.nuxt/
+.output/
+.next/
+.env
+.env.local
+.env.*.local
+*.log
