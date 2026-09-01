@@ -81,7 +81,7 @@ IGNORED_DIRS = {
     ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache",
     ".ruff_cache", ".mypy_cache", "dist", "build", "target", "coverage",
     "htmlcov", ".next", ".nuxt", ".output", ".svelte-kit", ".gradle",
-    ".angular", "vendor", ".turbo", ".cache",
+    ".angular", "vendor", ".turbo", ".cache", "bin", "obj", ".dart_tool",
 }
 
 
