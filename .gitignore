@@ -27,7 +27,15 @@ coverage/
 .nuxt/
 .output/
 .next/
-.env
-.env.local
-.env.*.local
+.env*
+!.env.example
+!.env.*.example
 *.log
+
+# Key/keystore material (defense-in-depth behind each starter's .gitignore)
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+*.pem
