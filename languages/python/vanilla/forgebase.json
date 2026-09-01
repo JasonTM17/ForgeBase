@@ -1,0 +1,11 @@
+{
+  "id": "python-vanilla",
+  "name": "Python Vanilla Starter",
+  "language": "python",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["cli", "stdlib-only", "uv"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=3.12",
+  "description": "Stdlib-only Python library/CLI base with fail-fast env configuration, structured JSON logging, an example service, and pytest/ruff tooling."
+}
