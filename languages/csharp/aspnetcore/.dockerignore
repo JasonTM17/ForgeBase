@@ -1,0 +1,10 @@
+bin/
+obj/
+tests/
+**/*.user
+**/.vs/
+TestResults/
+README.md
+.env
+.env.*
+!.env.example
