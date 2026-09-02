@@ -1,0 +1,11 @@
+{
+  "id": "kotlin-ktor",
+  "name": "Kotlin Ktor Starter",
+  "language": "kotlin",
+  "framework": "ktor",
+  "category": "backend",
+  "tags": ["api", "rest", "http"],
+  "version": "1.0.0",
+  "runtimeVersion": "JDK 21 / Ktor 3",
+  "description": "Production-oriented Ktor 3 + Netty API with fail-fast configuration, health endpoints, envelope errors, an example resource, content negotiation, and a non-root Docker image."
+}
