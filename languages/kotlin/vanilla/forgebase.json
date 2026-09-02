@@ -1,0 +1,11 @@
+{
+  "id": "kotlin-vanilla",
+  "name": "Kotlin Vanilla Starter",
+  "language": "kotlin",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["library", "cli", "gradle"],
+  "version": "1.0.0",
+  "runtimeVersion": "JDK 21",
+  "description": "Zero-dependency Kotlin library/CLI base with Gradle Kotlin DSL, fail-fast environment configuration, leveled console logging, an example service, and kotlin.test tests."
+}
