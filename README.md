@@ -7,9 +7,10 @@ one folder per language/framework — so that starting a new project means
 copying a template instead of re-assembling structure, linting, testing,
 configuration, logging, error handling, Docker, and CI from scratch.
 
-> Status: under active construction. Template availability is tracked in the
-> [status table](#available-languages) and the
-> [roadmap](docs/roadmap.md) as templates land.
+> Status: Phase 1 landing — 38 starters across 12 languages. Template
+> availability and verification status are tracked in the
+> [status table](#available-languages); future work lives in the
+> [roadmap](docs/roadmap.md).
 
 ## What is ForgeBase?
 
@@ -36,50 +37,55 @@ independent project:
 
 ## Available Languages
 
-| Language   | Starter     | Category | Status |
-| ---------- | ----------- | -------- | ------ |
-| Python     | Vanilla     | library/cli | 🚧 planned |
-| Python     | FastAPI     | backend  | 🚧 planned |
-| Python     | Flask       | backend  | 🚧 planned |
-| Python     | Django      | backend  | 🚧 planned |
-| TypeScript | Node        | library/cli | 🚧 planned |
-| TypeScript | Express     | backend  | 🚧 planned |
-| TypeScript | NestJS      | backend  | 🚧 planned |
-| TypeScript | Fastify     | backend  | 🚧 planned |
-| TypeScript | React       | frontend | 🚧 planned |
-| TypeScript | Next.js     | frontend | 🚧 planned |
-| TypeScript | Vue         | frontend | 🚧 planned |
-| TypeScript | Nuxt        | frontend | 🚧 planned |
-| TypeScript | Angular     | frontend | 🚧 planned |
-| TypeScript | Svelte      | frontend | 🚧 planned |
-| TypeScript | SvelteKit   | frontend | 🚧 planned |
-| TypeScript | React Native| mobile   | 🚧 planned |
-| Java       | Vanilla     | library/cli | 🚧 planned |
-| Java       | Spring Boot | backend  | 🚧 planned |
-| Java       | Quarkus     | backend  | 🚧 planned |
-| Go         | Vanilla     | library/cli | 🚧 planned |
-| Go         | net/http    | backend  | 🚧 planned |
-| Go         | Gin         | backend  | 🚧 planned |
-| Go         | Fiber       | backend  | 🚧 planned |
-| Rust       | Vanilla     | library/cli | 🚧 planned |
-| Rust       | Axum        | backend  | 🚧 planned |
-| Rust       | Actix Web   | backend  | 🚧 planned |
-| C#         | Vanilla     | library/cli | 🚧 planned |
-| C#         | ASP.NET Core| backend  | 🚧 planned |
-| PHP        | Vanilla     | library/cli | 🚧 planned |
-| PHP        | Laravel     | backend  | 🚧 planned |
-| Ruby       | Vanilla     | library/cli | 🚧 planned |
-| Ruby        | Rails      | backend  | 🚧 planned |
-| Kotlin     | Vanilla     | library/cli | 🚧 planned |
-| Kotlin     | Ktor        | backend  | 🚧 planned |
-| Dart       | Vanilla     | library/cli | 🚧 planned |
-| Dart       | Flutter     | mobile   | 🚧 planned |
-| C          | Vanilla     | library/cli | 🚧 planned |
-| C++        | Vanilla     | library/cli | 🚧 planned |
+| Language   | Starter      | Category     | Status |
+| ---------- | ------------ | ------------ | ------ |
+| Python     | Vanilla      | library/cli  | ✅ |
+| Python     | FastAPI      | backend      | ✅ |
+| Python     | Flask        | backend      | ✅ |
+| Python     | Django       | backend      | ✅ |
+| TypeScript | Node         | library/cli  | ✅ |
+| TypeScript | Express      | backend      | ✅ |
+| TypeScript | NestJS       | backend      | 🚧 |
+| TypeScript | Fastify      | backend      | 🚧 |
+| TypeScript | Hono         | backend      | 🚧 |
+| TypeScript | React        | frontend     | 🚧 |
+| TypeScript | Next.js      | frontend     | 🚧 |
+| TypeScript | Vue          | frontend     | 🚧 |
+| TypeScript | Nuxt         | frontend     | 🚧 |
+| TypeScript | Angular      | frontend     | 🚧 |
+| TypeScript | Svelte       | frontend     | 🚧 |
+| TypeScript | SvelteKit    | frontend     | 🚧 |
+| TypeScript | React Native | mobile       | ✅ |
+| Java       | Vanilla      | library/cli  | 🚧 |
+| Java       | Spring Boot  | backend      | 🚧 |
+| Java       | Quarkus      | backend      | 🚧 |
+| Go         | Vanilla      | library/cli  | 🚧 |
+| Go         | net/http     | backend      | 🚧 |
+| Go         | Gin          | backend      | 🚧 |
+| Go         | Fiber        | backend      | 🚧 |
+| Rust       | Vanilla      | library/cli  | ✅ |
+| Rust       | Axum         | backend      | ✅ |
+| Rust       | Actix Web    | backend      | ✅ |
+| C#         | Vanilla      | library/cli  | ✅ |
+| C#         | ASP.NET Core | backend      | ✅ |
+| PHP        | Vanilla      | library/cli  | ✅ |
+| PHP        | Laravel      | backend      | 🧪 |
+| Ruby       | Vanilla      | library/cli  | ✅ |
+| Ruby       | Rails        | backend      | ✅ |
+| Kotlin     | Vanilla      | library/cli  | ✅ |
+| Kotlin     | Ktor         | backend      | 🧪 |
+| Dart       | Vanilla      | library/cli  | ✅ |
+| Dart       | Flutter      | mobile       | 🧪 |
+| C          | Vanilla      | library/cli  | ✅ |
+| C++        | Vanilla      | library/cli  | ✅ |
 
-(✅ = implemented and verified locally; 🧪 = implemented, verification
-NOT_RUN locally — CI is the verification path; 🚧 = planned, see the
-[roadmap](docs/roadmap.md).)
+**Legend:** ✅ = implemented and verified locally · 🧪 = implemented,
+verification NOT_RUN locally (CI is the verification path) · 🚧 =
+planned/in-progress (see the [roadmap](docs/roadmap.md)).
+
+> Status reflects this session's slice. The parallel controller is landing
+> the TypeScript/Java/Python/Go starters concurrently; their rows flip to
+> ✅ as their focused gates pass.
 
 ## Quick Start
 
@@ -103,8 +109,18 @@ ForgeBase/
 │   ├── typescript/
 │   ├── java/
 │   ├── go/
+│   ├── rust/
+│   ├── csharp/
+│   ├── php/
+│   ├── ruby/
+│   ├── kotlin/
+│   ├── dart/
+│   ├── c/
+│   ├── cpp/
 │   └── ...
 ├── docs/             # architecture, template spec, conventions, roadmap
+│   ├── adding-a-language.md
+│   └── adding-a-framework.md
 ├── scripts/          # repository tooling (template validation)
 └── .github/          # path-filtered CI workflows per language
 ```
