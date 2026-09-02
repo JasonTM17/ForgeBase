@@ -1,0 +1,40 @@
+{
+  "name": "@forgebase/express-starter",
+  "version": "1.0.0",
+  "description": "ForgeBase Express starter: production-oriented REST API base with zod-validated config, pino structured logging, centralized error handling, health endpoints, and graceful shutdown.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.0.0",
+    "helmet": "^8.0.0",
+    "pino": "^9.3.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.5.0",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^9.9.0",
+    "pino-pretty": "^11.2.0",
+    "prettier": "^3.3.0",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.0.0"
+  }
+}
