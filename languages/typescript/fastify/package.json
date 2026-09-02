@@ -1,0 +1,38 @@
+{
+  "name": "@forgebase/fastify-starter",
+  "version": "1.0.0",
+  "description": "ForgeBase Fastify starter: production-oriented REST API base with zod-validated config, pino structured logging, centralized error envelope, health endpoints, and graceful shutdown.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.0",
+    "@fastify/helmet": "^11.1.0",
+    "fastify": "^5.0.0",
+    "pino": "^9.3.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^22.5.0",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^9.9.0",
+    "prettier": "^3.3.0",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.0.0"
+  }
+}

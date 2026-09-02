@@ -1,0 +1,11 @@
+{
+  "id": "typescript-fastify",
+  "name": "TypeScript Fastify Starter",
+  "language": "typescript",
+  "framework": "fastify",
+  "category": "backend",
+  "tags": ["api", "rest", "zod", "pino", "fastify5"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented Fastify 5 REST base: zod-validated config, pino structured logging, centralized error envelope, health endpoints, graceful shutdown, and a non-root Docker image."
+}
