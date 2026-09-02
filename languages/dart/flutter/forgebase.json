@@ -1,0 +1,11 @@
+{
+  "id": "dart-flutter",
+  "name": "Dart Flutter Starter",
+  "language": "dart",
+  "framework": "flutter",
+  "category": "frontend",
+  "tags": ["mobile", "flutter"],
+  "version": "1.0.0",
+  "runtimeVersion": "Flutter stable / Dart >=3.3",
+  "description": "Flutter app layout with typed fail-fast environment configuration, an app-level error widget, an example screen, and flutter_test tests. Native verification is CI-first."
+}
