@@ -1,0 +1,11 @@
+{
+  "id": "typescript-nestjs",
+  "name": "TypeScript NestJS Starter",
+  "language": "typescript",
+  "framework": "nestjs",
+  "category": "backend",
+  "tags": ["api", "rest", "nestjs", "terminus", "pino"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented NestJS REST base: zod-validated config via @nestjs/config, pino structured logging, centralized error envelope, Terminus health endpoints, graceful shutdown, and a non-root Docker image."
+}
