@@ -1,0 +1,11 @@
+{
+  "id": "typescript-nextjs",
+  "name": "TypeScript Next.js Starter",
+  "language": "typescript",
+  "framework": "nextjs",
+  "category": "frontend",
+  "tags": ["ssr", "next15", "app-router", "react19", "zod"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented Next.js 15 (App Router) base: strict TypeScript, zod-validated env, typed error pages, example route, vitest + Testing Library, and a standalone Docker image."
+}
