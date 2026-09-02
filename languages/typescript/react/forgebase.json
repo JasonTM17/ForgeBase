@@ -1,0 +1,11 @@
+{
+  "id": "typescript-react",
+  "name": "TypeScript React Starter",
+  "language": "typescript",
+  "framework": "react",
+  "category": "frontend",
+  "tags": ["spa", "vite", "react19", "vitest"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented React 19 SPA base: Vite, strict TypeScript, typed env config, error boundary, example component, vitest + Testing Library, and an nginx-served Docker image."
+}
