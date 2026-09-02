@@ -1,0 +1,11 @@
+{
+  "id": "java-quarkus",
+  "name": "Java Quarkus Starter",
+  "language": "java",
+  "framework": "quarkus",
+  "category": "backend",
+  "tags": ["api", "rest", "microprofile-health", "fast-jar"],
+  "version": "1.0.0",
+  "runtimeVersion": "21",
+  "description": "Production-oriented Quarkus REST base: validated config, MicroProfile liveness/readiness, centralized error mapping, example resource, and a layered architecture."
+}
