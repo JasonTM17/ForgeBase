@@ -1,0 +1,11 @@
+{
+  "id": "go-vanilla",
+  "name": "Go Vanilla Starter",
+  "language": "go",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["cli", "stdlib-only", "slog"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=1.25",
+  "description": "Stdio-only Go library/CLI base: env config with fail-fast validation, leveled slog structured logging, an example service, and go test."
+}
