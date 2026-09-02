@@ -1,0 +1,11 @@
+{
+  "id": "typescript-nuxt",
+  "name": "TypeScript Nuxt Starter",
+  "language": "typescript",
+  "framework": "nuxt",
+  "category": "frontend",
+  "tags": ["ssr", "nuxt3", "vue3", "runtime-config"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented Nuxt 3 (SSR) base: strict TypeScript, typed runtime config, error page, example page, vitest + Testing Library, and a node-served Docker image."
+}
