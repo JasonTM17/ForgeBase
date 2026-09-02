@@ -1,0 +1,11 @@
+{
+  "id": "java-vanilla",
+  "name": "Java Vanilla Starter",
+  "language": "java",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["cli", "junit5", "maven"],
+  "version": "1.0.0",
+  "runtimeVersion": "21",
+  "description": "Vanilla Java library/CLI base: Maven, Java 21, JUnit 5, env config, structured logging via SLF4J+Logback."
+}
