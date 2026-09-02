@@ -1,0 +1,11 @@
+{
+  "id": "java-spring-boot",
+  "name": "Java Spring Boot Starter",
+  "language": "java",
+  "framework": "spring-boot",
+  "category": "backend",
+  "tags": ["api", "rest", "actuator", "problem-detail"],
+  "version": "1.0.0",
+  "runtimeVersion": "21",
+  "description": "Production-oriented Spring Boot 3 REST base: validated config, actuator liveness/readiness, RFC 9457 ProblemDetail errors, health endpoints, and a layered example."
+}
