@@ -1,0 +1,11 @@
+{
+  "id": "go-net-http",
+  "name": "Go net/http Starter",
+  "language": "go",
+  "framework": "net-http",
+  "category": "backend",
+  "tags": ["api", "rest", "stdlib-only", "zero-dependencies"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=1.25",
+  "description": "Production-oriented net/http REST base (zero third-party deps): validated config, structured slog logging, centralized error envelope, health endpoints, and graceful shutdown."
+}
