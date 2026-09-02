@@ -1,0 +1,10 @@
+name: starter
+description: ForgeBase zero-dependency Dart library/CLI starter.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.3.0
+
+dev_dependencies:
+  test: ^1.25.0

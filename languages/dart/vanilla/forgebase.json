@@ -1,0 +1,11 @@
+{
+  "id": "dart-vanilla",
+  "name": "Dart Vanilla Starter",
+  "language": "dart",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["library", "cli"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=3.3",
+  "description": "Zero-dependency Dart 3.3+ library/CLI base with fail-fast environment configuration, leveled console logging, an example service, and dart test tests."
+}
