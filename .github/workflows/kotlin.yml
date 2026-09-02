@@ -1,0 +1,46 @@
+name: Kotlin
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "languages/kotlin/**"
+      - ".github/workflows/kotlin.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "languages/kotlin/**"
+      - ".github/workflows/kotlin.yml"
+
+concurrency:
+  group: kotlin-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kotlin:
+    name: "kotlin (${{ matrix.framework }})"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [vanilla, ktor]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Test
+        working-directory: languages/kotlin/${{ matrix.framework }}
+        run: ./gradlew test
+
+      - name: Docker build
+        if: matrix.framework != 'vanilla'
+        working-directory: languages/kotlin/${{ matrix.framework }}
+        run: |
+          if [ -f Dockerfile ]; then docker build -t kotlin-${{ matrix.framework }} .; fi

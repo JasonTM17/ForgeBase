@@ -1,0 +1,47 @@
+name: Java
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "languages/java/**"
+      - ".github/workflows/java.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "languages/java/**"
+      - ".github/workflows/java.yml"
+
+concurrency:
+  group: java-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  java:
+    name: "java (${{ matrix.framework }})"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [vanilla, spring-boot, quarkus]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Test (Maven)
+        working-directory: languages/java/${{ matrix.framework }}
+        run: |
+          if [ -f pom.xml ]; then mvn -B verify; fi
+
+      - name: Docker build
+        if: matrix.framework != 'vanilla'
+        working-directory: languages/java/${{ matrix.framework }}
+        run: |
+          if [ -f Dockerfile ]; then docker build -t java-${{ matrix.framework }} .; fi

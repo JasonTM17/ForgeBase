@@ -1,0 +1,39 @@
+name: C and C++
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "languages/c/**"
+      - "languages/cpp/**"
+      - ".github/workflows/c-cpp.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "languages/c/**"
+      - "languages/cpp/**"
+      - ".github/workflows/c-cpp.yml"
+
+concurrency:
+  group: c-cpp-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  c-cpp:
+    name: "c/cpp (${{ matrix.language }}/${{ matrix.framework }})"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [c, cpp]
+        framework: [vanilla]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure, build, test
+        working-directory: languages/${{ matrix.language }}/${{ matrix.framework }}
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build
+          ctest --test-dir build --output-on-failure

@@ -1,0 +1,51 @@
+name: Repository checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: repository-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-templates:
+    name: Template specification compliance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run template validator (positive + negative fixture)
+        run: |
+          python scripts/validate_templates.py
+          python scripts/validate_templates.py --selftest
+
+  lint-workflows:
+    name: Workflow YAML validity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check workflow YAML parses
+        run: |
+          python -c "
+          import yaml, pathlib, sys
+          files = list(pathlib.Path('.github/workflows').glob('*.yml'))
+          failures = 0
+          for f in files:
+              try:
+                  list(yaml.safe_load_all(f.read_text()))
+                  print(f'  OK  {f.name}')
+              except Exception as exc:
+                  print(f'  FAIL {f.name}: {exc}')
+                  failures += 1
+          print(f'{len(files)} workflow(s) checked')
+          sys.exit(1 if failures else 0)
+          "

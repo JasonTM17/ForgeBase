@@ -1,0 +1,61 @@
+name: Rust
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "languages/rust/**"
+      - ".github/workflows/rust.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "languages/rust/**"
+      - ".github/workflows/rust.yml"
+
+concurrency:
+  group: rust-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rust:
+    name: "rust (${{ matrix.framework }})"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [vanilla, axum, actix-web]
+
+    env:
+      CARGO_TERM_COLOR: always
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: languages/rust/${{ matrix.framework }}
+
+      - name: Format check
+        working-directory: languages/rust/${{ matrix.framework }}
+        run: cargo fmt --check
+
+      - name: Clippy
+        working-directory: languages/rust/${{ matrix.framework }}
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Test
+        working-directory: languages/rust/${{ matrix.framework }}
+        run: cargo test
+
+      - name: Docker build
+        if: matrix.framework != 'vanilla'
+        working-directory: languages/rust/${{ matrix.framework }}
+        run: |
+          if [ -f Dockerfile ]; then docker build -t rust-${{ matrix.framework }} .; fi

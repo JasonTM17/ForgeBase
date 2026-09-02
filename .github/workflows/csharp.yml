@@ -1,0 +1,52 @@
+name: C#
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "languages/csharp/**"
+      - ".github/workflows/csharp.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "languages/csharp/**"
+      - ".github/workflows/csharp.yml"
+
+concurrency:
+  group: csharp-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  csharp:
+    name: "csharp (${{ matrix.framework }})"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [vanilla, aspnetcore]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build
+        working-directory: languages/csharp/${{ matrix.framework }}
+        run: dotnet build
+
+      - name: Format check
+        working-directory: languages/csharp/${{ matrix.framework }}
+        run: dotnet format --verify-no-changes
+
+      - name: Test
+        working-directory: languages/csharp/${{ matrix.framework }}
+        run: dotnet test --no-build
+
+      - name: Docker build
+        if: matrix.framework != 'vanilla'
+        working-directory: languages/csharp/${{ matrix.framework }}
+        run: |
+          if [ -f Dockerfile ]; then docker build -t csharp-${{ matrix.framework }} .; fi

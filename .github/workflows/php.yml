@@ -1,0 +1,46 @@
+name: PHP
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "languages/php/**"
+      - ".github/workflows/php.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "languages/php/**"
+      - ".github/workflows/php.yml"
+
+concurrency:
+  group: php-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php:
+    name: "php (${{ matrix.framework }})"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [vanilla, laravel]
+        php-version: ["8.3"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Install dependencies
+        working-directory: languages/php/${{ matrix.framework }}
+        run: |
+          if [ -f composer.json ]; then composer install --no-interaction --prefer-dist; fi
+
+      - name: Test
+        working-directory: languages/php/${{ matrix.framework }}
+        run: |
+          if [ -f vendor/bin/phpunit ]; then vendor/bin/phpunit; fi

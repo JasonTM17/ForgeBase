@@ -1,0 +1,49 @@
+name: Go
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "languages/go/**"
+      - ".github/workflows/go.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "languages/go/**"
+      - ".github/workflows/go.yml"
+
+concurrency:
+  group: go-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  go:
+    name: "go (${{ matrix.framework }})"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [vanilla, gin, net-http, fiber]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+          cache-dependency-path: languages/go/${{ matrix.framework }}/go.sum
+
+      - name: Vet
+        working-directory: languages/go/${{ matrix.framework }}
+        run: go vet ./...
+
+      - name: Test
+        working-directory: languages/go/${{ matrix.framework }}
+        run: go test ./...
+
+      - name: Docker build
+        if: matrix.framework != 'vanilla'
+        working-directory: languages/go/${{ matrix.framework }}
+        run: |
+          if [ -f Dockerfile ]; then docker build -t go-${{ matrix.framework }} .; fi
