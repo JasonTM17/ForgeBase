@@ -1,0 +1,6 @@
+*.gem
+.gem/
+coverage/
+.bundle/
+vendor/bundle/
+.rspec_status

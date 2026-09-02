@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/starter'
+
+# Fail-fast demo: a missing or invalid configuration variable exits with a
+# clean message and a non-zero code instead of a stack trace.
+begin
+  config = Starter.load_config
+  logger = Starter::ConsoleLogger.new(config.log_level, config.service_name)
+
+  logger.info('service starting')
+  puts Starter::Greeter.new.greet('ForgeBase')
+  logger.info('service finished')
+rescue Starter::EnvConfigError => e
+  warn "configuration error: #{e.message}"
+  exit 2
+end

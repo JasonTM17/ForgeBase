@@ -1,0 +1,11 @@
+{
+  "id": "ruby-vanilla",
+  "name": "Ruby Vanilla Starter",
+  "language": "ruby",
+  "framework": "vanilla",
+  "category": "library",
+  "tags": ["library", "cli"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=3.3",
+  "description": "Zero-dependency Ruby 3.3+ library/CLI base with fail-fast environment configuration, leveled console logging, an example service, and a minitest suite."
+}
