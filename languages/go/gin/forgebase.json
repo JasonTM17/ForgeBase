@@ -1,0 +1,11 @@
+{
+  "id": "go-gin",
+  "name": "Go Gin Starter",
+  "language": "go",
+  "framework": "gin",
+  "category": "backend",
+  "tags": ["api", "rest", "gin", "zerolog"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=1.25",
+  "description": "Production-oriented Gin REST base: validated config, zerolog structured logging, centralized error envelope, health endpoints, and graceful shutdown."
+}
