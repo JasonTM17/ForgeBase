@@ -1,0 +1,11 @@
+{
+  "id": "ruby-rails",
+  "name": "Ruby on Rails Starter",
+  "language": "ruby",
+  "framework": "rails",
+  "category": "backend",
+  "tags": ["api", "rest", "http"],
+  "version": "1.0.0",
+  "runtimeVersion": "Ruby >=3.3 / Rails 8.1",
+  "description": "Production-oriented Rails 8 API starter with fail-fast startup configuration, centralized envelope errors via rescue_from, the health trio, an example resource, and a non-root Docker image."
+}
