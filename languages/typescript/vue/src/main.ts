@@ -1,0 +1,7 @@
+import { createApp } from "vue";
+
+import App from "./App.js";
+
+const root = document.getElementById("app");
+if (!root) throw new Error("Root element #app not found");
+createApp(App).mount(root);

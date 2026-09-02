@@ -1,0 +1,11 @@
+{
+  "id": "typescript-vue",
+  "name": "TypeScript Vue Starter",
+  "language": "typescript",
+  "framework": "vue",
+  "category": "frontend",
+  "tags": ["spa", "vite", "vue3", "vitest"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented Vue 3 SPA base: Vite, strict TypeScript, typed env config, error handling, example component, vitest + Testing Library, and an nginx-served Docker image."
+}
