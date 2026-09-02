@@ -1,0 +1,11 @@
+{
+  "id": "typescript-angular",
+  "name": "TypeScript Angular Starter",
+  "language": "typescript",
+  "framework": "angular",
+  "category": "frontend",
+  "tags": ["spa", "angular19", "standalone", "vitest"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented Angular 19 standalone base: strict TypeScript, typed env config, error handling, example component+service, vitest + Testing Library, and an nginx-served Docker image."
+}
