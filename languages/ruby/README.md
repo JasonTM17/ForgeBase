@@ -6,13 +6,14 @@ repository and it runs as-is — no files outside the folder are referenced.
 | Starter | Category | Description |
 |---|---|---|
 | [`vanilla`](./vanilla/) | library | Zero-dependency gem-style base: fail-fast env config, leveled logging, example service, minitest suite |
+| [`rails`](./rails/) | backend | Rails 8 API: fail-fast config, envelope errors, health trio, example resource, non-root Docker |
 
 ## Verification strategy
 
 - `vanilla` is verified in the official `ruby:3.3` container
   (`ruby test/run_test.rb`). No Ruby toolchain is assumed on the host.
-- `rails` (this phase) verifies with `rails new` inside the container and a
-  boot smoke test.
+- `rails` is verified in the `ruby:3.3` container with `bundle install`
+  followed by `rails test` in a single container run.
 
 ## Copying a starter out
 

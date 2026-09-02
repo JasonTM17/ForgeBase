@@ -39,3 +39,8 @@ coverage/
 *.pfx
 *.key
 *.pem
+
+# Language-toolchain sessions/artifacts (not covered by per-starter .gitignore)
+.kotlin/
+.svelte-kit/
+.angular/
