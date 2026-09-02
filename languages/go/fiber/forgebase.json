@@ -1,0 +1,11 @@
+{
+  "id": "go-fiber",
+  "name": "Go Fiber Starter",
+  "language": "go",
+  "framework": "fiber",
+  "category": "backend",
+  "tags": ["api", "rest", "fiber", "zerolog"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=1.25",
+  "description": "Production-oriented Fiber v3 REST base: validated config, zerolog structured logging, centralized error envelope, health endpoints, and graceful shutdown."
+}
