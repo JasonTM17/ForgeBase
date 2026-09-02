@@ -35,12 +35,12 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: ${{ matrix.framework == 'rails' }}
 
-      - name: Vanilla: run tests
+      - name: "Vanilla: run tests"
         if: matrix.framework == 'vanilla'
         working-directory: languages/ruby/vanilla
         run: ruby test/run_test.rb
 
-      - name: Rails: install, prepare, test
+      - name: "Rails: install, prepare, test"
         if: matrix.framework == 'rails'
         working-directory: languages/ruby/rails
         env:
