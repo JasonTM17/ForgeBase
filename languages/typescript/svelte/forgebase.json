@@ -1,0 +1,11 @@
+{
+  "id": "typescript-svelte",
+  "name": "TypeScript Svelte Starter",
+  "language": "typescript",
+  "framework": "svelte",
+  "category": "frontend",
+  "tags": ["spa", "vite", "svelte5", "vitest"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented Svelte 5 SPA base: Vite, strict TypeScript, typed env config, error handling, example component, vitest + Testing Library, and an nginx-served Docker image."
+}
