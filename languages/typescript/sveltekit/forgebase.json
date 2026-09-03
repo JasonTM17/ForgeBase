@@ -1,0 +1,11 @@
+{
+  "id": "typescript-sveltekit",
+  "name": "TypeScript SvelteKit Starter",
+  "language": "typescript",
+  "framework": "sveltekit",
+  "category": "frontend",
+  "tags": ["ssr", "svelte5", "sveltekit2", "adapter-node", "vitest"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=22",
+  "description": "Production-oriented SvelteKit 2 (SSR) base: strict TypeScript, typed $env, error page, example route, vitest + Testing Library, and a node-served Docker image."
+}
