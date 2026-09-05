@@ -37,6 +37,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: ${{ matrix.framework == 'rails' }}
+          working-directory: ${{ matrix.framework == 'rails' && 'languages/ruby/rails' || '.' }}
 
       - name: "Vanilla: run tests"
         if: matrix.framework == 'vanilla'
