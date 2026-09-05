@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/about-gitignore/ for more ignore rules.
 
-# Ignore bundler config.
+# Ignore bundler config and installed gems.
 /.bundle
+/vendor/bundle/
 
 # Ignore all environment files (except examples).
 /.env*
