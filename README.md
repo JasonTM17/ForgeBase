@@ -7,8 +7,9 @@ one folder per language/framework — so that starting a new project means
 copying a template instead of re-assembling structure, linting, testing,
 configuration, logging, error handling, Docker, and CI from scratch.
 
-> Status: Phase 1 complete — 38 starters across 12 languages; 37 verified
-> locally this session, Kotlin Ktor CI-verified. Template availability and
+> Status: Phase 1 complete — 38 starters across 12 languages, all verified
+> locally this session (Kotlin Ktor's gates ran in official toolchain
+> containers). Template availability and
 > verification status are tracked in the
 > [status table](#available-languages); future work lives in the
 > [roadmap](docs/roadmap.md).
@@ -73,7 +74,7 @@ independent project:
 | Ruby       | Vanilla      | library/cli  | ✅ |
 | Ruby       | Rails        | backend      | ✅ |
 | Kotlin     | Vanilla      | library/cli  | ✅ |
-| Kotlin     | Ktor         | backend      | 🧪 |
+| Kotlin     | Ktor         | backend      | ✅ |
 | Dart       | Vanilla      | library/cli  | ✅ |
 | Dart       | Flutter      | mobile       | ✅ |
 | C          | Vanilla      | library/cli  | ✅ |
@@ -83,10 +84,11 @@ independent project:
 verification NOT_RUN locally (CI is the verification path) · 🚧 =
 planned/in-progress (see the [roadmap](docs/roadmap.md)).
 
-> Status reflects this session's local verification. Kotlin Ktor remains
-> 🧪 (`NOT_RUN` locally — no Gradle toolchain on the verification machine;
-> CI is its verification path). A row flips to ✅ only after its focused
-> gates pass on observed evidence.
+> Status reflects this session's local verification: 38/38 ✅. Kotlin Ktor's
+> gates ran inside the official `gradle:8.14-jdk21` container (no host
+> Gradle toolchain): `gradle test`, the multi-stage image build, and a boot
+> smoke check. A row flips to ✅ only after its focused gates pass on
+> observed evidence.
 
 ## Quick Start
 

@@ -89,7 +89,9 @@ docker run --rm -p 8080:8080 -e SERVICE_NAME=my-api my-api
 
 Multi-stage build (`gradle:8.14-jdk21` builder → `eclipse-temurin:21-jre-alpine`
 runtime), non-root system user, only the release distribution ships in the
-image. Verification is pending under current concurrent-load constraints.
+image. Verified this session in the official toolchain container:
+`gradle test`, the image build, and a boot smoke check (`/health` plus a
+widget create).
 
 ## Production notes
 
