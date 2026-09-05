@@ -46,7 +46,9 @@ RUN bundle install && \
 COPY . .
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# or SERVICE_NAME: the fail-fast config initializer only enforces real values
+# when the server process boots (the entrypoint), never during asset builds.
+RUN SECRET_KEY_BASE_DUMMY=1 SERVICE_NAME=forgebase ./bin/rails assets:precompile
 
 
 
