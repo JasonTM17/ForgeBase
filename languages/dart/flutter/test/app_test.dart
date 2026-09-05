@@ -19,7 +19,8 @@ void main() {
     expect(find.text('Hello, ForgeBase!'), findsOneWidget);
   });
 
-  testWidgets('App renders the home screen with the given name', (tester) async {
+  testWidgets('App renders the home screen with the given name',
+      (tester) async {
     await tester.pumpWidget(const _TestApp(appName: 'ForgeBase'));
 
     expect(find.text('Hello, ForgeBase!'), findsOneWidget);

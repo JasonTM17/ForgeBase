@@ -9,13 +9,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Text(
-            'Hello, $appName!',
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-          ),
+    return SafeArea(
+      child: Center(
+        child: Text(
+          'Hello, $appName!',
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
         ),
       ),
     );

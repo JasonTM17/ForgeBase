@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/widgets.dart';
 
 import 'src/app.dart';
@@ -17,8 +15,8 @@ void main() {
 
   // App-level error boundary: a recoverable fallback instead of the red
   // error screen.
-  ErrorWidget.builder = (FlutterErrorDetails details) =>
-      AppErrorWidget(details: details);
+  ErrorWidget.builder =
+      (FlutterErrorDetails details) => AppErrorWidget(details: details);
 
   runApp(App(appName: appName));
 }
