@@ -57,7 +57,8 @@ def register_error_handlers(app: Flask) -> None:
         # Log the full failure server-side; clients get nothing actionable.
         logger.error("unhandled exception", exc_info=exc)
         return (
-            jsonify({"error": {"code": "INTERNAL_ERROR",
-                               "message": "An unexpected error occurred"}}),
+            jsonify(
+                {"error": {"code": "INTERNAL_ERROR", "message": "An unexpected error occurred"}}
+            ),
             500,
         )

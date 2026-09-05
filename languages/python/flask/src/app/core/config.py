@@ -23,12 +23,8 @@ def load_config(app: Flask) -> None:
     app_env = app.config.get("APP_ENV", "development")
     log_level = str(app.config.get("LOG_LEVEL", "INFO")).upper()
     if app_env not in VALID_ENVIRONMENTS:
-        raise ConfigError(
-            f"FORGE_APP_ENV must be one of {VALID_ENVIRONMENTS}, got {app_env!r}"
-        )
+        raise ConfigError(f"FORGE_APP_ENV must be one of {VALID_ENVIRONMENTS}, got {app_env!r}")
     if log_level not in VALID_LOG_LEVELS:
-        raise ConfigError(
-            f"FORGE_LOG_LEVEL must be one of {VALID_LOG_LEVELS}, got {log_level!r}"
-        )
+        raise ConfigError(f"FORGE_LOG_LEVEL must be one of {VALID_LOG_LEVELS}, got {log_level!r}")
     app.config["APP_ENV"] = app_env
     app.config["LOG_LEVEL"] = log_level
