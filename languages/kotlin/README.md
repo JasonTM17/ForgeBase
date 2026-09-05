@@ -21,5 +21,5 @@ repository and it builds as-is — no files outside the folder are referenced.
 cp -r languages/kotlin/ktor /path/to/my-api
 cd /path/to/my-api
 # rename the project in settings.gradle.kts and the starter package
-./gradlew build
+gradle build
 ```

@@ -48,7 +48,7 @@ Copy this folder out and rename:
 cp -r languages/kotlin/ktor /path/to/my-api
 cd /path/to/my-api
 # rename the project in settings.gradle.kts and the starter package
-./gradlew build
+gradle build
 ```
 
 ## Configuration
@@ -62,7 +62,7 @@ cd /path/to/my-api
 ## Running
 
 ```bash
-SERVICE_NAME=demo ./gradlew run
+SERVICE_NAME=demo gradle run
 # then:
 curl -s http://localhost:8080/health
 curl -s -X POST http://localhost:8080/api/widgets \
@@ -72,7 +72,7 @@ curl -s -X POST http://localhost:8080/api/widgets \
 ## Testing
 
 ```bash
-./gradlew test
+gradle test
 ```
 
 ## Linting / formatting
@@ -87,7 +87,7 @@ docker build -t my-api .
 docker run --rm -p 8080:8080 -e SERVICE_NAME=my-api my-api
 ```
 
-Multi-stage build (`gradle:8-jdk21` builder → `eclipse-temurin:21-jre-alpine`
+Multi-stage build (`gradle:8.14-jdk21` builder → `eclipse-temurin:21-jre-alpine`
 runtime), non-root system user, only the release distribution ships in the
 image. Verification is pending under current concurrent-load constraints.
 
@@ -105,3 +105,6 @@ image. Verification is pending under current concurrent-load constraints.
   honor it.
 - **First build is slow** — Gradle resolves the Ktor dependency tree once;
   subsequent builds reuse `build/`.
+- **`gradle` is not installed on the host** — run the repository's documented
+  Docker verification command, or generate a Gradle wrapper after copying the
+  starter out (`gradle wrapper`).
