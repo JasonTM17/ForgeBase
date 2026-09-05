@@ -13,8 +13,8 @@ type AppEnv string
 
 const (
 	Development AppEnv = "development"
-	Testing    AppEnv = "testing"
-	Production AppEnv = "production"
+	Testing     AppEnv = "testing"
+	Production  AppEnv = "production"
 )
 
 type AppConfig struct {

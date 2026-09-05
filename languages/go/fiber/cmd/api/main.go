@@ -4,10 +4,10 @@ import (
 	"log/slog"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 
 	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/gofiber/fiber/v3/middleware/recover"
 
 	"forgebase/go-fiber/internal/api"
@@ -32,10 +32,11 @@ func main() {
 	})
 	app.Use(recover.New())
 
-	// CORS only with an explicit allow-list.
-	if origins := strings.TrimSpace(os.Getenv("CORS_ORIGINS")); origins != "" {
-		// Fiber's cors middleware is opt-in; disabled by default (secure default).
-		logger.Info("CORS enabled", "origins", origins)
+	// CORS only with an explicit allow-list; the middleware is disabled by
+	// default so an unset variable never becomes a wildcard policy.
+	if len(cfg.CorsOrigins) > 0 {
+		app.Use(cors.New(cors.Config{AllowOrigins: cfg.CorsOrigins}))
+		logger.Info("CORS enabled", "origins", cfg.CorsOrigins)
 	}
 
 	api.Register(app, examples.New())

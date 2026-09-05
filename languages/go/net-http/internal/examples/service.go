@@ -60,5 +60,5 @@ type validationError struct {
 	msg string
 }
 
-func (e validationError) Error() string    { return e.msg }
+func (e validationError) Error() string      { return e.msg }
 func (e validationError) ClientCode() string { return "VALIDATION_ERROR" }

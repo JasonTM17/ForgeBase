@@ -3,5 +3,6 @@ bin/
 vendor/
 *.test
 *.out
+*.exe
 .env
 *.log

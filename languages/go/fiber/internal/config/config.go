@@ -10,14 +10,15 @@ type AppEnv string
 
 const (
 	Development AppEnv = "development"
-	Testing    AppEnv = "testing"
-	Production AppEnv = "production"
+	Testing     AppEnv = "testing"
+	Production  AppEnv = "production"
 )
 
 type AppConfig struct {
-	AppName string
-	AppEnv  AppEnv
-	Addr    string
+	AppName     string
+	AppEnv      AppEnv
+	Addr        string
+	CorsOrigins []string
 }
 
 func Load() (AppConfig, error) {
@@ -39,5 +40,20 @@ func Load() (AppConfig, error) {
 	if addr == "" {
 		addr = ":8000"
 	}
-	return AppConfig{AppName: appName, AppEnv: appEnv, Addr: addr}, nil
+	return AppConfig{
+		AppName:     appName,
+		AppEnv:      appEnv,
+		Addr:        addr,
+		CorsOrigins: parseOrigins(os.Getenv("CORS_ORIGINS")),
+	}, nil
+}
+
+func parseOrigins(raw string) []string {
+	var origins []string
+	for _, origin := range strings.Split(raw, ",") {
+		if trimmed := strings.TrimSpace(origin); trimmed != "" {
+			origins = append(origins, trimmed)
+		}
+	}
+	return origins
 }
