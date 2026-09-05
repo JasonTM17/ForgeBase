@@ -2,15 +2,19 @@ package starter
 
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
+import io.ktor.server.application.install
 import io.ktor.server.plugins.requestvalidation.RequestValidationException
 import io.ktor.server.plugins.statuspages.StatusPages
 import io.ktor.server.response.respond
+import kotlinx.serialization.Serializable
 
 /**
  * Light JSON envelope contract: {"data", "message"} on success,
  * {"error": {"code", "message"}} on failure.
  */
+@Serializable
 data class ErrorEnvelope(val error: ErrorBody) {
+    @Serializable
     data class ErrorBody(val code: String, val message: String)
 }
 
@@ -39,8 +43,8 @@ fun io.ktor.server.application.Application.installErrorPages() {
             call.respondError(HttpStatusCode.BadRequest, "RESOURCE_INVALID", cause.reasons.joinToString())
         }
         exception<Throwable> { call, cause ->
-            // Only surface details outside production.
-            call.application.environment.config.developmentMode
+            // Never surface internals: every production response carries the
+            // generic envelope, never the exception detail.
             call.respondError(
                 HttpStatusCode.InternalServerError,
                 "INTERNAL_ERROR",

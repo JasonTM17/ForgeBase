@@ -2,11 +2,13 @@ package starter
 
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
+import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Routing
 import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
+import io.ktor.server.routing.route
 import kotlinx.serialization.Serializable
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
@@ -16,6 +18,13 @@ data class Widget(val id: Long, val name: String)
 
 @Serializable
 data class CreateWidget(val name: String)
+
+/** Success envelopes with concrete types so kotlinx can build serializers. */
+@Serializable
+data class WidgetEnvelope(val data: Widget, val message: String)
+
+@Serializable
+data class WidgetListEnvelope(val data: List<Widget>, val message: String)
 
 private val store = ConcurrentHashMap<Long, Widget>()
 private val nextId = AtomicLong(0)
@@ -34,15 +43,15 @@ fun Routing.apiRoutes() {
             val id = nextId.incrementAndGet()
             val widget = Widget(id, body.name)
             store[id] = widget
-            call.respond(HttpStatusCode.Created, mapOf("data" to widget, "message" to "ok"))
+            call.respond(HttpStatusCode.Created, WidgetEnvelope(widget, "ok"))
         }
         get {
-            call.respond(mapOf("data" to store.values.sortedBy { it.id }, "message" to "ok"))
+            call.respond(WidgetListEnvelope(store.values.sortedBy { it.id }, "ok"))
         }
         get("/{id}") {
             val id = call.parameters["id"]?.toLongOrNull() ?: throw EnvConfigException("invalid id")
             val widget = store[id] ?: throw NoSuchElementException("widget $id not found")
-            call.respond(mapOf("data" to widget, "message" to "ok"))
+            call.respond(WidgetEnvelope(widget, "ok"))
         }
         delete("/{id}") {
             val id = call.parameters["id"]?.toLongOrNull() ?: throw EnvConfigException("invalid id")
