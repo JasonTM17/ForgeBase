@@ -39,7 +39,7 @@ Directory name rules: lowercase, hyphenate multi-word names
 
 ## 4. Add `forgebase.json`
 
-Per [ADR 0002](../adr/0002-template-metadata.md). `id` MUST equal
+Per [ADR 0002](adr/0002-template-metadata.md). `id` MUST equal
 `<language>-<framework>` and match the directory location.
 
 ## 5. Wire CI

@@ -29,12 +29,12 @@ See the root [README](../README.md) for the full status table.
 ## What is in scope (Phase 1)
 
 - 38 starters: Python (vanilla, FastAPI, Flask, Django), TypeScript (node,
-  express, NestJS, FastAPI, Hono, React, Next.js, Vue, Nuxt, Angular,
-  Svelte, SvelteKit, React Native), Java (vanilla, Spring Boot, Quarkus),
-  Go (vanilla, Gin, stdlib net/http, Fiber), Rust (vanilla, Axum,
-  Actix Web), C# (vanilla, ASP.NET Core), PHP (vanilla), Ruby (vanilla,
-  Rails), Kotlin (vanilla, Ktor), Dart (vanilla, Flutter), C (vanilla),
-  C++ (vanilla).
+  express, NestJS, Fastify, React, Next.js, Vue, Nuxt, Angular, Svelte,
+  SvelteKit, React Native), Java (vanilla, Spring Boot, Quarkus), Go
+  (vanilla, Gin, stdlib net/http, Fiber), Rust (vanilla, Axum, Actix Web),
+  C# (vanilla, ASP.NET Core), PHP (vanilla, Laravel), Ruby (vanilla, Rails),
+  Kotlin (vanilla, Ktor), Dart (vanilla, Flutter), C (vanilla), C++
+  (vanilla).
 - Per-language path-filtered GitHub Actions CI.
 - `scripts/validate_templates.py` enforcing the template specification.
 - Open-source governance docs (CONTRIBUTING, SECURITY, CODE_OF_CONDUCT).
@@ -55,7 +55,7 @@ See the root [README](../README.md) for the full status table.
 | P2 | `forgebase create` CLI | consumes `forgebase.json` metadata; layout already treats templates as data |
 | P2 | Production template variants | `minimal` / `standard` / `production` under each framework |
 | P2 | Database/ORM variants | PostgreSQL + a per-ecosystem ORM, composed on top of Phase-1 starters |
-| P3 | Additional frameworks | Laravel, Slim, Hono (where toolchains are available), Solid, Qwik, Astro |
+| P3 | Additional frameworks | Slim, Hono (where toolchains are available), Solid, Qwik, Astro |
 | P3 | Additional languages | Elixir/Phoenix, Zig — when local toolchains exist to verify them |
 | P3 | E2E testing harness | Playwright suites for the frontend starters |
 | P3 | Template publishing | Versioned, per-template release artifacts |

@@ -55,7 +55,7 @@ For each framework:
 
 ## 5. Add `forgebase.json`
 
-Every starter carries metadata per [ADR 0002](../adr/0002-template-metadata.md):
+Every starter carries metadata per [ADR 0002](adr/0002-template-metadata.md):
 
 ```json
 {
