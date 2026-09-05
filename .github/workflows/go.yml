@@ -16,6 +16,9 @@ concurrency:
   group: go-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   go:
     name: "go (${{ matrix.framework }})"

@@ -16,6 +16,9 @@ concurrency:
   group: dart-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   dart-vanilla:
     name: "dart/vanilla"

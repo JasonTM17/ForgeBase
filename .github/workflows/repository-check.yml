@@ -10,6 +10,9 @@ concurrency:
   group: repository-check-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   validate-templates:
     name: Template specification compliance

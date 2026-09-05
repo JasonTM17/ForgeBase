@@ -16,14 +16,16 @@ concurrency:
   group: typescript-${{ github.ref }}
   cancel-in-progress: true
 
-defaults:
-  run:
-    working-directory: languages/typescript/${{ matrix.framework }}
+permissions:
+  contents: read
 
 jobs:
   typescript:
     name: "typescript (${{ matrix.framework }})"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: languages/typescript/${{ matrix.framework }}
     strategy:
       fail-fast: false
       matrix:
@@ -32,7 +34,6 @@ jobs:
           - express
           - nestjs
           - fastify
-          - hono
           - react
           - nextjs
           - vue
@@ -46,6 +47,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Prepare example environment
+        run: |
+          if [ -f .env.example ]; then cp .env.example .env; fi
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -57,18 +62,17 @@ jobs:
         run: npm ci
 
       - name: Lint
-        run: npm run lint --if-present
+        run: npm run lint
 
       - name: Format check
-        run: npm run format:check --if-present
+        run: npm run format:check
 
       - name: Test
-        run: npm test --if-present
+        run: npm test
 
       - name: Build
-        run: npm run build --if-present
+        run: npm run build
 
       - name: Docker build
-        if: matrix.framework != 'react-native'
-        run: |
-          if [ -f Dockerfile ]; then docker build -t ts-${{ matrix.framework }} .; fi
+        if: matrix.framework != 'react-native' && matrix.framework != 'node'
+        run: docker build -t ts-${{ matrix.framework }} .

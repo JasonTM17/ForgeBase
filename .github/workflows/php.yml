@@ -16,6 +16,9 @@ concurrency:
   group: php-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   php:
     name: "php (${{ matrix.framework }})"
@@ -23,8 +26,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        framework: [vanilla, laravel]
-        php-version: ["8.3"]
+        include:
+          - framework: vanilla
+            php-version: "8.3"
+          - framework: laravel
+            php-version: "8.4"
 
     steps:
       - uses: actions/checkout@v4
@@ -42,5 +48,4 @@ jobs:
 
       - name: Test
         working-directory: languages/php/${{ matrix.framework }}
-        run: |
-          if [ -f vendor/bin/phpunit ]; then vendor/bin/phpunit; fi
+        run: composer test

@@ -16,6 +16,9 @@ concurrency:
   group: kotlin-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   kotlin:
     name: "kotlin (${{ matrix.framework }})"
@@ -36,11 +39,13 @@ jobs:
           cache: gradle
 
       - name: Test
-        working-directory: languages/kotlin/${{ matrix.framework }}
-        run: ./gradlew test
+        run: >-
+          docker run --rm
+          -v "${{ github.workspace }}:/workspace"
+          -w "/workspace/languages/kotlin/${{ matrix.framework }}"
+          gradle:8.14-jdk21 gradle test --no-daemon
 
       - name: Docker build
         if: matrix.framework != 'vanilla'
         working-directory: languages/kotlin/${{ matrix.framework }}
-        run: |
-          if [ -f Dockerfile ]; then docker build -t kotlin-${{ matrix.framework }} .; fi
+        run: docker build -t kotlin-${{ matrix.framework }} .

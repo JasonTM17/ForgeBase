@@ -16,6 +16,9 @@ concurrency:
   group: csharp-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   csharp:
     name: "csharp (${{ matrix.framework }})"

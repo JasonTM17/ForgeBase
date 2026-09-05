@@ -18,6 +18,9 @@ concurrency:
   group: c-cpp-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   c-cpp:
     name: "c/cpp (${{ matrix.language }}/${{ matrix.framework }})"

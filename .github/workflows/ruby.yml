@@ -16,6 +16,9 @@ concurrency:
   group: ruby-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   ruby:
     name: "ruby (${{ matrix.framework }})"
