@@ -25,8 +25,19 @@ async fn main() -> std::io::Result<()> {
     );
 
     // actix Logger uses env_logger-style output; initialize with the
-    // configured level so request logs honor APP_LOG_LEVEL.
-    env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
+    // configured level so request logs honor APP_LOG_LEVEL. RUST_LOG remains
+    // an explicit operator override when it is set.
+    let default_filter = match config.log_level {
+        LogSeverity::Critical | LogSeverity::Error => "error",
+        LogSeverity::Warning => "warn",
+        LogSeverity::Information => "info",
+        LogSeverity::Debug => "debug",
+        LogSeverity::Trace => "trace",
+    };
+    env_logger::Builder::from_env(
+        env_logger::Env::default().default_filter_or(default_filter),
+    )
+    .init();
 
     // One shared store across all workers (Data is an Arc under the hood).
     let store = web::Data::new(WidgetStore::default());
