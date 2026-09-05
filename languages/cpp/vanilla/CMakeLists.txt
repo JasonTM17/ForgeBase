@@ -12,14 +12,21 @@ add_library(starter STATIC
     src/greeter.cpp
 )
 target_include_directories(starter PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_compile_options(starter PRIVATE -Wall -Wextra -Werror)
+
+if(MSVC)
+    set(STARTER_WARNING_FLAGS /W4 /WX)
+else()
+    set(STARTER_WARNING_FLAGS -Wall -Wextra -Werror)
+endif()
+
+target_compile_options(starter PRIVATE ${STARTER_WARNING_FLAGS})
 
 add_executable(starter_cli app/main.cpp)
 target_link_libraries(starter_cli PRIVATE starter)
-target_compile_options(starter_cli PRIVATE -Wall -Wextra -Werror)
+target_compile_options(starter_cli PRIVATE ${STARTER_WARNING_FLAGS})
 
 enable_testing()
 add_executable(test_starter tests/test_starter.cpp)
 target_link_libraries(test_starter PRIVATE starter)
-target_compile_options(test_starter PRIVATE -Wall -Wextra -Werror)
+target_compile_options(test_starter PRIVATE ${STARTER_WARNING_FLAGS})
 add_test(NAME starter_tests COMMAND test_starter)

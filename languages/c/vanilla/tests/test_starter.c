@@ -1,4 +1,4 @@
-/* setenv/unsetenv are POSIX; expose them under strict -std=c11. */
+/* Keep the small test runner portable across POSIX and Windows hosts. */
 #if !defined(_WIN32)
 #define _POSIX_C_SOURCE 200809L
 #endif
@@ -14,6 +14,24 @@
 /* Dependency-free test binary registered with CTest. CHECK records the
  * failing test and line, then stops the binary with a non-zero exit. */
 static int failures = 0;
+
+static int set_environment(const char *name, const char *value)
+{
+#ifdef _WIN32
+    return _putenv_s(name, value);
+#else
+    return setenv(name, value, 1);
+#endif
+}
+
+static int unset_environment(const char *name)
+{
+#ifdef _WIN32
+    return _putenv_s(name, "");
+#else
+    return unsetenv(name);
+#endif
+}
 
 #define CHECK(condition)                                                       \
     do {                                                                       \
@@ -40,7 +58,7 @@ static void test_log_severity_rejects_unknown(void)
 
 static void test_config_requires_service_name(void)
 {
-    unsetenv("SERVICE_NAME");
+    CHECK(unset_environment("SERVICE_NAME") == 0);
 
     starter_config_t config;
     char *error = NULL;
@@ -51,8 +69,8 @@ static void test_config_requires_service_name(void)
 
 static void test_config_defaults_log_level(void)
 {
-    setenv("SERVICE_NAME", "demo", 1);
-    unsetenv("APP_LOG_LEVEL");
+    CHECK(set_environment("SERVICE_NAME", "demo") == 0);
+    CHECK(unset_environment("APP_LOG_LEVEL") == 0);
 
     starter_config_t config;
     char *error = NULL;
@@ -64,8 +82,8 @@ static void test_config_defaults_log_level(void)
 
 static void test_config_rejects_unknown_level(void)
 {
-    setenv("SERVICE_NAME", "demo", 1);
-    setenv("APP_LOG_LEVEL", "loud", 1);
+    CHECK(set_environment("SERVICE_NAME", "demo") == 0);
+    CHECK(set_environment("APP_LOG_LEVEL", "loud") == 0);
 
     starter_config_t config;
     char *error = NULL;

@@ -16,8 +16,8 @@ embedded-adjacent projects before any third-party choice is made.
 
 ## Requirements
 
-- C11 compiler and CMake >= 3.24 (verified with gcc 14 in the official
-  `gcc:14-bookworm` container image)
+- C11 compiler and CMake >= 3.24 (verified with GCC 14 in the official
+  `gcc:14-bookworm` container image; MSVC warning flags are supported too)
 
 ## Project structure
 

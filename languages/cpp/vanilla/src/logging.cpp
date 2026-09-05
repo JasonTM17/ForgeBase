@@ -1,4 +1,4 @@
-/* gmtime_r is POSIX; expose it under strict -std=c++20 (extensions off). */
+/* Use the platform's reentrant UTC conversion under strict C++20. */
 #if !defined(_WIN32)
 #define _POSIX_C_SOURCE 200809L
 #endif
@@ -19,7 +19,13 @@ std::string utc_timestamp()
     const auto now = std::chrono::system_clock::now();
     const std::time_t time = std::chrono::system_clock::to_time_t(now);
     std::tm utc{};
+#ifdef _WIN32
+    if (gmtime_s(&utc, &time) != 0) {
+        return "1970-01-01T00:00:00Z";
+    }
+#else
     gmtime_r(&time, &utc);
+#endif
     std::ostringstream stream;
     stream << std::put_time(&utc, "%Y-%m-%dT%H:%M:%SZ");
     return stream.str();

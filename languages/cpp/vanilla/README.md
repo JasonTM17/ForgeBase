@@ -16,8 +16,8 @@ third-party choice is made.
 
 ## Requirements
 
-- C++20 compiler and CMake >= 3.24 (verified with gcc 14 in the official
-  `gcc:14-bookworm` container image)
+- C++20 compiler and CMake >= 3.24 (verified with GCC 14 in the official
+  `gcc:14-bookworm` container image; MSVC warning flags are supported too)
 
 ## Project structure
 
@@ -88,14 +88,12 @@ Dockerfile when the copied-out project ships a server component.
   centralized in `parse_log_severity`.
 - `config_error` lets hosts map configuration failures to their own exit
   semantics; nothing else throws across the library boundary.
-- POSIX feature-test macros are pinned at the top of the two translation
-  units that need them (`gmtime_r`, `setenv`) so strict
-  `-std=c++20` builds stay warning-clean.
+- UTC conversion and test environment setup use platform-specific APIs so
+  strict C++20 builds remain warning-clean on POSIX and Windows hosts.
 
 ## Common issues
 
 - **`cmake` not installed on the host** — the repository verifies in Docker;
   locally, install CMake >= 3.24 or use the container workflow.
-- **`gmtime_r` undeclared after copying out** — you removed the
-  `_POSIX_C_SOURCE` define while keeping strict extension mode; restore it
-  or switch to `CMAKE_CXX_EXTENSIONS ON`.
+- **`gmtime` conversion fails to compile** — keep the `_WIN32` branch in the
+  logger and use a C++20-capable compiler selected by CMake.
