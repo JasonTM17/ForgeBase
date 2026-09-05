@@ -31,6 +31,8 @@ coverage/
 !.env.example
 !.env.*.example
 *.log
+*.exe
+*.tsbuildinfo
 
 # Key/keystore material (defense-in-depth behind each starter's .gitignore)
 *.jks
