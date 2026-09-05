@@ -1,0 +1,11 @@
+{
+  "id": "php-laravel",
+  "name": "PHP Laravel Starter",
+  "language": "php",
+  "framework": "laravel",
+  "category": "backend",
+  "tags": ["api", "rest", "laravel13", "phpunit"],
+  "version": "1.0.0",
+  "runtimeVersion": ">=8.4.1",
+  "description": "Production-oriented Laravel 13 REST API base with environment configuration, centralized JSON errors, the built-in /up health route, an example resource, PHPUnit tests, and a non-root Docker image."
+}
