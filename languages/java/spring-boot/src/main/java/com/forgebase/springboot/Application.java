@@ -1,11 +1,9 @@
 package com.forgebase.springboot;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -13,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
  * {@code app.*} prefix in application.yml.
  */
 @SpringBootApplication
+@ConfigurationPropertiesScan
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

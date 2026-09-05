@@ -6,6 +6,16 @@ package com.forgebase.vanilla;
  */
 public final class Main {
     public static void main(String[] args) {
+        try {
+            // Validate process configuration before handling user input or
+            // invoking the service layer.
+            AppConfig.appEnv();
+        } catch (IllegalArgumentException exc) {
+            System.err.println("configuration error: " + exc.getMessage());
+            System.exit(2);
+            return;
+        }
+
         String name = args.length > 0 ? args[0] : null;
         if (name == null || name.isBlank()) {
             System.err.println("usage: Main <name>");
