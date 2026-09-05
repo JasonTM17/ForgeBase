@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import request from "supertest";
 import type { Server } from "node:http";
 
@@ -9,7 +9,7 @@ import type { Server } from "node:http";
 import { Test } from "@nestjs/testing";
 import { AppModule } from "../dist/app.module.js";
 import { ErrorEnvelopeFilter } from "../dist/filters/error.filter.js";
-import { Logger } from "@nestjs/common";
+import { Logger, type INestApplication } from "@nestjs/common";
 import { loadConfig } from "../dist/config.js";
 
 interface Envelope {
@@ -20,6 +20,7 @@ interface Envelope {
 }
 
 describe("NestJS starter", () => {
+  let app: INestApplication;
   let httpServer: Server;
 
   beforeAll(async () => {
@@ -28,12 +29,16 @@ describe("NestJS starter", () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-    const app = moduleRef.createNestApplication();
+    app = moduleRef.createNestApplication();
     // ErrorEnvelopeFilter lives in main.ts for production; tests build the app
     // directly, so register the filter here to get the error envelope.
     app.useGlobalFilters(new ErrorEnvelopeFilter(new Logger("ErrorFilter")));
     await app.init();
     httpServer = app.getHttpServer() as Server;
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 
   it("GET /health returns ok", async () => {

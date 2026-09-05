@@ -5,7 +5,7 @@ import { z } from "zod";
  * Only NEXT_PUBLIC_* variables are exposed to the browser.
  */
 const envSchema = z.object({
-  NEXT_PUBLIC_APP_NAME: z.string().min(1).default("forgebase-next"),
+  NEXT_PUBLIC_APP_NAME: z.string().trim().min(1),
 });
 
 const parsed = envSchema.safeParse(process.env);

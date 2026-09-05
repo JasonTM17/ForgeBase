@@ -7,7 +7,7 @@ export default tseslint.config({ ignores: ["dist/"] }, js.configs.recommended, {
   files: ["src/**/*.ts", "test/**/*.ts"],
   extends: tseslint.configs.recommendedTypeChecked,
   languageOptions: {
-    parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname },
+    parserOptions: { project: "./tsconfig.eslint.json", tsconfigRootDir: import.meta.dirname },
   },
   rules: {
     "@typescript-eslint/no-explicit-any": "error",

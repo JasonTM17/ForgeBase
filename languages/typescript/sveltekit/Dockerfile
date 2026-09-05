@@ -10,7 +10,7 @@ FROM node:22-alpine AS runtime
 ENV NODE_ENV=production
 WORKDIR /app
 RUN addgroup -S app && adduser -S app -G app
-COPY --from=builder --chown=app:app /app/.svelte-kit/output ./.svelte-kit/output
+COPY --from=builder --chown=app:app /app/build ./build
 USER app
 EXPOSE 3000
-CMD ["node", ".svelte-kit/output/server/index.js"]
+CMD ["node", "build"]

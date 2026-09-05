@@ -17,6 +17,6 @@ cp .env.example .env && npm install && npm run dev
 
 ## Configuration
 
-| Variable                | Default          |
-| ----------------------- | ---------------- |
-| `NEXT_PUBLIC_APP_NAME`  | `forgebase-next` |
+| Variable               | Required | Default |
+| ---------------------- | -------- | ------- |
+| `NEXT_PUBLIC_APP_NAME` | yes      | —       |

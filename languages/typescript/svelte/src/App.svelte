@@ -3,12 +3,18 @@
   import { exampleService } from "./services/exampleService.svelte.js";
 
   let items = $state(exampleService.list());
+  let error = $state<string | null>(null);
 
   function add(): void {
     const name = globalThis.prompt("Name?");
     if (name && name.trim()) {
-      exampleService.create(name);
-      items = exampleService.list();
+      try {
+        error = null;
+        exampleService.create(name);
+        items = exampleService.list();
+      } catch (cause: unknown) {
+        error = cause instanceof Error ? cause.message : "Unable to add the example";
+      }
     }
   }
 </script>

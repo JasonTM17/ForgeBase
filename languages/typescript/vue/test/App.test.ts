@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { render, fireEvent, screen } from "@testing-library/vue";
+import { render, screen } from "@testing-library/vue";
 import "@testing-library/jest-dom/vitest";
 
 import App from "../src/App.js";

@@ -1,1 +1,1 @@
-dist/ node_modules/ coverage/ .angular/ .env .env.local *.log
+dist/ node_modules/ coverage/ .angular/ .env .env.local *.log *.tsbuildinfo

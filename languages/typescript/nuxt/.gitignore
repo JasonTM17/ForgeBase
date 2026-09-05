@@ -1,1 +1,1 @@
-.nuxt/ .output/ node_modules/ coverage/ .env .env.local *.log
+.nuxt/ .output/ node_modules/ coverage/ *.tsbuildinfo .env .env.local *.log

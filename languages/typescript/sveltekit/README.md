@@ -12,7 +12,7 @@ vitest, and a non-root Node Docker runtime.
 - Example service and server-loaded page
 - Vitest tests for config, server load behavior, and service behavior
 - Standard npm scripts: `lint`, `format:check`, `test`, `build`
-- Multi-stage Dockerfile running adapter-node output as a non-root user
+- Multi-stage Dockerfile running adapter-node's `build/` output as a non-root user
 
 ## Requirements
 
@@ -57,9 +57,9 @@ npm run dev
 
 ## Configuration
 
-| Variable          | Required | Default               | Meaning                                                        |
-| ----------------- | -------- | --------------------- | -------------------------------------------------------------- |
-| `PUBLIC_APP_NAME` | no       | `forgebase-sveltekit` | Public application name rendered in the page title and heading |
+| Variable          | Required | Default | Meaning                                                        |
+| ----------------- | -------- | ------- | -------------------------------------------------------------- |
+| `PUBLIC_APP_NAME` | yes      | —       | Public application name rendered in the page title and heading |
 
 SvelteKit exposes `PUBLIC_*` variables to client code. Keep all environment
 access behind `src/lib/config.ts` so invalid values fail during startup/build
@@ -74,7 +74,7 @@ npm run preview
 ```
 
 The production build uses `@sveltejs/adapter-node` and outputs the Node server
-under `.svelte-kit/output`.
+under `build/`.
 
 ## Testing
 

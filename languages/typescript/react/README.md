@@ -46,9 +46,9 @@ npm run dev
 
 ## Configuration
 
-| Variable         | Default           | Notes                         |
-| ---------------- | ----------------- | ----------------------------- |
-| `VITE_APP_NAME`  | `forgebase-react` | any non-empty string          |
+| Variable        | Default           | Notes                |
+| --------------- | ----------------- | -------------------- |
+| `VITE_APP_NAME` | `forgebase-react` | any non-empty string |
 
 ## Running
 

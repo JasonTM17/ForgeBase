@@ -5,15 +5,13 @@ import { DomainError } from "../errors.js";
 export function registerErrorHook(app: FastifyInstance): void {
   app.setErrorHandler((error, _request, reply: FastifyReply) => {
     if (error instanceof ZodError) {
-      reply
-        .code(422)
-        .send({
-          error: {
-            code: "VALIDATION_ERROR",
-            message: "Request validation failed",
-            details: error.issues,
-          },
-        });
+      reply.code(422).send({
+        error: {
+          code: "VALIDATION_ERROR",
+          message: "Request validation failed",
+          details: error.issues,
+        },
+      });
       return;
     }
     if (error instanceof DomainError) {

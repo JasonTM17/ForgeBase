@@ -14,6 +14,7 @@
     "lint": "eslint .",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
+    "pretest": "npm run build",
     "test": "vitest run",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts"
   },

@@ -1,1 +1,1 @@
-dist/ node_modules/ coverage/ .env .env.local *.log
+dist/ node_modules/ coverage/ *.tsbuildinfo .env .env.local *.log

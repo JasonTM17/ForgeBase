@@ -1,1 +1,8 @@
-dist/ node_modules/ coverage/ .svelte-kit/ .env .env.local *.log
+dist/
+node_modules/
+coverage/
+.svelte-kit/
+*.tsbuildinfo
+.env
+.env.local
+*.log

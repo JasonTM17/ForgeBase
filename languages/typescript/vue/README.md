@@ -17,6 +17,6 @@ cp .env.example .env && npm install && npm run dev
 
 ## Configuration
 
-| Variable        | Default          |
-| --------------- | ---------------- |
-| `VITE_APP_NAME` | `forgebase-vue`  |
+| Variable        | Default         |
+| --------------- | --------------- |
+| `VITE_APP_NAME` | `forgebase-vue` |

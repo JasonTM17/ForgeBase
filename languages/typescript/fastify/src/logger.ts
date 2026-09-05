@@ -8,5 +8,5 @@ export function createLogger(config: AppConfig): FastifyBaseLogger {
     level: config.logLevel,
     base: { appName: config.appName, appEnv: config.appEnv },
     redact: ["req.headers.authorization", "req.headers.cookie"],
-  }) as unknown as FastifyBaseLogger;
+  });
 }
