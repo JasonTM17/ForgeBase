@@ -56,7 +56,12 @@ func NewServer(addr string, handler http.Handler) *http.Server {
 	}
 }
 
-// Logger returns a structured JSON logger at the configured level.
+// Logger returns a structured JSON logger at the configured level:
+// development and testing log debug detail, production stays at info.
 func Logger(cfg AppConfig) *slog.Logger {
-	return slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo}))
+	level := slog.LevelInfo
+	if cfg.AppEnv != Production {
+		level = slog.LevelDebug
+	}
+	return slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: level}))
 }
