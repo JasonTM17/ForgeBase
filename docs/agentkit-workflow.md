@@ -5,6 +5,10 @@ catalog honest, reviewable, and reproducible. This document describes the
 public process. It does not publish private AgentKit runtime files, local skill
 registries, prompts, or execution ledgers.
 
+> **Ghi chú tiếng Việt:** Tài liệu này chỉ mô tả quy trình công khai của
+> ForgeBase. Các file AgentKit cục bộ, skill registry, prompt, và execution
+> ledger vẫn là private và không upload lên GitHub.
+
 ## Workflow
 
 Every material change follows the same evidence path:
