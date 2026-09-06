@@ -2,6 +2,9 @@
 .agentkit/
 .agents/
 .codex/
+.zcode/
+.mimosa/
+.video_agent/
 AGENTS.md
 plans/
 
