@@ -34,10 +34,8 @@ async fn main() -> std::io::Result<()> {
         LogSeverity::Debug => "debug",
         LogSeverity::Trace => "trace",
     };
-    env_logger::Builder::from_env(
-        env_logger::Env::default().default_filter_or(default_filter),
-    )
-    .init();
+    env_logger::Builder::from_env(env_logger::Env::default().default_filter_or(default_filter))
+        .init();
 
     // One shared store across all workers (Data is an Arc under the hood).
     let store = web::Data::new(WidgetStore::default());
