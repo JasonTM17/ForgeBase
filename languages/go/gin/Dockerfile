@@ -6,7 +6,7 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 go build -o api ./cmd/api
 
-FROM gcr.io/distroless/static-debian12 AS runtime
+FROM gcr.io/distroless/static-debian12:nonroot AS runtime
 COPY --from=builder /app/api /api
 EXPOSE 8000
 ENTRYPOINT ["/api"]
