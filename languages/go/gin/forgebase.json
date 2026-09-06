@@ -4,8 +4,8 @@
   "language": "go",
   "framework": "gin",
   "category": "backend",
-  "tags": ["api", "rest", "gin", "zerolog"],
+  "tags": ["api", "rest", "gin", "slog"],
   "version": "1.0.0",
   "runtimeVersion": ">=1.25",
-  "description": "Production-oriented Gin REST base: validated config, zerolog structured logging, centralized error envelope, health endpoints, and graceful shutdown."
+  "description": "Production-oriented Gin REST base: validated config, slog structured logging, centralized error envelope, health endpoints, and graceful shutdown."
 }
