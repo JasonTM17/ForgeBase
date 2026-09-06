@@ -1,5 +1,7 @@
 # AgentKit Workflow
 
+Languages: English | [Tiếng Việt](agentkit-workflow.vi.md)
+
 ForgeBase uses an AgentKit-guided engineering workflow to keep a large starter
 catalog honest, reviewable, and reproducible. This document describes the
 public process. It does not publish private AgentKit runtime files, local skill

@@ -49,8 +49,9 @@ baseline contract. Read this guide before opening a pull request.
 ## AgentKit-governed changes
 
 ForgeBase maintainers use the public
-[AgentKit workflow](docs/agentkit-workflow.md) for non-trivial template, CI,
-and release work. Contributors do not need AgentKit to contribute, but pull
+[AgentKit workflow](docs/agentkit-workflow.md)
+([Tiếng Việt](docs/agentkit-workflow.vi.md)) for non-trivial template, CI, and
+release work. Contributors do not need AgentKit to contribute, but pull
 requests should follow the same evidence discipline:
 
 - say exactly what changed and which template(s), workflow(s), or docs are

@@ -6,6 +6,8 @@
 [![TypeScript](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+Languages: English | [Tiếng Việt](README.vi.md)
+
 ForgeBase is a curated collection of self-contained boilerplate projects —
 one folder per language/framework — so that starting a new project means
 copying a template instead of re-assembling structure, linting, testing,
