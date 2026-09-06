@@ -51,4 +51,5 @@ jobs:
         if: matrix.framework != 'vanilla'
         working-directory: languages/go/${{ matrix.framework }}
         run: |
-          if [ -f Dockerfile ]; then docker build -t go-${{ matrix.framework }} .; fi
+          test -f Dockerfile || { echo "::error::Dockerfile missing for go/${{ matrix.framework }}"; exit 1; }
+          docker build -t go-${{ matrix.framework }} .

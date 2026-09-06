@@ -49,8 +49,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: languages/php/${{ matrix.framework }}
-        run: |
-          if [ -f composer.json ]; then composer install --no-interaction --prefer-dist; fi
+        run: composer install --no-interaction --prefer-dist
 
       - name: Test
         working-directory: languages/php/${{ matrix.framework }}

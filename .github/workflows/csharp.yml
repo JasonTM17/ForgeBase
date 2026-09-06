@@ -54,4 +54,5 @@ jobs:
         if: matrix.framework != 'vanilla'
         working-directory: languages/csharp/${{ matrix.framework }}
         run: |
-          if [ -f Dockerfile ]; then docker build -t csharp-${{ matrix.framework }} .; fi
+          test -f Dockerfile || { echo "::error::Dockerfile missing for csharp/${{ matrix.framework }}"; exit 1; }
+          docker build -t csharp-${{ matrix.framework }} .

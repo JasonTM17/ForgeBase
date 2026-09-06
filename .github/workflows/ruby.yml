@@ -61,4 +61,5 @@ jobs:
         if: matrix.framework == 'rails'
         working-directory: languages/ruby/rails
         run: |
-          if [ -f Dockerfile ]; then docker build -t ruby-rails .; fi
+          test -f Dockerfile || { echo "::error::Dockerfile missing for ruby/rails"; exit 1; }
+          docker build -t ruby-rails .

@@ -42,11 +42,11 @@ jobs:
 
       - name: Test (Maven)
         working-directory: languages/java/${{ matrix.framework }}
-        run: |
-          if [ -f pom.xml ]; then mvn -B verify; fi
+        run: mvn -B verify
 
       - name: Docker build
         if: matrix.framework != 'vanilla'
         working-directory: languages/java/${{ matrix.framework }}
         run: |
-          if [ -f Dockerfile ]; then docker build -t java-${{ matrix.framework }} .; fi
+          test -f Dockerfile || { echo "::error::Dockerfile missing for java/${{ matrix.framework }}"; exit 1; }
+          docker build -t java-${{ matrix.framework }} .

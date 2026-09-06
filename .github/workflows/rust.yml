@@ -61,4 +61,5 @@ jobs:
         if: matrix.framework != 'vanilla'
         working-directory: languages/rust/${{ matrix.framework }}
         run: |
-          if [ -f Dockerfile ]; then docker build -t rust-${{ matrix.framework }} .; fi
+          test -f Dockerfile || { echo "::error::Dockerfile missing for rust/${{ matrix.framework }}"; exit 1; }
+          docker build -t rust-${{ matrix.framework }} .
