@@ -83,12 +83,30 @@ IGNORED_DIRS = {
     "htmlcov", ".next", ".nuxt", ".output", ".svelte-kit", ".gradle",
     ".angular", "vendor", ".turbo", ".cache", "bin", "obj", ".dart_tool",
 }
+IGNORED_PATH_PREFIXES = {
+    ("bootstrap", "cache"),
+    ("storage", "framework", "cache"),
+    ("storage", "framework", "sessions"),
+    ("storage", "framework", "testing"),
+    ("storage", "framework", "views"),
+    ("storage", "logs"),
+}
+
+
+def is_ignored_artifact_path(rel: Path) -> bool:
+    """Return whether a template-relative path is a generated runtime artifact."""
+    if rel.name == ".gitignore":
+        return False
+    return any(rel.parts[:len(prefix)] == prefix for prefix in IGNORED_PATH_PREFIXES)
 
 
 def iter_template_files(template: Path):
     """Yield files under the template, skipping gitignored artifact dirs."""
     for path in sorted(template.rglob("*")):
-        if any(part in IGNORED_DIRS for part in path.relative_to(template).parts):
+        rel = path.relative_to(template)
+        if any(part in IGNORED_DIRS for part in rel.parts):
+            continue
+        if is_ignored_artifact_path(rel):
             continue
         yield path
 
@@ -300,6 +318,8 @@ def build_selftest_fixtures(base: Path) -> bool:
         ".dockerignore": "node_modules\n",
         ".env.example": "APP_ENV=development\n",
         "app.py": "print('hi')\n",
+        "storage/framework/views/.gitignore": "*\n!.gitignore\n",
+        "storage/framework/views/cached.php": "<?php /**PATH C:\\Users\\Someone\\cached.blade.php ENDPATH**/ ?>\n",
         "test_app.py": "def test_ok():\n    assert True\n",
     })
     make_template(base, "python", "good-library", valid_meta("python", "good-library", "library"), {

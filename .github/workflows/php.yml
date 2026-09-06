@@ -1,6 +1,7 @@
 name: PHP
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -40,6 +41,10 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           coverage: none
+
+      - name: Validate composer metadata
+        working-directory: languages/php/${{ matrix.framework }}
+        run: composer validate --strict
 
       - name: Install dependencies
         working-directory: languages/php/${{ matrix.framework }}
