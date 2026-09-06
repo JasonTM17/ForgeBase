@@ -39,7 +39,7 @@ func main() {
 		logger.Info("CORS enabled", "origins", cfg.CorsOrigins)
 	}
 
-	api.Register(app, examples.New())
+	api.Register(app, examples.New(), logger)
 
 	// Graceful shutdown on SIGINT/SIGTERM.
 	go func() {

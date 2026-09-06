@@ -15,7 +15,7 @@ import (
 
 func setup() *fiber.App {
 	app := fiber.New()
-	api.Register(app, examples.New())
+	api.Register(app, examples.New(), nil)
 	return app
 }
 

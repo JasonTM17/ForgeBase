@@ -1,6 +1,8 @@
 package errors
 
 import (
+	"log/slog"
+
 	"github.com/gofiber/fiber/v3"
 )
 
@@ -19,7 +21,9 @@ type ErrorEnvelope struct {
 }
 
 // Write maps an error to the error envelope and writes the Fiber response.
-func Write(c fiber.Ctx, err error) error {
+// Unexpected (non-client) errors are logged server-side with their cause —
+// the response body stays generic so internals never leak.
+func Write(c fiber.Ctx, log *slog.Logger, err error) error {
 	var status int
 	var body ErrorEnvelope
 
@@ -32,6 +36,9 @@ func Write(c fiber.Ctx, err error) error {
 		status = fiber.StatusInternalServerError
 		body.Error.Code = "INTERNAL_ERROR"
 		body.Error.Message = "An unexpected error occurred"
+		if log != nil {
+			log.Error("unhandled error", "err", err, "path", c.Path())
+		}
 	}
 
 	return c.Status(status).JSON(body)

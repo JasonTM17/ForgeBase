@@ -1,6 +1,7 @@
 package api
 
 import (
+	"log/slog"
 	"strconv"
 
 	"github.com/gofiber/fiber/v3"
@@ -9,7 +10,7 @@ import (
 	"forgebase/go-fiber/internal/examples"
 )
 
-func Register(app *fiber.App, service *examples.Service) {
+func Register(app *fiber.App, service *examples.Service, log *slog.Logger) {
 	app.Get("/health", func(c fiber.Ctx) error {
 		return c.JSON(fiber.Map{"status": "ok"})
 	})
@@ -29,22 +30,22 @@ func Register(app *fiber.App, service *examples.Service) {
 			Name string `json:"name"`
 		}
 		if err := c.Bind().Body(&req); err != nil {
-			return errors.Write(c, &clientError{msg: err.Error()})
+			return errors.Write(c, log, &clientError{msg: err.Error()})
 		}
 		created, err := service.Create(req.Name)
 		if err != nil {
-			return errors.Write(c, err)
+			return errors.Write(c, log, err)
 		}
 		return c.Status(fiber.StatusCreated).JSON(fiber.Map{"data": created, "message": "created"})
 	})
 	g.Get("/:id", func(c fiber.Ctx) error {
 		id, err := strconv.Atoi(c.Params("id"))
 		if err != nil {
-			return errors.Write(c, &clientError{msg: "id must be an integer"})
+			return errors.Write(c, log, &clientError{msg: "id must be an integer"})
 		}
 		item, err := service.Get(id)
 		if err != nil {
-			return errors.Write(c, err)
+			return errors.Write(c, log, err)
 		}
 		return c.JSON(fiber.Map{"data": item, "message": "ok"})
 	})
