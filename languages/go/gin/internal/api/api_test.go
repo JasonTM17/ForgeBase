@@ -16,7 +16,7 @@ import (
 func setupServer() (*httptest.ResponseRecorder, *gin.Engine) {
 	gin.SetMode(gin.TestMode)
 	r := gin.New()
-	api.Register(r, examples.New())
+	api.Register(r, examples.New(), nil)
 	return httptest.NewRecorder(), r
 }
 

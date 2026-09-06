@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 	"time"
 
@@ -32,16 +31,18 @@ func main() {
 	r := gin.New()
 	r.Use(gin.Recovery())
 
-	// CORS only with an explicit allow-list.
-	if origins := strings.TrimSpace(os.Getenv("CORS_ORIGINS")); origins != "" {
+	// CORS only with an explicit allow-list from the validated config; an
+	// unset variable never becomes a wildcard policy.
+	if len(cfg.CorsOrigins) > 0 {
 		r.Use(cors.New(cors.Config{
-			AllowOrigins: strings.Split(origins, ","),
+			AllowOrigins: cfg.CorsOrigins,
 			AllowMethods: []string{"GET", "POST", "PUT", "PATCH", "DELETE"},
 			AllowHeaders: []string{"Authorization", "Content-Type"},
 		}))
+		logger.Info("CORS enabled", "origins", cfg.CorsOrigins)
 	}
 
-	api.Register(r, examples.New())
+	api.Register(r, examples.New(), logger)
 
 	srv := &http.Server{
 		Addr:              cfg.Addr,
