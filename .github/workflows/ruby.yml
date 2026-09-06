@@ -53,7 +53,6 @@ jobs:
           RAILS_ENV: test
           SERVICE_NAME: ci
         run: |
-          bundle install --jobs 4 --retry 3
           bundle exec rails db:prepare
           bundle exec rails test
 
