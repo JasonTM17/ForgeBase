@@ -2,6 +2,13 @@ package config
 
 import "testing"
 
+func TestLoadInvalidEnvFailsFast(t *testing.T) {
+	t.Setenv("APP_ENV", "staging")
+	if _, err := Load(); err == nil {
+		t.Fatal("expected error for invalid APP_ENV")
+	}
+}
+
 func TestLoadParsesExplicitCorsOrigins(t *testing.T) {
 	t.Setenv("APP_NAME", "demo")
 	t.Setenv("APP_ENV", "testing")
