@@ -2,6 +2,10 @@
 
 **Production-grade starter templates for many languages and frameworks.**
 
+[![Repository checks](https://github.com/JasonTM17/ForgeBase/actions/workflows/repository-check.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/repository-check.yml)
+[![TypeScript](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 ForgeBase is a curated collection of self-contained boilerplate projects —
 one folder per language/framework — so that starting a new project means
 copying a template instead of re-assembling structure, linting, testing,
@@ -15,6 +19,10 @@ configuration, logging, error handling, Docker, and CI from scratch.
 > verification status are tracked in the
 > [status table](#available-languages); future work lives in the
 > [roadmap](docs/roadmap.md).
+
+> **Ghi chú tiếng Việt:** ForgeBase là bộ starter đa ngôn ngữ được kiểm chứng
+> bằng CI, Docker, validator, và quy trình AK workflow công khai. Các file vận
+> hành AgentKit cục bộ vẫn được giữ private và không publish lên GitHub.
 
 ## What is ForgeBase?
 
@@ -38,6 +46,17 @@ independent project:
   repository around them is only documentation, tooling, and CI.
 - **Honest engineering** — templates pin versions that are actually verified;
   nothing is claimed to work that has not been run.
+
+## Quality Gates
+
+ForgeBase changes are maintained through an
+[AgentKit-guided workflow](docs/agentkit-workflow.md): scout, plan, implement,
+test, review, then release. Public claims use explicit evidence labels:
+`PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED`.
+
+Before release, maintainers check the repository validator, its selftest,
+workflow YAML parsing, docs links, generated-artifact boundaries, secret
+patterns, `git diff --check`, exact-head GitHub Actions, and the release tag.
 
 ## Available Languages
 
@@ -143,6 +162,8 @@ Details: [docs/architecture.md](docs/architecture.md) and
 
 See [docs/adding-a-language.md](docs/adding-a-language.md) and
 [docs/adding-a-framework.md](docs/adding-a-framework.md).
+For the release and review workflow, see
+[docs/agentkit-workflow.md](docs/agentkit-workflow.md).
 
 ## Contributing
 

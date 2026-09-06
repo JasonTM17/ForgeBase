@@ -46,6 +46,21 @@ baseline contract. Read this guide before opening a pull request.
    `forgebase.json` (bump its `version`) together with the code.
 5. Open a pull request describing what you changed and what you ran.
 
+## AgentKit-governed changes
+
+ForgeBase maintainers use the public
+[AgentKit workflow](docs/agentkit-workflow.md) for non-trivial template, CI,
+and release work. Contributors do not need AgentKit to contribute, but pull
+requests should follow the same evidence discipline:
+
+- say exactly what changed and which template(s), workflow(s), or docs are
+  affected;
+- use `PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED` honestly;
+- do not claim release readiness from local checks alone;
+- keep private workspace files out of commits: `.agentkit/`, `.agents/`,
+  `.codex/`, `AGENTS.md`, and `plans/`;
+- stage explicit public paths only.
+
 ## Commit messages
 
 Conventional Commits (`feat(fastapi): ...`, `fix(react): ...`,
