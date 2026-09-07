@@ -42,6 +42,7 @@
             "@php artisan dev"
         ],
         "test": [
+            "@putenv APP_ENV=local",
             "@php artisan config:clear --ansi @no_additional_args",
             "@php artisan test"
         ],
