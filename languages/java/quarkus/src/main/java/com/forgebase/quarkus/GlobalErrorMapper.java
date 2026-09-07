@@ -1,5 +1,7 @@
 package com.forgebase.quarkus;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
@@ -8,9 +10,10 @@ import java.util.Map;
 
 /**
  * Central error mapper — the single place exceptions become HTTP responses.
- * Every error follows the envelope: {"error": {"code", "message"}}.
+ * Every error follows the envelope: {"error": {"code", "message"}}. The
+ * nested mappers are registered individually; the container class itself is
+ * not a mapper.
  */
-@Provider
 public class GlobalErrorMapper {
 
     @Provider
@@ -29,6 +32,16 @@ public class GlobalErrorMapper {
         public Response toResponse(IllegalArgumentException exception) {
             return Response.status(400)
                     .entity(Map.of("error", Map.of("code", "INVALID_ARGUMENT", "message", exception.getMessage())))
+                    .build();
+        }
+    }
+
+    @Provider
+    public static class MalformedJsonMapper implements ExceptionMapper<JsonProcessingException> {
+        @Override
+        public Response toResponse(JsonProcessingException exception) {
+            return Response.status(400)
+                    .entity(Map.of("error", Map.of("code", "INVALID_ARGUMENT", "message", "malformed JSON body")))
                     .build();
         }
     }
