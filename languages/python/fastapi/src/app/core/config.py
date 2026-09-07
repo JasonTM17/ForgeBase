@@ -28,7 +28,6 @@ class Settings(BaseSettings):
     app_name: str = "forgebase-fastapi"
     app_env: AppEnv = "development"
     log_level: LogLevel = "INFO"
-    app_port: int = 8000
     # Empty list keeps CORS fully disabled (secure default); origins are
     # provided as a comma-separated list, e.g. CORS_ORIGINS=https://a.com,https://b.com
     # NoDecode stops pydantic-settings from JSON-decoding the env string first.

@@ -59,7 +59,6 @@ boot with a clear error.
 
 | Variable          | Default       | Values                                          |
 | ----------------- | ------------- | ----------------------------------------------- |
-| `FORGE_APP_NAME`  | `forgebase-flask` | any non-empty string                        |
 | `FORGE_APP_ENV`   | `development` | `development`, `testing`, `production`          |
 | `FORGE_LOG_LEVEL` | `INFO`        | `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` |
 

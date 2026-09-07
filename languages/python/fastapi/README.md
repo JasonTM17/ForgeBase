@@ -64,7 +64,6 @@ clear error.
 | `APP_NAME`      | `forgebase-fastapi` | any non-empty string                      |
 | `APP_ENV`       | `development` | `development`, `testing`, `production`          |
 | `LOG_LEVEL`     | `INFO`        | `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` |
-| `APP_PORT`      | `8000`        | 1–65535                                         |
 | `CORS_ORIGINS`  | *(empty)*     | comma-separated origins, e.g. `https://app.example.com` |
 
 ## Running
