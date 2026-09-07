@@ -32,7 +32,8 @@ baseline contract. Read this guide before opening a pull request.
 
 ## Development workflow
 
-1. Fork / branch using `feature/*`, `fix/*`, `docs/*`, `chore/*`.
+1. Fork / branch using `feature/*`, `fix/*`, `docs/*`, `chore/*`, or
+   `refactor/*`.
 2. Make focused changes; follow [docs/conventions.md](docs/conventions.md)
    for commits (Conventional Commits, atomic).
 3. Verify the affected template(s):

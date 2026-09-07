@@ -13,9 +13,10 @@ ngôn ngữ/framework. Khi bắt đầu dự án mới, bạn có thể copy m�
 tự dựng lại cấu trúc, lint, test, cấu hình, logging, xử lý lỗi, Docker và CI.
 
 > Trạng thái: Phase 1 đã hoàn tất với 38 starter trên 12 ngôn ngữ. Các starter
-> được kiểm chứng bằng validator, CI, Docker hoặc toolchain phù hợp với từng hệ
-> sinh thái. Trạng thái chi tiết nằm trong [README tiếng Anh](README.md) và kế
-> hoạch tiếp theo nằm ở [roadmap](docs/roadmap.md).
+> có bằng chứng validator, Docker/toolchain cục bộ nơi host hỗ trợ, hoặc nhãn
+> `NOT_RUN` trung thực khi chỉ có CI là đường kiểm chứng. Trạng thái chi tiết
+> nằm trong [README tiếng Anh](README.md) và kế hoạch tiếp theo nằm ở
+> [roadmap](docs/roadmap.md).
 
 ## ForgeBase là gì?
 
@@ -95,6 +96,11 @@ ForgeBase hiện có 38 starter trên 12 ngôn ngữ:
 implement nhưng local verification là `NOT_RUN`, CI là đường kiểm chứng · 🚧 =
 đang lên kế hoạch hoặc làm tiếp trong [roadmap](docs/roadmap.md).
 
+> Ghi chú kiểm chứng: bảng trạng thái phản ánh lượt kiểm chứng được ghi nhận
+> gần nhất cho ForgeBase 0.1.0. Những starter được sửa đã được chạy lại bằng
+> toolchain cục bộ khi có sẵn; các gate không chạy được trên host hiện tại
+> được ghi là `NOT_RUN` với CI là đường kiểm chứng.
+
 ## Quick Start
 
 ```bash
@@ -117,6 +123,14 @@ ForgeBase/
 ├── scripts/          # tooling cấp repository, ví dụ template validator
 └── .github/          # GitHub Actions theo từng ngôn ngữ
 ```
+
+## Triết lý phát triển
+
+1. Đơn giản 2. Đúng đắn 3. Dễ bảo trì 4. Trải nghiệm developer
+5. Bảo mật 6. Quan sát được 7. Hiệu năng 8. Khả năng mở rộng
+
+Chi tiết: [docs/architecture.md](docs/architecture.md) và
+[docs/template-specification.md](docs/template-specification.md).
 
 ## Thêm template mới
 

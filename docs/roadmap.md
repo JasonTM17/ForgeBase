@@ -60,6 +60,24 @@ See the root [README](../README.md) for the full status table.
 | P3 | E2E testing harness | Playwright suites for the frontend starters |
 | P3 | Template publishing | Versioned, per-template release artifacts |
 
+## Deferred quality backlog
+
+These items were deliberately kept out of Phase 1 or the current hardening
+pass so the shipped starter contract remains bounded:
+
+- Extract repeated GitHub Actions jobs with `workflow_call` after the current
+  per-language workflows have run green on GitHub.
+- Add `actionlint` once the repo chooses a maintained local/CI installation
+  path for that tool.
+- Add graceful shutdown wiring to the Kotlin Ktor starter when the Gradle
+  gate can be re-run in its target toolchain.
+- Review Go/Python whitespace and formatting drift as a dedicated style pass,
+  not mixed into behavior fixes.
+- Pin a concrete Dart/Flutter SDK version only after the repository has
+  version evidence stronger than the current `stable` channel declaration.
+- Decide whether the Quarkus starter should adopt a MicroProfile-style
+  response envelope before changing its public response contract.
+
 ## How to contribute
 
 - To add a **framework**: follow [docs/adding-a-framework.md](adding-a-framework.md).

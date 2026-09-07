@@ -3,8 +3,9 @@
 A production-oriented Rails 8 API: fail-fast startup configuration,
 centralized envelope error handling via `rescue_from`, the health trio,
 one example resource, minitest tests, and a non-root Docker image. No
-database layer — the example resource uses an in-memory store so the
-template stays a clean base (Phase 1 non-goal: DB/ORM).
+application database layer — the example resource uses an in-memory store so
+the template stays a clean base (Phase 1 non-goal: DB/ORM). Rails internal
+SQLite stores are still present for framework subsystems such as Solid Queue.
 
 ## Features
 
@@ -48,7 +49,7 @@ Copy this folder out and rename:
 cp -r languages/ruby/rails /path/to/my-api
 cd /path/to/my-api
 # rename the RailsApp module and the forgebase/ namespace
-bin/rails db:prepare   # harmless even with no database; creates the schema
+bin/rails db:prepare   # prepares Rails internal support databases
 bin/rails server
 ```
 
@@ -74,7 +75,14 @@ curl -s http://localhost:3000/api/widgets
 ## Testing
 
 ```bash
+bin/rails db:test:prepare
 bin/rails test
+```
+
+## Linting and formatting
+
+```bash
+bin/rubocop
 ```
 
 ## Docker
@@ -92,12 +100,15 @@ docker run --rm -p 3000:3000 -e SERVICE_NAME=my-api my-api
 - `rescue_from StandardError` returns a generic message in production to
   avoid leaking internals; override `render_internal` for richer reporting.
 - The in-memory widget store is per-process and resets on restart; swap it
-  for ActiveRecord when the copied-out project needs persistence.
+  for ActiveRecord domain models when the copied-out project needs
+  application persistence.
 - `config.autoload_lib` loads `lib/forgebase/*`; keep new library code there.
 
 ## Common issues
 
 - **Boot fails with a missing `SERVICE_NAME`** — that is the fail-fast
   contract; set every variable in `.env.example`.
-- **Tests reference no database** — run with `RAILS_ENV=test`; the scaffold
-  ships an empty `db/schema.rb` for the no-DB case.
+- **Tests need Rails support databases** — run `bin/rails db:test:prepare`
+  before `bin/rails test` when a copied-out project has no prepared test
+  database yet. The scaffold ships Rails subsystem schemas under `db/`, not a
+  domain-model `db/schema.rb`.
