@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -50,10 +51,24 @@ class ApplicationTests {
 
     @Test
     void blankNameIsRejected() throws Exception {
+        // Framework-raised validation errors render as RFC 9457 ProblemDetail
+        // via the inherited ResponseEntityExceptionHandler.
         mockMvc.perform(post("/api/v1/examples")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"\"}"))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON))
+                .andExpect(jsonPath("$.title").value("Bad Request"))
+                .andExpect(jsonPath("$.status").value(400));
+    }
+
+    @Test
+    void malformedJsonReturnsProblemDetails() throws Exception {
+        mockMvc.perform(post("/api/v1/examples")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{not json"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_PROBLEM_JSON));
     }
 
     @Test

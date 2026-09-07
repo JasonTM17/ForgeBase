@@ -1,5 +1,7 @@
 package com.forgebase.springboot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,10 +15,14 @@ import java.net.URI;
  * <p>
  * Domain errors map to RFC 9457 ProblemDetail (a consistent error contract);
  * unexpected exceptions collapse to a generic 500 with no internal details
- * leaked.
+ * leaked. Framework-raised exceptions (validation, malformed JSON, missing
+ * routes) are handled by {@link ResponseEntityExceptionHandler}, which
+ * renders them as ProblemDetail on this Spring Boot version.
  */
 @RestControllerAdvice
 public class GlobalErrorHandler extends ResponseEntityExceptionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(GlobalErrorHandler.class);
 
     @ExceptionHandler(DomainError.class)
     public ProblemDetail handleDomain(DomainError error) {
@@ -39,7 +45,7 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleUnexpected(Exception error) {
         // Log the full failure server-side; clients get nothing actionable.
-        org.slf4j.LoggerFactory.getLogger(getClass()).error("unhandled exception", error);
+        log.error("unhandled exception", error);
         ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         problem.setTitle("INTERNAL_ERROR");
         problem.setDetail("An unexpected error occurred");
