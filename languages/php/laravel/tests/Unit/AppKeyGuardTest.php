@@ -65,6 +65,31 @@ class AppKeyGuardTest extends TestCase
         $this->assertTrue(true);
     }
 
+    public function test_boot_allows_setup_and_cache_artisan_commands_without_existing_key(): void
+    {
+        $commands = [
+            'cache:clear',
+            'clear-compiled',
+            'config:clear',
+            'event:clear',
+            'optimize:clear',
+            'package:discover',
+            'route:clear',
+            'view:clear',
+        ];
+
+        foreach ($commands as $command) {
+            $this->withArtisanCommand($command, function (): void {
+                config(['app.key' => null]);
+                $this->app->detectEnvironment(fn () => 'production');
+
+                (new AppServiceProvider($this->app))->boot();
+            });
+        }
+
+        $this->assertTrue(true);
+    }
+
     /**
      * @param callable(): void $callback
      */

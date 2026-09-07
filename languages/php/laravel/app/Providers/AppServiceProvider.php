@@ -38,6 +38,17 @@ class AppServiceProvider extends ServiceProvider
             return false;
         }
 
-        return in_array($_SERVER['argv'][1] ?? '', ['key:generate', 'test'], true);
+        return in_array($_SERVER['argv'][1] ?? '', [
+            'cache:clear',
+            'clear-compiled',
+            'config:clear',
+            'event:clear',
+            'key:generate',
+            'optimize:clear',
+            'package:discover',
+            'route:clear',
+            'test',
+            'view:clear',
+        ], true);
     }
 }
