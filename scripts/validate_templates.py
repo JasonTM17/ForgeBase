@@ -82,6 +82,9 @@ IGNORED_DIRS = {
     ".ruff_cache", ".mypy_cache", "dist", "build", "target", "coverage",
     "htmlcov", ".next", ".nuxt", ".output", ".svelte-kit", ".gradle",
     ".angular", "vendor", ".turbo", ".cache", "bin", "obj", ".dart_tool",
+    # Local agent-tooling session state can be dropped inside template dirs;
+    # it is gitignored and never part of a starter.
+    ".mimosa", ".zcode", ".video_agent",
 }
 IGNORED_PATH_PREFIXES = {
     ("bootstrap", "cache"),
