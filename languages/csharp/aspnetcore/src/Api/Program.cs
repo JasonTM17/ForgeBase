@@ -1,5 +1,6 @@
 using Api;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 // Fail fast before the host is built: a broken deployment configuration must
 // never turn into runtime request failures.
@@ -28,7 +29,10 @@ builder.Logging.SetMinimumLevel(config.LogLevel);
 
 // RFC 9457 ProblemDetails for unhandled exceptions and unmatched routes.
 builder.Services.AddProblemDetails();
-builder.Services.AddHealthChecks();
+builder.Services.AddHealthChecks()
+    // One real registered check, tagged so the liveness and readiness
+    // variants each report actual entries instead of empty result sets.
+    .AddCheck("self", () => HealthCheckResult.Healthy(), tags: ["live", "ready"]);
 
 var app = builder.Build();
 

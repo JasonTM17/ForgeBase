@@ -28,8 +28,13 @@ public sealed record EnvConfig(string ServiceName, LogLevel LogLevel, int Port)
 
     private static LogLevel ParseLogLevel(string value)
     {
-        if (!Enum.TryParse<LogLevel>(value, ignoreCase: true, out var level) ||
-            level == LogLevel.None)
+        var trimmed = value.Trim();
+        // Enum.TryParse also accepts numbers and flag combinations ("Error,
+        // Warning"); require a single defined level name instead.
+        if (trimmed.Contains(',') ||
+            !Enum.TryParse<LogLevel>(trimmed, ignoreCase: true, out var level) ||
+            level == LogLevel.None ||
+            !Enum.IsDefined(level))
         {
             var valid = string.Join(", ",
                 Enum.GetNames<LogLevel>().Where(n => n != nameof(LogLevel.None)));
