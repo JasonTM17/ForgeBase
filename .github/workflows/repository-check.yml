@@ -2,6 +2,8 @@ name: Repository checks
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 1"
   push:
     branches: [main]
   pull_request:
@@ -16,9 +18,9 @@ permissions:
 
 jobs:
   validate-templates:
-    name: Template specification compliance
+    name: Template specification and tooling compliance
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
@@ -32,8 +34,15 @@ jobs:
           python scripts/validate_templates.py
           python scripts/validate_templates.py --selftest
 
+      - name: Run repository tooling checks
+        run: |
+          python scripts/update_verification_matrix.py --check
+          python scripts/check_copy_out.py --template python-fastapi --quiet
+          python scripts/check_copy_out.py --all --quiet
+          python -m unittest scripts/test_forgebase_tools.py
+
   lint-workflows:
-    name: Workflow YAML validity
+    name: Workflow and Dependabot YAML validity
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -47,6 +56,7 @@ jobs:
           python -c "
           import yaml, pathlib, sys
           files = list(pathlib.Path('.github/workflows').glob('*.yml'))
+          files += list(pathlib.Path('.github').glob('dependabot.y*ml'))
           failures = 0
           for f in files:
               try:
@@ -55,6 +65,29 @@ jobs:
               except Exception as exc:
                   print(f'  FAIL {f.name}: {exc}')
                   failures += 1
-          print(f'{len(files)} workflow(s) checked')
+          print(f'{len(files)} YAML file(s) checked')
+          sys.exit(1 if failures else 0)
+          "
+
+      - name: Check Dependabot structure
+        run: |
+          python -c "
+          import pathlib, sys, yaml
+          data = yaml.safe_load(pathlib.Path('.github/dependabot.yml').read_text())
+          updates = data.get('updates') if isinstance(data, dict) else None
+          if data.get('version') != 2 or not isinstance(updates, list) or not updates:
+              print('FAIL invalid dependabot.yml root structure')
+              sys.exit(1)
+          failures = []
+          for i, update in enumerate(updates, 1):
+              if 'package-ecosystem' not in update:
+                  failures.append(f'update {i}: missing package-ecosystem')
+              if 'directory' not in update and 'directories' not in update:
+                  failures.append(f'update {i}: missing directory/directories')
+              if update.get('schedule', {}).get('interval') != 'weekly':
+                  failures.append(f'update {i}: schedule.interval must be weekly')
+          for failure in failures:
+              print('FAIL', failure)
+          print(f'{len(updates)} dependabot update block(s) checked')
           sys.exit(1 if failures else 0)
           "

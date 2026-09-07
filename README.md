@@ -19,7 +19,8 @@ configuration, logging, error handling, Docker, and CI from scratch.
 > Rust/Ruby fixes were source-reviewed locally when those host toolchains were
 > not available. Template availability and
 > verification status are tracked in the
-> [status table](#available-languages); future work lives in the
+> [status table](#available-languages), with per-starter evidence in the
+> [verification matrix](docs/verification-matrix.md); future work lives in the
 > [roadmap](docs/roadmap.md).
 
 > **Ghi chú tiếng Việt:** ForgeBase là bộ starter đa ngôn ngữ được kiểm chứng
@@ -59,6 +60,8 @@ test, review, then release. Public claims use explicit evidence labels:
 Before release, maintainers check the repository validator, its selftest,
 workflow YAML parsing, docs links, generated-artifact boundaries, secret
 patterns, `git diff --check`, exact-head GitHub Actions, and the release tag.
+The public [verification matrix](docs/verification-matrix.md) records the
+evidence label and CI boundary for each starter.
 
 ## Available Languages
 
@@ -103,9 +106,10 @@ patterns, `git diff --check`, exact-head GitHub Actions, and the release tag.
 | C          | Vanilla      | library/cli  | ✅ |
 | C++        | Vanilla      | library/cli  | ✅ |
 
-**Legend:** ✅ = implemented and verified locally · 🧪 = implemented,
-verification NOT_RUN locally (CI is the verification path) · 🚧 =
-planned/in-progress (see the [roadmap](docs/roadmap.md)).
+**Legend:** ✅ = implemented and available · 🧪 = implemented with local
+verification `NOT_RUN` for the current host/toolchain · 🚧 =
+planned/in-progress (see the [roadmap](docs/roadmap.md)). Verification
+evidence lives in the [verification matrix](docs/verification-matrix.md).
 
 > Status reflects the latest recorded verification pass for ForgeBase 0.1.0:
 > 38/38 ✅ in the table, with the affected starters re-run locally where
@@ -122,7 +126,8 @@ git clone https://github.com/JasonTM17/ForgeBase.git
 cd ForgeBase
 
 # pick a template and copy it to your new project
-cp -r languages/python/fastapi ~/projects/my-api
+python scripts/forgebase.py list
+python scripts/forgebase.py create python-fastapi ~/projects/my-api
 cd ~/projects/my-api
 
 # follow the template's own README from here
@@ -149,7 +154,7 @@ ForgeBase/
 ├── docs/             # architecture, template spec, conventions, roadmap
 │   ├── adding-a-language.md
 │   └── adding-a-framework.md
-├── scripts/          # repository tooling (template validation)
+├── scripts/          # repository tooling (validation, matrix, copy/create)
 └── .github/          # path-filtered CI workflows per language
 ```
 

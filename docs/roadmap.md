@@ -5,11 +5,14 @@ starter collection. Each `languages/<language>/<framework>/` folder is a
 fully self-contained basecode a developer copies out to start a new
 project.
 
-## Current release: ForgeBase 0.1.0
+## Current baseline: ForgeBase 0.1.0
 
 Phase 1 delivers 38 starters across 12 languages — backend APIs,
 frontend SPAs/SSR, and mobile — with per-language path-filtered CI, a
-template validator, and complete open-source documentation.
+template validator and complete open-source documentation. The current
+repository also carries repo-local copy/create tooling and a generated public
+verification matrix; those additions still require exact-head GitHub Actions
+before any new release claim.
 
 See the root [README](../README.md) for the full status table.
 
@@ -37,11 +40,14 @@ See the root [README](../README.md) for the full status table.
   (vanilla).
 - Per-language path-filtered GitHub Actions CI.
 - `scripts/validate_templates.py` enforcing the template specification.
+- `scripts/check_copy_out.py` proving copied templates remain self-contained.
+- `scripts/forgebase.py` for repo-local `list`, `show`, and `create`.
+- `docs/verification-matrix.md` generated from template metadata.
 - Open-source governance docs (CONTRIBUTING, SECURITY, CODE_OF_CONDUCT).
 
 ## What is explicitly out of scope (Phase 1)
 
-- A `forgebase create` CLI (roadmap — metadata schema is ready for it).
+- Packaged/global `forgebase` installation; the current CLI is repo-local.
 - Database / ORM layers in starters (roadmap for production variants).
 - `docker-compose.yml` (only earned when a template has external runtime
   dependencies; Phase 1 templates have none).
@@ -52,7 +58,6 @@ See the root [README](../README.md) for the full status table.
 
 | Priority | Item | Notes |
 |---|---|---|
-| P2 | `forgebase create` CLI | consumes `forgebase.json` metadata; layout already treats templates as data |
 | P2 | Production template variants | `minimal` / `standard` / `production` under each framework |
 | P2 | Database/ORM variants | PostgreSQL + a per-ecosystem ORM, composed on top of Phase-1 starters |
 | P3 | Additional frameworks | Slim, Hono (where toolchains are available), Solid, Qwik, Astro |

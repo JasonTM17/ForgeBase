@@ -1,0 +1,124 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directories:
+      - "/languages/typescript/angular"
+      - "/languages/typescript/express"
+      - "/languages/typescript/fastify"
+      - "/languages/typescript/nestjs"
+      - "/languages/typescript/nextjs"
+      - "/languages/typescript/node"
+      - "/languages/typescript/nuxt"
+      - "/languages/typescript/react"
+      - "/languages/typescript/react-native"
+      - "/languages/typescript/svelte"
+      - "/languages/typescript/sveltekit"
+      - "/languages/typescript/vue"
+    schedule:
+      interval: "weekly"
+    groups:
+      typescript-starters:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "pip"
+    directories:
+      - "/languages/python/django"
+      - "/languages/python/fastapi"
+      - "/languages/python/flask"
+      - "/languages/python/vanilla"
+    schedule:
+      interval: "weekly"
+    groups:
+      python-starters:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "composer"
+    directories:
+      - "/languages/php/laravel"
+      - "/languages/php/vanilla"
+    schedule:
+      interval: "weekly"
+    groups:
+      php-starters:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "bundler"
+    directories:
+      - "/languages/ruby/rails"
+      - "/languages/ruby/vanilla"
+    schedule:
+      interval: "weekly"
+    groups:
+      ruby-starters:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "gomod"
+    directories:
+      - "/languages/go/fiber"
+      - "/languages/go/gin"
+      - "/languages/go/net-http"
+      - "/languages/go/vanilla"
+    schedule:
+      interval: "weekly"
+    groups:
+      go-starters:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "maven"
+    directories:
+      - "/languages/java/quarkus"
+      - "/languages/java/spring-boot"
+    schedule:
+      interval: "weekly"
+    groups:
+      java-starters:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "gradle"
+    directories:
+      - "/languages/kotlin/ktor"
+      - "/languages/kotlin/vanilla"
+    schedule:
+      interval: "weekly"
+    groups:
+      kotlin-starters:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "cargo"
+    directories:
+      - "/languages/rust/actix-web"
+      - "/languages/rust/axum"
+      - "/languages/rust/vanilla"
+    schedule:
+      interval: "weekly"
+    groups:
+      rust-starters:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "pub"
+    directories:
+      - "/languages/dart/flutter"
+      - "/languages/dart/vanilla"
+    schedule:
+      interval: "weekly"
+    groups:
+      dart-starters:
+        patterns:
+          - "*"

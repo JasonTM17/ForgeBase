@@ -15,7 +15,8 @@ tự dựng lại cấu trúc, lint, test, cấu hình, logging, xử lý lỗi,
 > Trạng thái: Phase 1 đã hoàn tất với 38 starter trên 12 ngôn ngữ. Các starter
 > có bằng chứng validator, Docker/toolchain cục bộ nơi host hỗ trợ, hoặc nhãn
 > `NOT_RUN` trung thực khi chỉ có CI là đường kiểm chứng. Trạng thái chi tiết
-> nằm trong [README tiếng Anh](README.md) và kế hoạch tiếp theo nằm ở
+> nằm trong [verification matrix](docs/verification-matrix.md), bảng tổng quan
+> nằm trong [README tiếng Anh](README.md), và kế hoạch tiếp theo nằm ở
 > [roadmap](docs/roadmap.md).
 
 ## ForgeBase là gì?
@@ -45,7 +46,8 @@ test, review, rồi release. Mọi claim public dùng bốn nhãn bằng chứng
 
 Trước release, maintainer kiểm validator, selftest, workflow YAML, link docs,
 generated artifacts, secret patterns, `git diff --check`, GitHub Actions trên
-đúng commit, và release tag.
+đúng commit, và release tag. Chi tiết bằng chứng theo từng starter nằm trong
+[verification matrix](docs/verification-matrix.md).
 
 ## Starter hiện có
 
@@ -92,9 +94,10 @@ ForgeBase hiện có 38 starter trên 12 ngôn ngữ:
 | C | Vanilla | library/cli | ✅ |
 | C++ | Vanilla | library/cli | ✅ |
 
-**Chú thích:** ✅ = đã implement và có bằng chứng kiểm chứng · 🧪 = đã
-implement nhưng local verification là `NOT_RUN`, CI là đường kiểm chứng · 🚧 =
-đang lên kế hoạch hoặc làm tiếp trong [roadmap](docs/roadmap.md).
+**Chú thích:** ✅ = đã implement và có sẵn · 🧪 = đã implement nhưng local
+verification là `NOT_RUN` trên host/toolchain hiện tại · 🚧 = đang lên kế
+hoạch hoặc làm tiếp trong [roadmap](docs/roadmap.md). Bằng chứng kiểm chứng
+chi tiết nằm trong [verification matrix](docs/verification-matrix.md).
 
 > Ghi chú kiểm chứng: bảng trạng thái phản ánh lượt kiểm chứng được ghi nhận
 > gần nhất cho ForgeBase 0.1.0. Những starter được sửa đã được chạy lại bằng
@@ -108,7 +111,8 @@ git clone https://github.com/JasonTM17/ForgeBase.git
 cd ForgeBase
 
 # chọn một template và copy ra project mới
-cp -r languages/python/fastapi ~/projects/my-api
+python scripts/forgebase.py list
+python scripts/forgebase.py create python-fastapi ~/projects/my-api
 cd ~/projects/my-api
 
 # sau đó làm theo README riêng của template
@@ -120,7 +124,7 @@ cd ~/projects/my-api
 ForgeBase/
 ├── languages/        # một starter độc lập cho mỗi <language>/<framework>
 ├── docs/             # kiến trúc, template spec, conventions, roadmap
-├── scripts/          # tooling cấp repository, ví dụ template validator
+├── scripts/          # tooling cấp repository: validator, matrix, copy/create
 └── .github/          # GitHub Actions theo từng ngôn ngữ
 ```
 

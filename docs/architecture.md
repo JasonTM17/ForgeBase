@@ -15,7 +15,7 @@ ForgeBase/
 │           ├── forgebase.json  # template metadata (machine-readable)
 │           └── ...             # ecosystem-idiomatic project files
 ├── docs/                       # repository documentation (not shipped with templates)
-├── scripts/                    # repository tooling (template validator)
+├── scripts/                    # repository tooling (validator, matrix, CLI)
 ├── .github/workflows/          # path-filtered CI, one workflow per language
 │                               # (C and C++ share one combined workflow)
 ├── CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, LICENSE
@@ -91,7 +91,7 @@ non-root containers) is built in rather than documented as a TODO.
 
 Each template carries `forgebase.json` (id, language, framework, category,
 version, runtime version, description). This is the extension point for a
-future `forgebase create` CLI: the CLI can discover templates by scanning
+repo-local `forgebase create` CLI: the CLI discovers templates by scanning
 metadata instead of hard-coding paths, without any refactor of this layout.
 See ADR 0002.
 
@@ -107,7 +107,7 @@ in `docs/roadmap.md` as `Planned`, never as placeholder code.
 | Layer | May depend on | Must not depend on |
 |---|---|---|
 | Template (`languages/**`) | its own files, its pinned deps | other templates, repo tooling, host paths |
-| Repo tooling (`scripts/`) | templates (read-only) | any single template's internals |
+| Repo tooling (`scripts/`) | templates (read/copy through metadata) | any single template's internals |
 | CI (`.github/`) | paths, templates (build/test) | — |
 | Docs | everything (read-only) | — |
 
@@ -123,5 +123,6 @@ in `docs/roadmap.md` as `Planned`, never as placeholder code.
   then each template is a single "standard" variant (not represented in
   metadata — the schema gains a `variant` field only when a real consumer
   needs it).
-- **CLI (`forgebase create`)**: consumes `forgebase.json` metadata; the
-  repository layout already treats templates as data.
+- **CLI (`forgebase create`)**: `scripts/forgebase.py` consumes
+  `forgebase.json` metadata and copies a selected template without generated
+  dependency artifacts.
