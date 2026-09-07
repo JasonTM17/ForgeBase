@@ -48,7 +48,7 @@ pub fn router(state: AppState) -> Router {
 async fn create_widget(
     State((_, widgets)): State<(AppState, WidgetStore)>,
     Json(payload): Json<CreateWidget>,
-) -> Result<(StatusCode, Json<Widget>), AppError> {
+) -> Result<(StatusCode, Json<serde_json::Value>), AppError> {
     if payload.name.trim().is_empty() {
         return Err(AppError::Invalid("name is required".to_string()));
     }
@@ -62,31 +62,34 @@ async fn create_widget(
         name: payload.name,
     };
     store.insert(id, widget.clone());
-    Ok((StatusCode::CREATED, Json(widget)))
+    Ok((
+        StatusCode::CREATED,
+        Json(serde_json::json!({ "data": widget, "message": "created" })),
+    ))
 }
 
 async fn list_widgets(
     State((_, widgets)): State<(AppState, WidgetStore)>,
-) -> Result<Json<Vec<Widget>>, AppError> {
+) -> Result<Json<serde_json::Value>, AppError> {
     let store = widgets
         .lock()
         .map_err(|_| AppError::Invalid("store poisoned".to_string()))?;
     let mut all: Vec<Widget> = store.values().cloned().collect();
     all.sort_by_key(|widget| widget.id);
-    Ok(Json(all))
+    Ok(Json(serde_json::json!({ "data": all, "message": "ok" })))
 }
 
 async fn get_widget(
     State((_, widgets)): State<(AppState, WidgetStore)>,
     Path(id): Path<u64>,
-) -> Result<Json<Widget>, AppError> {
+) -> Result<Json<serde_json::Value>, AppError> {
     let store = widgets
         .lock()
         .map_err(|_| AppError::Invalid("store poisoned".to_string()))?;
     store
         .get(&id)
         .cloned()
-        .map(Json)
+        .map(|widget| Json(serde_json::json!({ "data": widget, "message": "ok" })))
         .ok_or_else(|| AppError::NotFound(format!("widget {id} not found")))
 }
 

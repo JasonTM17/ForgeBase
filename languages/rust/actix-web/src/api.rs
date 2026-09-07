@@ -75,7 +75,10 @@ async fn create_widget(
         name: payload.name.clone(),
     };
     inner.push(widget.clone());
-    Ok(HttpResponse::Created().json(widget))
+    Ok(HttpResponse::Created().json(serde_json::json!({
+        "data": widget,
+        "message": "created"
+    })))
 }
 
 #[get("/api/widgets")]
@@ -84,7 +87,10 @@ async fn list_widgets(store: Data<WidgetStore>) -> Result<impl Responder, AppErr
         .inner
         .lock()
         .map_err(|_| AppError::Invalid("store poisoned".to_string()))?;
-    Ok(HttpResponse::Ok().json(inner.clone()))
+    Ok(HttpResponse::Ok().json(serde_json::json!({
+        "data": inner.clone(),
+        "message": "ok"
+    })))
 }
 
 #[get("/api/widgets/{id}")]
@@ -98,7 +104,12 @@ async fn get_widget(store: Data<WidgetStore>, path: Path<u64>) -> Result<impl Re
         .iter()
         .find(|widget| widget.id == id)
         .cloned()
-        .map(|widget| HttpResponse::Ok().json(widget))
+        .map(|widget| {
+            HttpResponse::Ok().json(serde_json::json!({
+                "data": widget,
+                "message": "ok"
+            }))
+        })
         .ok_or_else(|| AppError::NotFound(format!("widget {id} not found")))
 }
 

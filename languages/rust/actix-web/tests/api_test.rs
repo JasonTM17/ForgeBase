@@ -39,7 +39,9 @@ async fn widget_flow_creates_and_fetches() {
     let response = test::call_service(&app, request).await;
     assert!(response.status().is_success());
     let created: Value = test::read_body_json(response).await;
-    let id = created["id"].as_u64().unwrap();
+    assert_eq!(created["data"]["name"], "anvil");
+    assert_eq!(created["message"], "created");
+    let id = created["data"]["id"].as_u64().unwrap();
 
     let request = test::TestRequest::get()
         .uri(&format!("/api/widgets/{id}"))
@@ -47,7 +49,8 @@ async fn widget_flow_creates_and_fetches() {
     let response = test::call_service(&app, request).await;
     assert!(response.status().is_success());
     let fetched: Value = test::read_body_json(response).await;
-    assert_eq!(fetched["name"], "anvil");
+    assert_eq!(fetched["data"]["name"], "anvil");
+    assert_eq!(fetched["message"], "ok");
 }
 
 #[actix_web::test]

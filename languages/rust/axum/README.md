@@ -10,8 +10,9 @@ template stays a clean base.
 
 - Fail-fast `Config::from_environment` (clean exit message, code 2)
 - Health endpoints: `GET /health`, `GET /health/live`, `GET /health/ready`
-- Centralized envelope errors: `{"error": {"code", "message"}}` — production
-  responses never leak stack traces or internal details
+- Light response envelope: success is `{"data": ..., "message": "ok"}` and
+  errors are `{"error": {"code", "message"}}` — production responses never
+  leak stack traces or internal details
 - Example resource (`/api/widgets`) with 201/200/204/400/404 semantics
 - Graceful shutdown via `with_graceful_shutdown`
 - `tower::ServiceExt::oneshot`-based integration tests (no live server)

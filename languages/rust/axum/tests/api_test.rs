@@ -44,8 +44,9 @@ async fn widget_flow_validates_creates_and_rejects_bad_input() {
     )
     .await;
     assert_eq!(status, StatusCode::CREATED);
-    assert_eq!(created["name"], "anvil");
-    let id = created["id"].as_u64().unwrap();
+    assert_eq!(created["data"]["name"], "anvil");
+    assert_eq!(created["message"], "created");
+    let id = created["data"]["id"].as_u64().unwrap();
 
     let (status, fetched) = send(
         app.clone(),
@@ -55,7 +56,8 @@ async fn widget_flow_validates_creates_and_rejects_bad_input() {
     )
     .await;
     assert_eq!(status, StatusCode::OK);
-    assert_eq!(fetched["name"], "anvil");
+    assert_eq!(fetched["data"]["name"], "anvil");
+    assert_eq!(fetched["message"], "ok");
 }
 
 #[tokio::test]
