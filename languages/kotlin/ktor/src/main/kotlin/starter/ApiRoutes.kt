@@ -26,6 +26,9 @@ data class WidgetEnvelope(val data: Widget, val message: String)
 @Serializable
 data class WidgetListEnvelope(val data: List<Widget>, val message: String)
 
+/** Request-domain validation failure; distinct from configuration errors. */
+class InvalidRequestException(message: String) : RuntimeException(message)
+
 private val store = ConcurrentHashMap<Long, Widget>()
 private val nextId = AtomicLong(0)
 
@@ -38,7 +41,7 @@ fun Routing.apiRoutes() {
         post {
             val body = call.receive<CreateWidget>()
             if (body.name.isBlank()) {
-                throw EnvConfigException("name is required")
+                throw InvalidRequestException("name is required")
             }
             val id = nextId.incrementAndGet()
             val widget = Widget(id, body.name)
@@ -49,12 +52,12 @@ fun Routing.apiRoutes() {
             call.respond(WidgetListEnvelope(store.values.sortedBy { it.id }, "ok"))
         }
         get("/{id}") {
-            val id = call.parameters["id"]?.toLongOrNull() ?: throw EnvConfigException("invalid id")
+            val id = call.parameters["id"]?.toLongOrNull() ?: throw InvalidRequestException("invalid id")
             val widget = store[id] ?: throw NoSuchElementException("widget $id not found")
             call.respond(WidgetEnvelope(widget, "ok"))
         }
         delete("/{id}") {
-            val id = call.parameters["id"]?.toLongOrNull() ?: throw EnvConfigException("invalid id")
+            val id = call.parameters["id"]?.toLongOrNull() ?: throw InvalidRequestException("invalid id")
             if (store.remove(id) == null) throw NoSuchElementException("widget $id not found")
             call.respond(HttpStatusCode.NoContent)
         }

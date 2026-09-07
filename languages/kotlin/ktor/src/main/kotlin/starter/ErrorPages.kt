@@ -33,7 +33,7 @@ private suspend fun ApplicationCall.respondError(
  */
 fun io.ktor.server.application.Application.installErrorPages() {
     install(StatusPages) {
-        exception<EnvConfigException> { call, cause ->
+        exception<InvalidRequestException> { call, cause ->
             call.respondError(HttpStatusCode.BadRequest, "RESOURCE_INVALID", cause.message ?: "")
         }
         exception<NoSuchElementException> { call, cause ->

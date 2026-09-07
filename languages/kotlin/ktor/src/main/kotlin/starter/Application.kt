@@ -23,6 +23,7 @@ fun main() {
         System.err.println("configuration error: ${error.message}")
         kotlin.system.exitProcess(2)
     }
+    configureLogging(config)
 
     embeddedServer(Netty, port = config.port, host = "0.0.0.0", module = {
         module()
