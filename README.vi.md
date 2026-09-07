@@ -48,6 +48,9 @@ Trước release, maintainer kiểm validator, selftest, workflow YAML, link doc
 generated artifacts, secret patterns, `git diff --check`, GitHub Actions trên
 đúng commit, và release tag. Chi tiết bằng chứng theo từng starter nằm trong
 [verification matrix](docs/verification-matrix.md).
+Các thao tác vận hành như triage Dependabot, vệ sinh branch, bảo vệ `main`, và
+bằng chứng release nằm trong
+[maintainer guide](docs/maintainer-guide.vi.md).
 
 ## Starter hiện có
 
@@ -139,8 +142,10 @@ Chi tiết: [docs/architecture.md](docs/architecture.md) và
 ## Thêm template mới
 
 Xem [docs/adding-a-language.md](docs/adding-a-language.md) và
-[docs/adding-a-framework.md](docs/adding-a-framework.md). Quy trình review và
-release nằm ở [docs/agentkit-workflow.vi.md](docs/agentkit-workflow.vi.md).
+[docs/adding-a-framework.md](docs/adding-a-framework.md). Quy trình review,
+release và vận hành repo nằm ở
+[docs/agentkit-workflow.vi.md](docs/agentkit-workflow.vi.md) và
+[docs/maintainer-guide.vi.md](docs/maintainer-guide.vi.md).
 
 ## Đóng góp, bảo mật, license
 

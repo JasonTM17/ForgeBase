@@ -63,6 +63,11 @@ requests should follow the same evidence discipline:
   `.codex/`, `AGENTS.md`, and `plans/`;
 - stage explicit public paths only.
 
+Maintainer-specific operations for Dependabot triage, branch hygiene, branch
+protection, and release evidence live in
+[docs/maintainer-guide.md](docs/maintainer-guide.md)
+([Tiếng Việt](docs/maintainer-guide.vi.md)).
+
 ## Commit messages
 
 Conventional Commits (`feat(fastapi): ...`, `fix(react): ...`,

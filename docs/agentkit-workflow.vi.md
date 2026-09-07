@@ -20,6 +20,8 @@ Mỗi thay đổi quan trọng đi theo cùng một đường bằng chứng:
 
 Thay đổi docs nhỏ có thể dùng đường ngắn hơn, nhưng vẫn cần diff sạch, link
 check, và không stage file private.
+Với thao tác vận hành repo lặp lại, dùng tài liệu này cùng
+[maintainer guide](maintainer-guide.vi.md).
 
 ## Vai trò
 

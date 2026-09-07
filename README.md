@@ -62,6 +62,9 @@ workflow YAML parsing, docs links, generated-artifact boundaries, secret
 patterns, `git diff --check`, exact-head GitHub Actions, and the release tag.
 The public [verification matrix](docs/verification-matrix.md) records the
 evidence label and CI boundary for each starter.
+Maintainer operations such as Dependabot triage, branch hygiene, branch
+protection, and release evidence are documented in the
+[maintainer guide](docs/maintainer-guide.md).
 
 ## Available Languages
 
@@ -171,7 +174,8 @@ Details: [docs/architecture.md](docs/architecture.md) and
 See [docs/adding-a-language.md](docs/adding-a-language.md) and
 [docs/adding-a-framework.md](docs/adding-a-framework.md).
 For the release and review workflow, see
-[docs/agentkit-workflow.md](docs/agentkit-workflow.md).
+[docs/agentkit-workflow.md](docs/agentkit-workflow.md) and the
+[maintainer guide](docs/maintainer-guide.md).
 
 ## Contributing
 
