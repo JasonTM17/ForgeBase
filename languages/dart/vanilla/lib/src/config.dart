@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'log_severity.dart';
 
-/// Fail-fast configuration: missing required required variables or values
+/// Fail-fast configuration: missing required variables or values
 /// that fail validation abort startup before any real work happens, so
 /// misconfiguration is never discovered in production traffic.
 class EnvConfig {
