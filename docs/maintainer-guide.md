@@ -63,6 +63,8 @@ settings:
 - disallow force pushes and branch deletion;
 - require conversation resolution before merge;
 - keep administrator bypass explicit and rare.
+- enable required code-owner reviews only after `.github/CODEOWNERS` reflects
+  the ownership model maintainers actually want enforced.
 
 When changing repository settings, record the date, the exact setting changed,
 and whether the change was verified through GitHub UI or API.

@@ -61,6 +61,8 @@ dùng:
 - không cho force push và xóa branch;
 - bắt buộc resolve conversation trước khi merge;
 - administrator bypass phải rõ ràng và hiếm khi dùng.
+- chỉ bật required code-owner reviews sau khi `.github/CODEOWNERS` phản ánh
+  đúng ownership model maintainer thật sự muốn enforce.
 
 Khi thay đổi repository settings, ghi lại ngày, setting chính xác đã đổi, và
 cách kiểm chứng qua GitHub UI hoặc API.
