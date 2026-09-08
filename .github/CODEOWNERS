@@ -1,0 +1,4 @@
+# Default review ownership for ForgeBase public repository files.
+# Keep this aligned with branch protection before requiring code-owner reviews.
+
+* @JasonTM17

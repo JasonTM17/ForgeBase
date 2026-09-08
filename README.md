@@ -66,6 +66,24 @@ Maintainer operations such as Dependabot triage, branch hygiene, branch
 protection, and release evidence are documented in the
 [maintainer guide](docs/maintainer-guide.md).
 
+## Documentation Map
+
+Start with the [documentation hub](docs/README.md) if you are evaluating the
+repository, contributing a new starter, or maintaining a release. Developers
+copying a template should read [Using a ForgeBase Starter](docs/using-a-starter.md)
+after choosing a starter id.
+
+Core references:
+
+- [verification matrix](docs/verification-matrix.md) — generated evidence
+  index for starter status;
+- [template specification](docs/template-specification.md) — required
+  capabilities for every starter;
+- [architecture](docs/architecture.md) — repository layout and boundaries;
+- [roadmap](docs/roadmap.md) — planned work and explicit non-goals;
+- [changelog](CHANGELOG.md) — human release history, separate from evidence
+  proof.
+
 ## Available Languages
 
 | Language   | Starter      | Category     | Status |
@@ -114,9 +132,11 @@ verification `NOT_RUN` for the current host/toolchain · 🚧 =
 planned/in-progress (see the [roadmap](docs/roadmap.md)). Verification
 evidence lives in the [verification matrix](docs/verification-matrix.md).
 
-> Status reflects the latest recorded verification pass for ForgeBase 0.1.0:
-> 38/38 ✅ in the table, with the affected starters re-run locally where
-> tooling was available.
+> Status reflects the latest recorded Phase 1 verification evidence:
+> 38/38 ✅ in the availability table, with affected starters re-run where
+> tooling or official containers were available. Tagged releases and the
+> current `main` branch are separate evidence boundaries; use exact commit and
+> tag evidence in PRs and release notes.
 > Kotlin Ktor's gates ran inside the official `gradle:8.14-jdk21` container
 > (no host Gradle toolchain): `gradle test`, the multi-stage image build, and
 > a boot smoke check. A row flips to ✅ only after its focused gates pass on
@@ -130,11 +150,14 @@ cd ForgeBase
 
 # pick a template and copy it to your new project
 python scripts/forgebase.py list
+python scripts/forgebase.py show python-fastapi
 python scripts/forgebase.py create python-fastapi ~/projects/my-api
 cd ~/projects/my-api
 
 # follow the template's own README from here
 ```
+
+More copy-out guidance: [docs/using-a-starter.md](docs/using-a-starter.md).
 
 ## Repository Structure
 
@@ -155,8 +178,11 @@ ForgeBase/
 │   ├── cpp/
 │   └── ...
 ├── docs/             # architecture, template spec, conventions, roadmap
-│   ├── adding-a-language.md
-│   └── adding-a-framework.md
+│   ├── README.md
+│   ├── using-a-starter.md
+│   ├── verification-matrix.md
+│   ├── template-specification.md
+│   └── architecture.md
 ├── scripts/          # repository tooling (validation, matrix, copy/create)
 └── .github/          # path-filtered CI workflows per language
 ```
@@ -180,6 +206,10 @@ For the release and review workflow, see
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Support
+
+See [SUPPORT.md](SUPPORT.md).
 
 ## Security
 

@@ -56,11 +56,15 @@ instead of guessing.
 settings:
 
 - require pull requests for changes to `main`;
-- require status checks that match the touched areas, including
-  `repository-check.yml` and the affected language workflow;
+- require status checks only when they report reliably for the protected
+  branch. With path-filtered workflows, do not require a check that can be
+  skipped for unrelated PRs unless a ruleset, merge queue, or fan-in check
+  keeps the required status stable;
 - disallow force pushes and branch deletion;
 - require conversation resolution before merge;
 - keep administrator bypass explicit and rare.
+- enable required code-owner reviews only after `.github/CODEOWNERS` reflects
+  the ownership model maintainers actually want enforced.
 
 When changing repository settings, record the date, the exact setting changed,
 and whether the change was verified through GitHub UI or API.

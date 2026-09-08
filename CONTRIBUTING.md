@@ -46,6 +46,8 @@ baseline contract. Read this guide before opening a pull request.
 4. Update the template's README, `.env.example`/equivalent, and
    `forgebase.json` (bump its `version`) together with the code.
 5. Open a pull request describing what you changed and what you ran.
+   The repository PR template asks for the same scope, verification, and
+   evidence-boundary information maintainers use during review.
 
 ## AgentKit-governed changes
 
@@ -80,6 +82,9 @@ Conventional Commits (`feat(fastapi): ...`, `fix(react): ...`,
 - security defaults (no secrets, no leaking error handlers, non-root images);
 - documentation accuracy (commands actually work);
 - CI correctness (path filters, caching, honest gates).
+
+Use the repository issue templates when reporting a starter bug, requesting a
+new template, or proposing a documentation update.
 
 ## License
 

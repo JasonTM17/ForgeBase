@@ -22,7 +22,7 @@ LOCAL_TOOLCHAIN_NOTES = {
     "dart-flutter": "CI-first mobile starter; local native/device gate is NOT_RUN here.",
     "kotlin-ktor": "Official gradle:8.14-jdk21 container evidence.",
     "kotlin-vanilla": "Official gradle:8.14-jdk21 container evidence.",
-    "ruby-rails": "Source-reviewed locally where host Ruby/Rails tooling was unavailable.",
+    "ruby-rails": "Official ruby:3.3 container evidence with Rails test and Docker build.",
     "ruby-vanilla": "Source-reviewed locally where host Ruby tooling was unavailable.",
     "rust-actix-web": "Source-reviewed locally where host Rust tooling was unavailable.",
     "rust-axum": "Source-reviewed locally where host Rust tooling was unavailable.",
@@ -33,7 +33,6 @@ LOCAL_TOOLCHAIN_NOTES = {
 
 def evidence_label(template: Template) -> str:
     if template.id in {
-        "ruby-rails",
         "ruby-vanilla",
         "rust-actix-web",
         "rust-axum",
@@ -65,7 +64,7 @@ def row(template: Template) -> str:
         f"| `{template.id}` | {template.language} | {template.framework} | "
         f"{template.category} | `{template.runtime_version}` | "
         f"{evidence_label(template)} | {command_category(template)} | "
-        f"{local_gate_note(template)} | Remote CI remains required on the exact pushed head. |"
+        f"{local_gate_note(template)} | Verify GitHub Actions on the exact pushed head before release; skipped path-filtered workflows are not evidence for untouched templates. |"
     )
 
 
@@ -87,13 +86,14 @@ def render(templates: list[Template]) -> str:
         "  credential, service, or permission was unavailable.",
         "",
         "The root README availability table stays intentionally compact. Use this",
-        "matrix for evidence details and for the boundary between local checks,",
-        "container checks, CI-first checks, and remote GitHub Actions on a pushed",
-        "commit.",
+        "matrix for template-level evidence details and for the boundary between",
+        "local checks, container checks, CI-first checks, and remote GitHub",
+        "Actions on a pushed commit. This matrix is not a release ledger; record",
+        "exact commit hashes, run ids, and tags in PRs or release notes.",
         "",
         "## Current Matrix",
         "",
-        "| Template | Language | Framework | Category | Runtime | Evidence | Command category | Local/toolchain note | Remote CI boundary |",
+        "| Template | Language | Framework | Category | Runtime | Local evidence | Command category | Local/toolchain note | Remote CI boundary |",
         "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     lines.extend(row(template) for template in templates)
@@ -106,8 +106,8 @@ def render(templates: list[Template]) -> str:
             "  `python scripts/update_verification_matrix.py`.",
             "- Check that the committed file matches generated output:",
             "  `python scripts/update_verification_matrix.py --check`.",
-            "- A `NOT_RUN` row can move to `PASS` only after the named local,",
-            "  container, or remote CI gate has been observed for that exact scope.",
+            "- A local `NOT_RUN` row can move to `PASS` only after the named",
+            "  local or container gate has been observed for that exact scope.",
             "",
         ]
     )
@@ -124,7 +124,7 @@ def main(argv: list[str] | None = None) -> int:
     content = render(discover_templates(args.root))
     if args.check:
         try:
-            existing = output.read_text(encoding="utf-8")
+            existing = output.read_bytes().decode("utf-8")
         except FileNotFoundError:
             print(f"missing generated file: {output}", file=sys.stderr)
             return 1
@@ -133,7 +133,7 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         print(f"PASS: {output.relative_to(args.root)} is up to date")
         return 0
-    output.write_text(content, encoding="utf-8")
+    output.write_bytes(content.encode("utf-8"))
     print(f"wrote {output.relative_to(args.root)}")
     return 0
 

@@ -52,6 +52,24 @@ Các thao tác vận hành như triage Dependabot, vệ sinh branch, bảo vệ 
 bằng chứng release nằm trong
 [maintainer guide](docs/maintainer-guide.vi.md).
 
+## Bản Đồ Tài Liệu
+
+Bắt đầu với [trung tâm tài liệu](docs/README.vi.md) nếu bạn đang đánh giá
+repository, đóng góp starter mới, hoặc maintain release. Người dùng muốn copy
+template nên đọc [Dùng ForgeBase Starter](docs/using-a-starter.vi.md) sau khi
+chọn starter id.
+
+Tài liệu cốt lõi:
+
+- [verification matrix](docs/verification-matrix.md) - chỉ mục bằng chứng được
+  sinh tự động cho trạng thái starter;
+- [template specification](docs/template-specification.md) - các capability
+  bắt buộc cho mỗi starter;
+- [architecture](docs/architecture.md) - layout repository và ranh giới;
+- [roadmap](docs/roadmap.md) - việc đã lên kế hoạch và non-goal rõ ràng;
+- [changelog](CHANGELOG.md) - lịch sử release cho người đọc, tách khỏi bằng
+  chứng kiểm chứng.
+
 ## Starter hiện có
 
 ForgeBase hiện có 38 starter trên 12 ngôn ngữ:
@@ -102,10 +120,10 @@ verification là `NOT_RUN` trên host/toolchain hiện tại · 🚧 = đang lê
 hoạch hoặc làm tiếp trong [roadmap](docs/roadmap.md). Bằng chứng kiểm chứng
 chi tiết nằm trong [verification matrix](docs/verification-matrix.md).
 
-> Ghi chú kiểm chứng: bảng trạng thái phản ánh lượt kiểm chứng được ghi nhận
-> gần nhất cho ForgeBase 0.1.0. Những starter được sửa đã được chạy lại bằng
-> toolchain cục bộ khi có sẵn; các gate không chạy được trên host hiện tại
-> được ghi là `NOT_RUN` với CI là đường kiểm chứng.
+> Ghi chú kiểm chứng: bảng trạng thái phản ánh bằng chứng Phase 1 được ghi
+> nhận gần nhất. Những starter bị ảnh hưởng đã được chạy lại khi có toolchain
+> hoặc container chính thức phù hợp. Tagged release và nhánh `main` hiện tại là
+> các boundary bằng chứng riêng; PR và release note phải ghi đúng commit/tag.
 
 ## Quick Start
 
@@ -115,11 +133,14 @@ cd ForgeBase
 
 # chọn một template và copy ra project mới
 python scripts/forgebase.py list
+python scripts/forgebase.py show python-fastapi
 python scripts/forgebase.py create python-fastapi ~/projects/my-api
 cd ~/projects/my-api
 
 # sau đó làm theo README riêng của template
 ```
+
+Hướng dẫn copy-out chi tiết: [docs/using-a-starter.vi.md](docs/using-a-starter.vi.md).
 
 ## Cấu trúc repository
 
@@ -127,6 +148,11 @@ cd ~/projects/my-api
 ForgeBase/
 ├── languages/        # một starter độc lập cho mỗi <language>/<framework>
 ├── docs/             # kiến trúc, template spec, conventions, roadmap
+│   ├── README.vi.md
+│   ├── using-a-starter.vi.md
+│   ├── verification-matrix.md
+│   ├── template-specification.md
+│   └── architecture.md
 ├── scripts/          # tooling cấp repository: validator, matrix, copy/create
 └── .github/          # GitHub Actions theo từng ngôn ngữ
 ```
@@ -147,8 +173,9 @@ release và vận hành repo nằm ở
 [docs/agentkit-workflow.vi.md](docs/agentkit-workflow.vi.md) và
 [docs/maintainer-guide.vi.md](docs/maintainer-guide.vi.md).
 
-## Đóng góp, bảo mật, license
+## Đóng góp, hỗ trợ, bảo mật, license
 
 - Đóng góp: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Hỗ trợ: [SUPPORT.md](SUPPORT.md)
 - Bảo mật: [SECURITY.md](SECURITY.md)
 - License: [MIT](LICENSE)
