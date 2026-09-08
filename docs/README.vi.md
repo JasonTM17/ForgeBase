@@ -27,8 +27,10 @@ maintainer để catalog dễ review và có thể kiểm chứng lại.
 | Vì sao repo sắp xếp như hiện tại? | [architecture](architecture.md) và [ADR](adr/) |
 | Bằng chứng nào hỗ trợ status table? | [verification matrix](verification-matrix.md), sinh bởi `scripts/update_verification_matrix.py` |
 | Việc gì còn nằm trên roadmap? | [roadmap](roadmap.md) |
+| Thay đổi giữa các release nằm ở đâu? | root [CHANGELOG](../CHANGELOG.md) |
 | Maintainer merge, release, protect branch ra sao? | [maintainer guide](maintainer-guide.vi.md) và [AK workflow](agentkit-workflow.vi.md) |
 | PR hoặc issue nên có gì? | root [CONTRIBUTING](../CONTRIBUTING.md) và PR / issue templates của GitHub |
+| Cần hỗ trợ thì đi đâu? | root [SUPPORT](../SUPPORT.md) |
 | Báo cáo security xử lý ở đâu? | root [SECURITY](../SECURITY.md) |
 
 ## Mô Hình Bằng Chứng

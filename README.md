@@ -80,7 +80,9 @@ Core references:
 - [template specification](docs/template-specification.md) — required
   capabilities for every starter;
 - [architecture](docs/architecture.md) — repository layout and boundaries;
-- [roadmap](docs/roadmap.md) — planned work and explicit non-goals.
+- [roadmap](docs/roadmap.md) — planned work and explicit non-goals;
+- [changelog](CHANGELOG.md) — human release history, separate from evidence
+  proof.
 
 ## Available Languages
 
@@ -204,6 +206,10 @@ For the release and review workflow, see
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Support
+
+See [SUPPORT.md](SUPPORT.md).
 
 ## Security
 

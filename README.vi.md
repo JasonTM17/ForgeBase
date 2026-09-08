@@ -66,7 +66,9 @@ Tài liệu cốt lõi:
 - [template specification](docs/template-specification.md) - các capability
   bắt buộc cho mỗi starter;
 - [architecture](docs/architecture.md) - layout repository và ranh giới;
-- [roadmap](docs/roadmap.md) - việc đã lên kế hoạch và non-goal rõ ràng.
+- [roadmap](docs/roadmap.md) - việc đã lên kế hoạch và non-goal rõ ràng;
+- [changelog](CHANGELOG.md) - lịch sử release cho người đọc, tách khỏi bằng
+  chứng kiểm chứng.
 
 ## Starter hiện có
 
@@ -171,8 +173,9 @@ release và vận hành repo nằm ở
 [docs/agentkit-workflow.vi.md](docs/agentkit-workflow.vi.md) và
 [docs/maintainer-guide.vi.md](docs/maintainer-guide.vi.md).
 
-## Đóng góp, bảo mật, license
+## Đóng góp, hỗ trợ, bảo mật, license
 
 - Đóng góp: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Hỗ trợ: [SUPPORT.md](SUPPORT.md)
 - Bảo mật: [SECURITY.md](SECURITY.md)
 - License: [MIT](LICENSE)
