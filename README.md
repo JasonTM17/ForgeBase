@@ -66,6 +66,22 @@ Maintainer operations such as Dependabot triage, branch hygiene, branch
 protection, and release evidence are documented in the
 [maintainer guide](docs/maintainer-guide.md).
 
+## Documentation Map
+
+Start with the [documentation hub](docs/README.md) if you are evaluating the
+repository, contributing a new starter, or maintaining a release. Developers
+copying a template should read [Using a ForgeBase Starter](docs/using-a-starter.md)
+after choosing a starter id.
+
+Core references:
+
+- [verification matrix](docs/verification-matrix.md) — generated evidence
+  index for starter status;
+- [template specification](docs/template-specification.md) — required
+  capabilities for every starter;
+- [architecture](docs/architecture.md) — repository layout and boundaries;
+- [roadmap](docs/roadmap.md) — planned work and explicit non-goals.
+
 ## Available Languages
 
 | Language   | Starter      | Category     | Status |
@@ -130,11 +146,14 @@ cd ForgeBase
 
 # pick a template and copy it to your new project
 python scripts/forgebase.py list
+python scripts/forgebase.py show python-fastapi
 python scripts/forgebase.py create python-fastapi ~/projects/my-api
 cd ~/projects/my-api
 
 # follow the template's own README from here
 ```
+
+More copy-out guidance: [docs/using-a-starter.md](docs/using-a-starter.md).
 
 ## Repository Structure
 
@@ -155,8 +174,11 @@ ForgeBase/
 │   ├── cpp/
 │   └── ...
 ├── docs/             # architecture, template spec, conventions, roadmap
-│   ├── adding-a-language.md
-│   └── adding-a-framework.md
+│   ├── README.md
+│   ├── using-a-starter.md
+│   ├── verification-matrix.md
+│   ├── template-specification.md
+│   └── architecture.md
 ├── scripts/          # repository tooling (validation, matrix, copy/create)
 └── .github/          # path-filtered CI workflows per language
 ```

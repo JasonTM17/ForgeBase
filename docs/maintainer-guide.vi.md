@@ -54,8 +54,10 @@ chứng, giữ branch lại và báo `NOT_RUN` hoặc `BLOCKED` thay vì đoán.
 dùng:
 
 - bắt buộc đi qua pull request khi thay đổi `main`;
-- bắt buộc status check khớp với vùng bị chạm, gồm `repository-check.yml` và
-  workflow ngôn ngữ liên quan;
+- chỉ require status check khi check đó report ổn định cho protected branch.
+  Với workflow dùng path filter, không require check có thể bị skipped ở PR
+  không chạm vùng đó, trừ khi repo có ruleset, merge queue, hoặc fan-in check
+  giữ required status ổn định;
 - không cho force push và xóa branch;
 - bắt buộc resolve conversation trước khi merge;
 - administrator bypass phải rõ ràng và hiếm khi dùng.

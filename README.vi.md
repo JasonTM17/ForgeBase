@@ -52,6 +52,22 @@ Các thao tác vận hành như triage Dependabot, vệ sinh branch, bảo vệ 
 bằng chứng release nằm trong
 [maintainer guide](docs/maintainer-guide.vi.md).
 
+## Bản Đồ Tài Liệu
+
+Bắt đầu với [trung tâm tài liệu](docs/README.vi.md) nếu bạn đang đánh giá
+repository, đóng góp starter mới, hoặc maintain release. Người dùng muốn copy
+template nên đọc [Dùng ForgeBase Starter](docs/using-a-starter.vi.md) sau khi
+chọn starter id.
+
+Tài liệu cốt lõi:
+
+- [verification matrix](docs/verification-matrix.md) - chỉ mục bằng chứng được
+  sinh tự động cho trạng thái starter;
+- [template specification](docs/template-specification.md) - các capability
+  bắt buộc cho mỗi starter;
+- [architecture](docs/architecture.md) - layout repository và ranh giới;
+- [roadmap](docs/roadmap.md) - việc đã lên kế hoạch và non-goal rõ ràng.
+
 ## Starter hiện có
 
 ForgeBase hiện có 38 starter trên 12 ngôn ngữ:
@@ -115,11 +131,14 @@ cd ForgeBase
 
 # chọn một template và copy ra project mới
 python scripts/forgebase.py list
+python scripts/forgebase.py show python-fastapi
 python scripts/forgebase.py create python-fastapi ~/projects/my-api
 cd ~/projects/my-api
 
 # sau đó làm theo README riêng của template
 ```
+
+Hướng dẫn copy-out chi tiết: [docs/using-a-starter.vi.md](docs/using-a-starter.vi.md).
 
 ## Cấu trúc repository
 
@@ -127,6 +146,11 @@ cd ~/projects/my-api
 ForgeBase/
 ├── languages/        # một starter độc lập cho mỗi <language>/<framework>
 ├── docs/             # kiến trúc, template spec, conventions, roadmap
+│   ├── README.vi.md
+│   ├── using-a-starter.vi.md
+│   ├── verification-matrix.md
+│   ├── template-specification.md
+│   └── architecture.md
 ├── scripts/          # tooling cấp repository: validator, matrix, copy/create
 └── .github/          # GitHub Actions theo từng ngôn ngữ
 ```
