@@ -28,6 +28,7 @@ maintainer để catalog dễ review và có thể kiểm chứng lại.
 | Bằng chứng nào hỗ trợ status table? | [verification matrix](verification-matrix.md), sinh bởi `scripts/update_verification_matrix.py` |
 | Việc gì còn nằm trên roadmap? | [roadmap](roadmap.md) |
 | Maintainer merge, release, protect branch ra sao? | [maintainer guide](maintainer-guide.vi.md) và [AK workflow](agentkit-workflow.vi.md) |
+| PR hoặc issue nên có gì? | root [CONTRIBUTING](../CONTRIBUTING.md) và PR / issue templates của GitHub |
 | Báo cáo security xử lý ở đâu? | root [SECURITY](../SECURITY.md) |
 
 ## Mô Hình Bằng Chứng
