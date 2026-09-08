@@ -46,6 +46,10 @@ jobs:
         working-directory: languages/ruby/vanilla
         run: ruby test/run_test.rb
 
+      - name: "Rails: install system dependencies"
+        if: matrix.framework == 'rails'
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libvips
+
       - name: "Rails: install, prepare, test"
         if: matrix.framework == 'rails'
         working-directory: languages/ruby/rails
