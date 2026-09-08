@@ -5,14 +5,14 @@ starter collection. Each `languages/<language>/<framework>/` folder is a
 fully self-contained basecode a developer copies out to start a new
 project.
 
-## Current baseline: ForgeBase 0.1.0
+## Current baseline: Phase 1 starter catalog
 
 Phase 1 delivers 38 starters across 12 languages — backend APIs,
 frontend SPAs/SSR, and mobile — with per-language path-filtered CI, a
 template validator and complete open-source documentation. The current
 repository also carries repo-local copy/create tooling and a generated public
-verification matrix; those additions still require exact-head GitHub Actions
-before any new release claim.
+verification matrix. Release claims remain tied to exact commits, tags, and
+GitHub Actions evidence rather than this roadmap heading.
 
 See the root [README](../README.md) for the full status table.
 

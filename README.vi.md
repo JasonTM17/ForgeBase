@@ -118,10 +118,10 @@ verification là `NOT_RUN` trên host/toolchain hiện tại · 🚧 = đang lê
 hoạch hoặc làm tiếp trong [roadmap](docs/roadmap.md). Bằng chứng kiểm chứng
 chi tiết nằm trong [verification matrix](docs/verification-matrix.md).
 
-> Ghi chú kiểm chứng: bảng trạng thái phản ánh lượt kiểm chứng được ghi nhận
-> gần nhất cho ForgeBase 0.1.0. Những starter được sửa đã được chạy lại bằng
-> toolchain cục bộ khi có sẵn; các gate không chạy được trên host hiện tại
-> được ghi là `NOT_RUN` với CI là đường kiểm chứng.
+> Ghi chú kiểm chứng: bảng trạng thái phản ánh bằng chứng Phase 1 được ghi
+> nhận gần nhất. Những starter bị ảnh hưởng đã được chạy lại khi có toolchain
+> hoặc container chính thức phù hợp. Tagged release và nhánh `main` hiện tại là
+> các boundary bằng chứng riêng; PR và release note phải ghi đúng commit/tag.
 
 ## Quick Start
 

@@ -22,7 +22,7 @@ LOCAL_TOOLCHAIN_NOTES = {
     "dart-flutter": "CI-first mobile starter; local native/device gate is NOT_RUN here.",
     "kotlin-ktor": "Official gradle:8.14-jdk21 container evidence.",
     "kotlin-vanilla": "Official gradle:8.14-jdk21 container evidence.",
-    "ruby-rails": "Source-reviewed locally where host Ruby/Rails tooling was unavailable.",
+    "ruby-rails": "Official ruby:3.3 container evidence with Rails test and Docker build.",
     "ruby-vanilla": "Source-reviewed locally where host Ruby tooling was unavailable.",
     "rust-actix-web": "Source-reviewed locally where host Rust tooling was unavailable.",
     "rust-axum": "Source-reviewed locally where host Rust tooling was unavailable.",
@@ -33,7 +33,6 @@ LOCAL_TOOLCHAIN_NOTES = {
 
 def evidence_label(template: Template) -> str:
     if template.id in {
-        "ruby-rails",
         "ruby-vanilla",
         "rust-actix-web",
         "rust-axum",

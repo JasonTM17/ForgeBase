@@ -130,9 +130,11 @@ verification `NOT_RUN` for the current host/toolchain · 🚧 =
 planned/in-progress (see the [roadmap](docs/roadmap.md)). Verification
 evidence lives in the [verification matrix](docs/verification-matrix.md).
 
-> Status reflects the latest recorded verification pass for ForgeBase 0.1.0:
-> 38/38 ✅ in the table, with the affected starters re-run locally where
-> tooling was available.
+> Status reflects the latest recorded Phase 1 verification evidence:
+> 38/38 ✅ in the availability table, with affected starters re-run where
+> tooling or official containers were available. Tagged releases and the
+> current `main` branch are separate evidence boundaries; use exact commit and
+> tag evidence in PRs and release notes.
 > Kotlin Ktor's gates ran inside the official `gradle:8.14-jdk21` container
 > (no host Gradle toolchain): `gradle test`, the multi-stage image build, and
 > a boot smoke check. A row flips to ✅ only after its focused gates pass on
