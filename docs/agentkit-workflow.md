@@ -25,6 +25,8 @@ Every material change follows the same evidence path:
 
 Small documentation-only changes may use a shorter path, but they still need a
 clean diff, link checks, and no private files staged.
+For repeatable repository operations, pair this workflow with the
+[maintainer guide](maintainer-guide.md).
 
 ## Roles
 
