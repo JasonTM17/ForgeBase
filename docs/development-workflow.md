@@ -1,15 +1,13 @@
-# AgentKit Workflow
+# Development and Verification Workflow
 
-Languages: English | [Tiếng Việt](agentkit-workflow.vi.md)
+Languages: English | [Tiếng Việt](development-workflow.vi.md)
 
-ForgeBase uses an AgentKit-guided engineering workflow to keep a large starter
-catalog honest, reviewable, and reproducible. This document describes the
-public process. It does not publish private AgentKit runtime files, local skill
-registries, prompts, or execution ledgers.
+ForgeBase uses a structured, evidence-based engineering workflow to keep a large starter
+catalog honest, reviewable, and reproducible. This document describes the standard process
+governing template creation, maintenance, and verification.
 
-> **Ghi chú tiếng Việt:** Tài liệu này chỉ mô tả quy trình công khai của
-> ForgeBase. Các file AgentKit cục bộ, skill registry, prompt, và execution
-> ledger vẫn là private và không upload lên GitHub.
+> **Ghi chú tiếng Việt:** Tài liệu này mô tả quy trình kỹ thuật và tiêu chuẩn kiểm chứng
+> của ForgeBase nhằm đảm bảo mọi starter đều đạt chuẩn production.
 
 ## Workflow
 
@@ -24,19 +22,18 @@ Every material change follows the same evidence path:
    evidence all line up.
 
 Small documentation-only changes may use a shorter path, but they still need a
-clean diff, link checks, and no private files staged.
+clean diff, link checks, and no untracked/temporary files staged.
 For repeatable repository operations, pair this workflow with the
 [maintainer guide](maintainer-guide.md).
 
-## Roles
+## Roles and Responsibilities
 
-- **Controller** owns the final decision, edits, staged paths, commits, and
-  push boundary.
-- **Advisor** is used when outcome, scope, or trade-offs are ambiguous.
-- **Kongming** reviews architecture, sequencing, and release readiness for
-  higher-risk changes.
-- **Wukong** tries to falsify one load-bearing claim, such as "this workflow
-  proves every matrix entry" or "this template is self-contained."
+- **Author / Implementer** scopes the change, performs the implementation, runs local
+  verification gates, and opens the pull request with honest evidence labels.
+- **Reviewer** independently evaluates the proposed change for spec compliance, ecosystem
+  idioms, security concerns, boundary constraints, and edge cases.
+- **Maintainer** owns the final decision, checks GitHub Actions against the exact branch head,
+  manages branch protection, merges changes, and tags releases.
 
 Reviewer findings do not automatically expand scope. They become immediate
 work only when they expose an in-scope defect, invalidate a release claim, or
@@ -51,25 +48,23 @@ ForgeBase uses explicit evidence labels:
 - `FAIL`: the check ran and found a defect.
 - `NOT_RUN`: the check did not run; no pass is implied.
 - `BLOCKED`: the check could not complete because a required tool, credential,
-  service, or user decision was unavailable.
+  service, or decision was unavailable.
 
 Status claims in README files, pull requests, and release notes must use these
 meanings. A local test pass does not prove GitHub Actions, Docker publishing,
 device behavior, or production deployment.
 
-## Public And Private Boundaries
+## Clean Repository Boundaries
 
-Public repository documentation may describe the AK workflow and its gates.
-Private AgentKit operating files stay out of the published repository:
+Maintainers and contributors must keep local development noise and secrets out of the published repository:
 
-- `.agentkit/`
-- `.agents/`
-- `.codex/`
-- `AGENTS.md`
-- `plans/`
+- Local editor/IDE settings (`.vscode/`, `.idea/`, etc.)
+- Dependency trees and virtual environments (`node_modules/`, `.venv/`, `vendor/`)
+- Build outputs, binaries, and caches (`dist/`, `build/`, `target/`, `.cache/`)
+- Private secrets, keys, and credentials (`*.pem`, `*.key`, `.env`)
+- Local tool configurations and session states
 
-These paths are intentionally ignored. If a change needs public process
-documentation, write it under `docs/` instead of committing local runtime state.
+If a change requires process or architectural documentation, write it under `docs/` rather than committing local or private tooling artifacts.
 
 ## Release Gate
 
@@ -99,6 +94,6 @@ Use this checklist for non-trivial template, CI, or documentation changes:
 - Run the validator and the affected starter's own commands.
 - Update docs only where the contract, rationale, or navigation changed.
 - Stage explicit public paths only.
-- Keep private AgentKit runtime files untracked.
+- Keep local/temporary configuration files untracked.
 - Commit with a Conventional Commit message.
 - Push, then verify exact-head GitHub Actions before calling the work complete.

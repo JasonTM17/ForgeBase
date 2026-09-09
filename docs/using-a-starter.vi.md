@@ -39,7 +39,7 @@ không được ghi đè project sẵn có hoặc trộn generated files với s
 
 Copy thủ công cũng hợp lệ khi bạn muốn xem kỹ từng file trước. Chỉ copy đúng
 thư mục `languages/<language>/<framework>/` đã chọn, không copy repository
-tooling, CI folder, private AgentKit files, hay template khác.
+tooling, CI folder, file cấu hình local, hay template khác.
 
 ## 3. Đổi Tên Starter
 

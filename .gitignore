@@ -1,11 +1,9 @@
-# AgentKit workspace (private tooling — intentionally not published)
-.agentkit/
+# Local workspace / editor / agent tooling noise
 .agents/
 .codex/
 .zcode/
 .mimosa/
 .video_agent/
-AGENTS.md
 plans/
 
 # OS / editor noise

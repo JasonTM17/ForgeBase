@@ -12,10 +12,10 @@ maintainer để catalog dễ review và có thể kiểm chứng lại.
 | Vai trò | Đọc trước | Sau đó dùng |
 | --- | --- | --- |
 | Dùng một starter | [Dùng ForgeBase Starter](using-a-starter.vi.md) | README của template đã chọn và [verification matrix](verification-matrix.md) |
-| Đánh giá repository | [Architecture](architecture.md) | [template specification](template-specification.md), [verification matrix](verification-matrix.md), [AK workflow](agentkit-workflow.vi.md) |
+| Evaluate repository | [Architecture](architecture.md) | [template specification](template-specification.md), [verification matrix](verification-matrix.md), [quy trình phát triển](development-workflow.vi.md) |
 | Thêm framework | [Adding a framework](adding-a-framework.md) | [conventions](conventions.md), [template specification](template-specification.md), README của language hiện có |
 | Thêm language | [Adding a language](adding-a-language.md) | [architecture](architecture.md), [ADR 0001](adr/0001-template-directory-layout.md), [ADR 0002](adr/0002-template-metadata.md) |
-| Maintain release hoặc dependency update | [Maintainer guide](maintainer-guide.vi.md) | [AK workflow](agentkit-workflow.vi.md), [roadmap](roadmap.md) |
+| Maintain release hoặc dependency update | [Maintainer guide](maintainer-guide.vi.md) | [quy trình phát triển](development-workflow.vi.md), [roadmap](roadmap.md) |
 
 ## Bản Đồ Source Of Truth
 
@@ -28,7 +28,7 @@ maintainer để catalog dễ review và có thể kiểm chứng lại.
 | Bằng chứng nào hỗ trợ status table? | [verification matrix](verification-matrix.md), sinh bởi `scripts/update_verification_matrix.py` |
 | Việc gì còn nằm trên roadmap? | [roadmap](roadmap.md) |
 | Thay đổi giữa các release nằm ở đâu? | root [CHANGELOG](../CHANGELOG.md) |
-| Maintainer merge, release, protect branch ra sao? | [maintainer guide](maintainer-guide.vi.md) và [AK workflow](agentkit-workflow.vi.md) |
+| Maintainer merge, release, protect branch ra sao? | [maintainer guide](maintainer-guide.vi.md) và [quy trình phát triển](development-workflow.vi.md) |
 | PR hoặc issue nên có gì? | root [CONTRIBUTING](../CONTRIBUTING.md) và PR / issue templates của GitHub |
 | Cần hỗ trợ thì đi đâu? | root [SUPPORT](../SUPPORT.md) |
 | Báo cáo security xử lý ở đâu? | root [SECURITY](../SECURITY.md) |
@@ -46,12 +46,11 @@ ForgeBase dùng bốn nhãn bằng chứng công khai:
 Bằng chứng release phải đúng scope. Local command, pushed branch, GitHub
 Actions run, tag, và artifact đã publish là các mốc bằng chứng riêng.
 
-## Ranh Giới Public Và Private
+## Ranh Giới Repository Sạch
 
-Tài liệu công khai có thể mô tả AK workflow và từ vựng verification. Không
-publish local runtime files, private skill registry, prompt, hoặc execution
-ledger. Authority tài liệu công khai nằm trong thư mục này và các file
-community ở root. Các path AgentKit private cục bộ vẫn được ignore.
+Tài liệu công khai mô tả quy trình phát triển và từ vựng kiểm chứng. Các file
+cấu hình local, thông tin nhạy cảm, môi trường ảo và cache build phải luôn được
+giữ ngoài commit của repository.
 
 ## Giữ Docs Khỏe
 

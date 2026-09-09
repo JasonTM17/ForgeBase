@@ -49,20 +49,18 @@ baseline contract. Read this guide before opening a pull request.
    The repository PR template asks for the same scope, verification, and
    evidence-boundary information maintainers use during review.
 
-## AgentKit-governed changes
+## Development & verification discipline
 
-ForgeBase maintainers use the public
-[AgentKit workflow](docs/agentkit-workflow.md)
-([Tiếng Việt](docs/agentkit-workflow.vi.md)) for non-trivial template, CI, and
-release work. Contributors do not need AgentKit to contribute, but pull
-requests should follow the same evidence discipline:
+ForgeBase maintainers follow the structured
+[development workflow](docs/development-workflow.md)
+([Tiếng Việt](docs/development-workflow.vi.md)) for non-trivial template, CI, and
+release work. Contributors and pull requests should follow the same evidence discipline:
 
 - say exactly what changed and which template(s), workflow(s), or docs are
   affected;
 - use `PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED` honestly;
 - do not claim release readiness from local checks alone;
-- keep private workspace files out of commits: `.agentkit/`, `.agents/`,
-  `.codex/`, `AGENTS.md`, and `plans/`;
+- keep local workspace files, editor configs, and caches out of commits;
 - stage explicit public paths only.
 
 Maintainer-specific operations for Dependabot triage, branch hygiene, branch

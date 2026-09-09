@@ -1,15 +1,14 @@
-# AK Workflow
+# Quy Trình Phát Triển và Kiểm Chứng
 
-Ngôn ngữ: [English](agentkit-workflow.md) | Tiếng Việt
+Ngôn ngữ: [English](development-workflow.md) | Tiếng Việt
 
-ForgeBase dùng quy trình AgentKit-guided để giữ catalog starter trung thực,
-dễ review và có thể kiểm chứng lại. Tài liệu này chỉ mô tả quy trình công
-khai. Nó không publish file runtime AgentKit private, local skill registry,
-prompt, hoặc execution ledger.
+ForgeBase áp dụng quy trình kỹ thuật dựa trên bằng chứng kiểm chứng rõ ràng để giữ catalog
+starter luôn chuẩn xác, dễ review và có thể tái lập. Tài liệu này mô tả quy trình tiêu chuẩn
+về việc xây dựng, bảo trì và kiểm thử các starter template.
 
 ## Luồng làm việc
 
-Mỗi thay đổi quan trọng đi theo cùng một đường bằng chứng:
+Mỗi thay đổi quan trọng đi theo cùng một quy trình:
 
 1. **Scout** các template, docs, script và CI workflow bị ảnh hưởng.
 2. **Plan** thay đổi nhỏ nhất đủ đúng, kèm bằng chứng cần có.
@@ -19,19 +18,18 @@ Mỗi thay đổi quan trọng đi theo cùng một đường bằng chứng:
 6. **Release** chỉ khi repo state, commit, push, CI và tag cùng khớp.
 
 Thay đổi docs nhỏ có thể dùng đường ngắn hơn, nhưng vẫn cần diff sạch, link
-check, và không stage file private.
-Với thao tác vận hành repo lặp lại, dùng tài liệu này cùng
+check, và không stage file rác hoặc cấu hình local.
+Với thao tác vận hành repo định kỳ, dùng tài liệu này cùng
 [maintainer guide](maintainer-guide.vi.md).
 
-## Vai trò
+## Vai trò và Trách nhiệm
 
-- **Controller** chịu trách nhiệm quyết định cuối, chỉnh sửa, staged paths,
-  commit và push boundary.
-- **Advisor** dùng khi outcome, scope hoặc trade-off còn mơ hồ.
-- **Kongming** review kiến trúc, trình tự và release readiness cho thay đổi
-  rủi ro cao hơn.
-- **Wukong** tìm cách falsify một claim quan trọng, ví dụ "workflow này chứng
-  minh mọi matrix entry" hoặc "template này self-contained".
+- **Author / Implementer** xác định phạm vi, trực tiếp thực hiện code, chạy các bài kiểm thử
+  cục bộ và mở Pull Request với các nhãn bằng chứng trung thực.
+- **Reviewer** đánh giá độc lập về tính tuân thủ quy chuẩn (spec compliance), phong cách của
+  ecosystem, các vấn đề bảo mật, ranh giới và trường hợp biên (edge cases).
+- **Maintainer** giữ quyền quyết định cuối cùng, kiểm tra GitHub Actions trên đúng commit,
+  quản lý branch protection, merge thay đổi và tạo release tag.
 
 Finding từ reviewer không tự động mở rộng scope. Nó chỉ trở thành việc cần làm
 ngay khi phát hiện defect trong scope, phá vỡ release claim, hoặc chặn
@@ -46,25 +44,23 @@ ForgeBase dùng các nhãn rõ nghĩa:
 - `FAIL`: check đã chạy và phát hiện defect.
 - `NOT_RUN`: check chưa chạy; không được hiểu là pass.
 - `BLOCKED`: check không thể hoàn tất vì thiếu tool, credential, service hoặc
-  quyết định từ người dùng.
+  quyết định cần thiết.
 
 README, pull request và release note phải dùng đúng các nghĩa này. Local test
 pass không chứng minh GitHub Actions, Docker publishing, hành vi trên thiết bị
 thật, hoặc production deployment.
 
-## Ranh giới public và private
+## Ranh giới repository sạch
 
-Repo public có thể mô tả AK workflow và các gate. Các file vận hành AgentKit
-private vẫn không được publish:
+Maintainer và người đóng góp cần giữ repo sạch sẽ, không commit các file tạm hay thông tin nhạy cảm:
 
-- `.agentkit/`
-- `.agents/`
-- `.codex/`
-- `AGENTS.md`
-- `plans/`
+- Cấu hình editor/IDE (`.vscode/`, `.idea/`, v.v.)
+- Thư viện phụ thuộc và môi trường ảo (`node_modules/`, `.venv/`, `vendor/`)
+- File build, binary và cache (`dist/`, `build/`, `target/`, `.cache/`)
+- Khóa bảo mật, secret và credential (`*.pem`, `*.key`, `.env`)
+- Cấu hình công cụ và session cục bộ của lập trình viên
 
-Những path này được ignore có chủ ý. Nếu cần tài liệu hóa quy trình công khai,
-hãy viết trong `docs/` thay vì commit runtime state cục bộ.
+Nếu cần tài liệu hóa quy trình hay kiến trúc, hãy viết trong `docs/` thay vì commit các artifact công cụ cục bộ.
 
 ## Release Gate
 
@@ -75,7 +71,7 @@ Trước khi claim release, maintainer kiểm:
 - `python scripts/validate_templates.py --selftest` pass.
 - mọi file `.github/workflows/*.yml` parse được.
 - link tương đối trong tracked Markdown resolve được.
-- không có generated artifact hoặc private file trong tracked source.
+- không có generated artifact hoặc file tạm trong tracked source.
 - staged hoặc tracked content không có secret pattern rõ ràng.
 - `git diff --check` pass.
 - commit dự kiến đã push và khớp `origin/main`.
@@ -87,13 +83,13 @@ thay vì làm yếu claim.
 
 ## Checklist cho maintainer
 
-Dùng checklist này cho thay đổi template, CI hoặc docs không tầm thường:
+Dùng checklist này cho thay đổi template, CI hoặc docs:
 
 - Xác định starter, workflow và docs bị ảnh hưởng.
 - Giữ thay đổi atomic và idiomatic theo ecosystem.
 - Chạy validator và command riêng của starter liên quan.
 - Chỉ update docs khi contract, rationale hoặc navigation thay đổi.
 - Stage explicit public paths.
-- Giữ private AgentKit runtime files ở trạng thái untracked.
+- Giữ các file cấu hình tạm/cục bộ ở trạng thái untracked.
 - Commit bằng Conventional Commit.
 - Push, rồi verify GitHub Actions trên exact HEAD trước khi gọi là complete.

@@ -32,5 +32,5 @@ Use `PASS`, `FAIL`, `NOT_RUN`, or `BLOCKED` for every relevant gate.
 
 - [ ] I kept the change focused and idiomatic to the affected ecosystem.
 - [ ] I updated docs only where contract, rationale, commands, or navigation changed.
-- [ ] I did not commit secrets, generated artifacts, local caches, or private AgentKit runtime files.
+- [ ] I did not commit secrets, generated artifacts, local caches, or private configuration files.
 - [ ] I did not claim release readiness from local checks alone.

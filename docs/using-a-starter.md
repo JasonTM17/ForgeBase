@@ -40,7 +40,7 @@ files with source.
 
 Manual copying is also valid when a user wants to inspect every file first.
 Copy only the selected `languages/<language>/<framework>/` directory, not the
-repository tooling, CI folder, private AgentKit files, or unrelated templates.
+repository tooling, CI folder, local configs, or unrelated templates.
 
 ## 3. Rename The Starter
 

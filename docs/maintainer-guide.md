@@ -2,7 +2,7 @@
 
 Languages: English | [Tiếng Việt](maintainer-guide.vi.md)
 
-This guide turns the public AgentKit workflow into day-to-day repository
+This guide turns the development and verification workflow into day-to-day repository
 operations. It is for maintainers handling dependency updates, branch hygiene,
 release evidence, and repository settings.
 
@@ -12,8 +12,7 @@ release evidence, and repository settings.
 - Prefer one dependency-update group per ecosystem, matching
   `.github/dependabot.yml`.
 - Record `PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED` exactly as observed.
-- Keep private local runtime files out of public commits:
-  `.agentkit/`, `.agents/`, `.codex/`, `AGENTS.md`, and `plans/`.
+- Keep local runtime files, editor configurations, and caches out of public commits.
 - Treat a local pass, a pushed branch, GitHub Actions, and a release tag as
   separate evidence boundaries.
 

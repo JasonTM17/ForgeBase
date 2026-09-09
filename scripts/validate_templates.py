@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import sys
@@ -82,7 +83,7 @@ IGNORED_DIRS = {
     ".ruff_cache", ".mypy_cache", "dist", "build", "target", "coverage",
     "htmlcov", ".next", ".nuxt", ".output", ".svelte-kit", ".gradle",
     ".angular", "vendor", ".turbo", ".cache", "bin", "obj", ".dart_tool",
-    # Local agent-tooling session state can be dropped inside template dirs;
+    # Local tooling session state can be dropped inside template dirs;
     # it is gitignored and never part of a starter.
     ".mimosa", ".zcode", ".video_agent",
 }
@@ -105,13 +106,18 @@ def is_ignored_artifact_path(rel: Path) -> bool:
 
 def iter_template_files(template: Path):
     """Yield files under the template, skipping gitignored artifact dirs."""
-    for path in sorted(template.rglob("*")):
-        rel = path.relative_to(template)
-        if any(part in IGNORED_DIRS for part in rel.parts):
-            continue
-        if is_ignored_artifact_path(rel):
-            continue
-        yield path
+    paths: list[Path] = []
+    for root, dirs, files in os.walk(template):
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS]
+        for d in dirs:
+            paths.append(Path(root) / d)
+        for f in files:
+            p = Path(root) / f
+            rel = p.relative_to(template)
+            if not is_ignored_artifact_path(rel):
+                paths.append(p)
+    paths.sort()
+    yield from paths
 
 
 class Violation:

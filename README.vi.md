@@ -39,8 +39,8 @@ Mỗi thư mục dưới `languages/<language>/<framework>/` là một project �
 
 ## Quality Gates
 
-ForgeBase được maintain theo
-[AK workflow công khai](docs/agentkit-workflow.vi.md): scout, plan, implement,
+ForgeBase được duy trì theo
+[quy trình phát triển](docs/development-workflow.vi.md): scout, plan, implement,
 test, review, rồi release. Mọi claim public dùng bốn nhãn bằng chứng:
 `PASS`, `FAIL`, `NOT_RUN`, và `BLOCKED`.
 
@@ -170,7 +170,7 @@ Chi tiết: [docs/architecture.md](docs/architecture.md) và
 Xem [docs/adding-a-language.md](docs/adding-a-language.md) và
 [docs/adding-a-framework.md](docs/adding-a-framework.md). Quy trình review,
 release và vận hành repo nằm ở
-[docs/agentkit-workflow.vi.md](docs/agentkit-workflow.vi.md) và
+[docs/development-workflow.vi.md](docs/development-workflow.vi.md) và
 [docs/maintainer-guide.vi.md](docs/maintainer-guide.vi.md).
 
 ## Đóng góp, hỗ trợ, bảo mật, license

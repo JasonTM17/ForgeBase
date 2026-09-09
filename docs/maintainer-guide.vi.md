@@ -2,7 +2,7 @@
 
 Ngôn ngữ: [English](maintainer-guide.md) | Tiếng Việt
 
-Tài liệu này biến AK workflow công khai thành các thao tác maintain repo hằng
+Tài liệu này biến quy trình phát triển và kiểm chứng thành các thao tác maintain repo hằng
 ngày. Nó dành cho maintainer khi xử lý dependency update, vệ sinh branch, bằng
 chứng release, và thiết lập repo.
 
@@ -12,8 +12,7 @@ chứng release, và thiết lập repo.
 - Ưu tiên một nhóm dependency update cho mỗi ecosystem, khớp với
   `.github/dependabot.yml`.
 - Ghi `PASS`, `FAIL`, `NOT_RUN`, và `BLOCKED` đúng theo bằng chứng đã thấy.
-- Không đưa file runtime private lên public commit:
-  `.agentkit/`, `.agents/`, `.codex/`, `AGENTS.md`, và `plans/`.
+- Không đưa file runtime cục bộ, cấu hình editor và cache lên public commit.
 - Tách bạch local pass, pushed branch, GitHub Actions, và release tag thành các
   ranh giới bằng chứng riêng.
 

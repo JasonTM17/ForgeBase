@@ -24,8 +24,8 @@ configuration, logging, error handling, Docker, and CI from scratch.
 > [roadmap](docs/roadmap.md).
 
 > **Ghi chú tiếng Việt:** ForgeBase là bộ starter đa ngôn ngữ được kiểm chứng
-> bằng CI, Docker, validator, và quy trình AK workflow công khai. Các file vận
-> hành AgentKit cục bộ vẫn được giữ private và không publish lên GitHub.
+> bằng CI, Docker, và bộ validator của repository, đảm bảo mọi template đều sẵn
+> sàng cho production.
 
 ## What is ForgeBase?
 
@@ -52,8 +52,8 @@ independent project:
 
 ## Quality Gates
 
-ForgeBase changes are maintained through an
-[AgentKit-guided workflow](docs/agentkit-workflow.md): scout, plan, implement,
+ForgeBase changes are maintained through a structured
+[development workflow](docs/development-workflow.md): scout, plan, implement,
 test, review, then release. Public claims use explicit evidence labels:
 `PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED`.
 
@@ -200,7 +200,7 @@ Details: [docs/architecture.md](docs/architecture.md) and
 See [docs/adding-a-language.md](docs/adding-a-language.md) and
 [docs/adding-a-framework.md](docs/adding-a-framework.md).
 For the release and review workflow, see
-[docs/agentkit-workflow.md](docs/agentkit-workflow.md) and the
+[docs/development-workflow.md](docs/development-workflow.md) and the
 [maintainer guide](docs/maintainer-guide.md).
 
 ## Contributing
