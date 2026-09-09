@@ -1,25 +1,28 @@
-# Hướng Dẫn Maintainer ForgeBase
+# Hướng Dẫn Maintainer
 
-Ngôn ngữ: [English](maintainer-guide.md) | Tiếng Việt
+Languages: [English](maintainer-guide.md) | Tiếng Việt
 
-Tài liệu này biến quy trình phát triển và kiểm chứng thành các thao tác maintain repo hằng
-ngày. Nó dành cho maintainer khi xử lý dependency update, vệ sinh branch, bằng
-chứng release, và thiết lập repo.
+Tài liệu này chuyển hóa [quy trình phát triển](development-workflow.vi.md)
+thành các thao tác vận hành repository hằng ngày, dành cho maintainer xử lý
+dependency update, vệ sinh branch, bằng chứng release và thiết lập repository.
 
 ## Nguyên Tắc Vận Hành
 
-- Giữ thay đổi template nhỏ, đúng convention ecosystem, và dễ review riêng.
+- Giữ thay đổi template nhỏ, đúng convention của ecosystem và review được độc
+  lập.
 - Ưu tiên một nhóm dependency update cho mỗi ecosystem, khớp với
   `.github/dependabot.yml`.
-- Ghi `PASS`, `FAIL`, `NOT_RUN`, và `BLOCKED` đúng theo bằng chứng đã thấy.
-- Không đưa file runtime cục bộ, cấu hình editor và cache lên public commit.
-- Tách bạch local pass, pushed branch, GitHub Actions, và release tag thành các
-  ranh giới bằng chứng riêng.
+- Ghi `PASS`, `FAIL`, `NOT_RUN`, `BLOCKED` đúng theo bằng chứng đã thấy — xem
+  mục từ vựng bằng chứng trong
+  [quy trình phát triển](development-workflow.vi.md).
+- Không đưa file runtime cục bộ, cấu hình editor và cache vào commit public.
+- Tách bạch local pass, pushed branch, GitHub Actions run và release tag thành
+  các boundary bằng chứng riêng.
 
 ## Triage Dependabot
 
 1. Fetch và inspect mọi dependency branch đang mở trước khi merge.
-2. Đọc manifest, lockfile, và workflow file bị thay đổi trong nhóm đó.
+2. Đọc manifest, lockfile và workflow file bị thay đổi trong nhóm đó.
 3. Xem CI failure upstream trước khi kết luận update sai; failure cũ có thể đến
    từ bug repo đã được sửa sau đó.
 4. Chỉ merge grouped update khi branch head đã rõ và gate bị ảnh hưởng có đường
@@ -31,65 +34,75 @@ Lệnh hữu ích:
 
 ```bash
 git fetch --all --prune --tags
-gh pr list --state open --json number,title,headRefName,headRefOid,baseRefName,mergeStateStatus,statusCheckRollup
+gh pr list --state open \
+  --json number,title,headRefName,headRefOid,baseRefName,mergeStateStatus,statusCheckRollup
 git merge-base --is-ancestor origin/<branch> HEAD
 ```
 
 ## Vệ Sinh Branch
 
-Trước khi xóa remote branch, chứng minh head của nó đã nằm trong base dự kiến:
+Trước khi xóa một remote branch, chứng minh head của nó đã nằm trong base dự
+kiến:
 
 ```bash
 git merge-base --is-ancestor origin/<branch> origin/main
 git rev-list --count origin/main..origin/<branch>
 ```
 
-Chỉ xóa branch có `ahead=0` và không còn work chưa merge. Nếu không có đủ bằng
-chứng, giữ branch lại và báo `NOT_RUN` hoặc `BLOCKED` thay vì đoán.
+Chỉ xóa branch trả về `ahead=0` và không còn work chưa merge. Nếu không có
+bằng chứng, giữ branch và báo cáo `NOT_RUN` hoặc `BLOCKED` thay vì đoán.
 
-## Bảo Vệ Main Branch
+## Bảo Vệ Nhánh Main
 
-`main` nên được protect trước khi gọi một release là hoàn tất. Cấu hình khuyên
-dùng:
+`main` nên được bảo vệ trước khi một release được coi là hoàn tất. Thiết lập
+khuyến nghị:
 
-- bắt buộc đi qua pull request khi thay đổi `main`;
-- chỉ require status check khi check đó report ổn định cho protected branch.
-  Với workflow dùng path filter, không require check có thể bị skipped ở PR
-  không chạm vùng đó, trừ khi repo có ruleset, merge queue, hoặc fan-in check
-  giữ required status ổn định;
-- không cho force push và xóa branch;
-- bắt buộc resolve conversation trước khi merge;
-- administrator bypass phải rõ ràng và hiếm khi dùng.
-- chỉ bật required code-owner reviews sau khi `.github/CODEOWNERS` phản ánh
-  đúng ownership model maintainer thật sự muốn enforce.
+- Yêu cầu pull request cho mọi thay đổi trên `main`.
+- Chỉ yêu cầu status check khi chúng báo cáo ổn định trên branch được bảo vệ.
+  Với workflow path-filtered, không yêu cầu check có thể bị skip với PR không
+  liên quan, trừ khi ruleset, merge queue hoặc fan-in check giữ trạng thái yêu
+  cầu ổn định.
+- Cấm force push và xóa branch.
+- Yêu cầu resolve thảo luận trước khi merge.
+- Giữ administrator bypass ở mức tường minh và hiếm.
+- Chỉ bật required code-owner review sau khi `.github/CODEOWNERS` phản ánh đúng
+  mô hình ownership mà maintainer muốn áp dụng.
 
-Khi thay đổi repository settings, ghi lại ngày, setting chính xác đã đổi, và
-cách kiểm chứng qua GitHub UI hoặc API.
+Khi thay đổi thiết lập repository, ghi lại ngày, thiết lập cụ thể đã đổi và
+việc thay đổi được xác minh qua UI hay API của GitHub.
 
 ## Bằng Chứng Release
 
-Dùng trình tự release này:
+Dùng trình tự release sau:
 
-1. Kiểm public diff và staged paths đúng ý định.
-2. Chạy repo gate:
+1. Xác minh diff public dự kiến và các path đã stage.
+2. Chạy các gate của repository:
    `python scripts/validate_templates.py --quiet`,
    `python scripts/validate_templates.py --selftest`,
-   `python scripts/update_verification_matrix.py --check`, check Markdown link,
-   parse workflow YAML, secret scan, và `git diff --check`.
-3. Chạy gate ecosystem bị ảnh hưởng theo template README hoặc workflow.
-4. Push đúng commit dự kiến.
-5. Kiểm GitHub Actions cho đúng commit đó.
-6. Chỉ tag sau khi commit, checks, docs, và release note khớp nhau.
+   `python scripts/update_verification_matrix.py --check`, kiểm link Markdown,
+   parsing YAML workflow, secret scan và `git diff --check`.
+3. Chạy các gate ecosystem bị ảnh hưởng từ README của template hoặc từ workflow.
+4. Push đúng commit.
+5. Xác minh GitHub Actions trên đúng commit đó.
+6. Chỉ tag khi commit, check, tài liệu và release note cùng khớp.
 
-Không nói "release-ready" khi exact-head CI, tag, provenance, hoặc gate ngoài
-bắt buộc khác chưa được quan sát.
+Không nói "release-ready" khi exact-head CI, tag, provenance hoặc một gate
+ngoài bắt buộc khác chưa được quan sát.
 
 ## Cập Nhật Tài Liệu
 
-Update docs khi thay đổi ảnh hưởng setup, supported runtime versions, command,
-CI behavior, verification evidence, repository policy, hoặc maintainer workflow.
-Không duplicate nội dung dài từ README của template vào root docs; hãy link về
-source of truth.
+Cập nhật docs khi thay đổi ảnh hưởng tới setup, phiên bản runtime được support,
+lệnh, hành vi CI, bằng chứng kiểm chứng, chính sách repository hoặc workflow của
+maintainer. Không sao chép nội dung dài của template README vào docs gốc; hãy
+link tới source of truth.
 
-Với cập nhật song ngữ, giữ ý nghĩa English và Vietnamese khớp nhau, dù câu chữ
-không cần dịch từng chữ.
+Giữ tài liệu tiếng Anh và tiếng Việt khớp về nghĩa — bản dịch phải trung thành
+với contract, kể cả khi câu chữ không dịch sát từng từ.
+
+## Tài Liệu Liên Quan
+
+- [Quy trình phát triển](development-workflow.vi.md) — đường dẫn bằng chứng sáu
+  giai đoạn và release gate.
+- [Conventions](conventions.md) — quy tắc commit, versioning và git workflow.
+- [Verification matrix](verification-matrix.md) — chỉ mục bằng chứng sinh tự
+  động theo starter.

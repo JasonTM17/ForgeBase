@@ -1,8 +1,10 @@
 # ForgeBase Conventions
 
-Repository-wide conventions. These keep 38+ templates reviewable, comparable,
+Repository-wide conventions that keep 38+ templates reviewable, comparable,
 and CI-drivable. Template-internal code style is always the ecosystem's own
-convention — this document governs the repository level.
+convention — this document governs the repository level. Related:
+[development workflow](development-workflow.md) for the change process,
+[architecture](architecture.md) for the layout rules these conventions assume.
 
 ## Naming
 

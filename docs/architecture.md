@@ -1,9 +1,10 @@
 # ForgeBase Architecture
 
 This document explains how the ForgeBase repository is organized, why it is
-organized that way, and the rules that keep it maintainable for years.
+organized that way, and the rules that keep it maintainable for years. See
+also the [documentation hub](README.md) to navigate from your role.
 
-## Repository architecture
+## Repository layout
 
 ```text
 ForgeBase/

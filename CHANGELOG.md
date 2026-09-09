@@ -20,6 +20,12 @@ runs, tags, and published artifacts remain separate evidence.
 
 ### Changed
 
+- Rewrote the repository documentation (root README in English and
+  Vietnamese, documentation hub, development workflow, maintainer guide,
+  copy-out guide, roadmap, and contribution guide) with a consistent
+  professional structure: role-based navigation, source-of-truth map,
+  evidence-label tables, release and contributor checklists, and
+  cross-referenced related-document sections.
 - Consolidated Dependabot updates across affected ecosystems after focused
   compatibility fixes.
 - Clarified verification matrix wording so local evidence, path-filtered CI,

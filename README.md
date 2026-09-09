@@ -1,6 +1,6 @@
 # ForgeBase
 
-**Production-grade starter templates for many languages and frameworks.**
+**Production-grade starter templates for 12 languages and 38 stacks.**
 
 [![Repository checks](https://github.com/JasonTM17/ForgeBase/actions/workflows/repository-check.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/repository-check.yml)
 [![TypeScript](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml)
@@ -8,213 +8,150 @@
 
 Languages: English | [Tiếng Việt](README.vi.md)
 
-ForgeBase is a curated collection of self-contained boilerplate projects —
-one folder per language/framework — so that starting a new project means
-copying a template instead of re-assembling structure, linting, testing,
-configuration, logging, error handling, Docker, and CI from scratch.
+ForgeBase is a curated catalog of self-contained boilerplate projects — one
+folder per language and framework. Starting a new project means copying a
+template instead of re-assembling structure, linting, testing, configuration,
+logging, error handling, Docker, and CI from scratch.
 
-> Status: Phase 1 complete — 38 starters across 12 languages, with the
-> affected starters re-verified in the latest local pass where host tooling
-> was available (Kotlin Ktor's gates ran in official toolchain containers).
-> Rust/Ruby fixes were source-reviewed locally when those host toolchains were
-> not available. Template availability and
-> verification status are tracked in the
-> [status table](#available-languages), with per-starter evidence in the
-> [verification matrix](docs/verification-matrix.md); future work lives in the
-> [roadmap](docs/roadmap.md).
-
-> **Ghi chú tiếng Việt:** ForgeBase là bộ starter đa ngôn ngữ được kiểm chứng
-> bằng CI, Docker, và bộ validator của repository, đảm bảo mọi template đều sẵn
-> sàng cho production.
+| | |
+| --- | --- |
+| Catalog | 38 starters across 12 languages |
+| Status | Phase 1 complete; per-starter evidence in the [verification matrix](docs/verification-matrix.md) |
+| Governance | [MIT](LICENSE) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) |
 
 ## What is ForgeBase?
 
 Every folder under `languages/<language>/<framework>/` is a complete,
-independent project:
+independent project. Each one:
 
-- runs on its own (copy it out of this repository and it works);
-- follows the idiomatic conventions of its ecosystem — never a forced
-  one-size-fits-all architecture;
-- ships with the boring-but-critical pieces done properly: configuration
-  management, logging, centralized error handling, health endpoints (APIs),
-  tests, linting/formatting, Docker packaging, and documentation.
+- **Runs on its own.** Copy it out of this repository and it works; templates
+  never reach outside their own directory.
+- **Follows its ecosystem.** FastAPI looks like FastAPI, Spring looks like
+  Spring, Go looks like Go — never a forced one-size-fits-all architecture.
+- **Has the critical boring pieces done properly.** Configuration management,
+  structured logging, centralized error handling, health endpoints for APIs,
+  tests, linting and formatting, Docker packaging, and documentation.
 
 ## Why ForgeBase?
 
 - **Start in minutes, not hours** — production-oriented defaults from the
-  first `git clone`.
-- **Idiomatic, not uniform** — FastAPI looks like FastAPI, Spring looks like
-  Spring, Go looks like Go.
-- **Self-contained templates** — no hidden coupling between templates; the
-  repository around them is only documentation, tooling, and CI.
-- **Honest engineering** — templates pin versions that are actually verified;
-  nothing is claimed to work that has not been run.
+  first command.
+- **Self-contained templates** — no hidden coupling; the repository around
+  them is only documentation, tooling, and CI.
+- **Honest engineering** — templates pin versions that were actually verified,
+  and public claims use explicit evidence labels. Nothing is claimed to work
+  that has not been run.
 
-## Quality Gates
-
-ForgeBase changes are maintained through a structured
-[development workflow](docs/development-workflow.md): scout, plan, implement,
-test, review, then release. Public claims use explicit evidence labels:
-`PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED`.
-
-Before release, maintainers check the repository validator, its selftest,
-workflow YAML parsing, docs links, generated-artifact boundaries, secret
-patterns, `git diff --check`, exact-head GitHub Actions, and the release tag.
-The public [verification matrix](docs/verification-matrix.md) records the
-evidence label and CI boundary for each starter.
-Maintainer operations such as Dependabot triage, branch hygiene, branch
-protection, and release evidence are documented in the
-[maintainer guide](docs/maintainer-guide.md).
-
-## Documentation Map
-
-Start with the [documentation hub](docs/README.md) if you are evaluating the
-repository, contributing a new starter, or maintaining a release. Developers
-copying a template should read [Using a ForgeBase Starter](docs/using-a-starter.md)
-after choosing a starter id.
-
-Core references:
-
-- [verification matrix](docs/verification-matrix.md) — generated evidence
-  index for starter status;
-- [template specification](docs/template-specification.md) — required
-  capabilities for every starter;
-- [architecture](docs/architecture.md) — repository layout and boundaries;
-- [roadmap](docs/roadmap.md) — planned work and explicit non-goals;
-- [changelog](CHANGELOG.md) — human release history, separate from evidence
-  proof.
-
-## Available Languages
-
-| Language   | Starter      | Category     | Status |
-| ---------- | ------------ | ------------ | ------ |
-| Python     | Vanilla      | library/cli  | ✅ |
-| Python     | FastAPI      | backend      | ✅ |
-| Python     | Flask        | backend      | ✅ |
-| Python     | Django       | backend      | ✅ |
-| TypeScript | Node         | library/cli  | ✅ |
-| TypeScript | Express      | backend      | ✅ |
-| TypeScript | NestJS       | backend      | ✅ |
-| TypeScript | Fastify      | backend      | ✅ |
-| TypeScript | React        | frontend     | ✅ |
-| TypeScript | Next.js      | frontend     | ✅ |
-| TypeScript | Vue          | frontend     | ✅ |
-| TypeScript | Nuxt         | frontend     | ✅ |
-| TypeScript | Angular      | frontend     | ✅ |
-| TypeScript | Svelte       | frontend     | ✅ |
-| TypeScript | SvelteKit    | frontend     | ✅ |
-| TypeScript | React Native | mobile       | ✅ |
-| Java       | Vanilla      | library/cli  | ✅ |
-| Java       | Spring Boot  | backend      | ✅ |
-| Java       | Quarkus      | backend      | ✅ |
-| Go         | Vanilla      | library/cli  | ✅ |
-| Go         | net/http     | backend      | ✅ |
-| Go         | Gin          | backend      | ✅ |
-| Go         | Fiber        | backend      | ✅ |
-| Rust       | Vanilla      | library/cli  | ✅ |
-| Rust       | Axum         | backend      | ✅ |
-| Rust       | Actix Web    | backend      | ✅ |
-| C#         | Vanilla      | library/cli  | ✅ |
-| C#         | ASP.NET Core | backend      | ✅ |
-| PHP        | Vanilla      | library/cli  | ✅ |
-| PHP        | Laravel      | backend      | ✅ |
-| Ruby       | Vanilla      | library/cli  | ✅ |
-| Ruby       | Rails        | backend      | ✅ |
-| Kotlin     | Vanilla      | library/cli  | ✅ |
-| Kotlin     | Ktor         | backend      | ✅ |
-| Dart       | Vanilla      | library/cli  | ✅ |
-| Dart       | Flutter      | mobile       | ✅ |
-| C          | Vanilla      | library/cli  | ✅ |
-| C++        | Vanilla      | library/cli  | ✅ |
-
-**Legend:** ✅ = implemented and available · 🧪 = implemented with local
-verification `NOT_RUN` for the current host/toolchain · 🚧 =
-planned/in-progress (see the [roadmap](docs/roadmap.md)). Verification
-evidence lives in the [verification matrix](docs/verification-matrix.md).
-
-> Status reflects the latest recorded Phase 1 verification evidence:
-> 38/38 ✅ in the availability table, with affected starters re-run where
-> tooling or official containers were available. Tagged releases and the
-> current `main` branch are separate evidence boundaries; use exact commit and
-> tag evidence in PRs and release notes.
-> Kotlin Ktor's gates ran inside the official `gradle:8.14-jdk21` container
-> (no host Gradle toolchain): `gradle test`, the multi-stage image build, and
-> a boot smoke check. A row flips to ✅ only after its focused gates pass on
-> observed evidence.
-
-## Quick Start
+## Quick start
 
 ```bash
 git clone https://github.com/JasonTM17/ForgeBase.git
 cd ForgeBase
 
-# pick a template and copy it to your new project
+# list the catalog, inspect a starter, and copy it into a new project
 python scripts/forgebase.py list
 python scripts/forgebase.py show python-fastapi
 python scripts/forgebase.py create python-fastapi ~/projects/my-api
 cd ~/projects/my-api
 
-# follow the template's own README from here
+# from here, follow the copied template's own README
 ```
 
-More copy-out guidance: [docs/using-a-starter.md](docs/using-a-starter.md).
+Full copy-out guidance: [Using a ForgeBase Starter](docs/using-a-starter.md).
 
-## Repository Structure
+## Available starters
+
+All 38 starters below are implemented and available (✅). Per-starter
+verification evidence — local runs, official containers, and CI boundaries —
+is recorded in the [verification matrix](docs/verification-matrix.md).
+
+| Language | Starters (category) |
+| --- | --- |
+| Python ✅ | Vanilla (library/cli) · FastAPI (backend) · Flask (backend) · Django (backend) |
+| TypeScript ✅ | Node (library/cli) · Express · NestJS · Fastify (backend) · React · Next.js · Vue · Nuxt · Angular · Svelte · SvelteKit (frontend) · React Native (mobile) |
+| Java ✅ | Vanilla (library/cli) · Spring Boot (backend) · Quarkus (backend) |
+| Go ✅ | Vanilla (library/cli) · net-http · Gin · Fiber (backend) |
+| Rust ✅ | Vanilla (library/cli) · Axum (backend) · Actix Web (backend) |
+| C# ✅ | Vanilla (library/cli) · ASP.NET Core (backend) |
+| PHP ✅ | Vanilla (library/cli) · Laravel (backend) |
+| Ruby ✅ | Vanilla (library/cli) · Rails (backend) |
+| Kotlin ✅ | Vanilla (library/cli) · Ktor (backend) |
+| Dart ✅ | Vanilla (library/cli) · Flutter (mobile) |
+| C ✅ | Vanilla (library/cli) |
+| C++ ✅ | Vanilla (library/cli) |
+
+**Legend:** ✅ implemented and available · 🧪 implemented with local
+verification `NOT_RUN` for the current host/toolchain · 🚧 planned or in
+progress (see the [roadmap](docs/roadmap.md)).
+
+Status reflects the latest recorded Phase 1 verification evidence: 38/38 ✅ in
+the availability table, with affected starters re-run where host tooling or
+official containers were available. For example, Kotlin Ktor's gates ran
+inside the official `gradle:8.14-jdk21` container (`gradle test`, the
+multi-stage image build, and a boot smoke check). Tagged releases and the
+current `main` branch are separate evidence boundaries; PRs and release notes
+must cite exact commits and tags.
+
+## Quality and verification
+
+ForgeBase changes follow a structured
+[development workflow](docs/development-workflow.md): scout, plan, implement,
+test, review, then release. Public claims use four evidence labels —
+`PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED` — and a local pass is never presented
+as proof of CI, device behavior, or a published release.
+
+Before any release claim, maintainers verify the template validator and its
+selftest, workflow YAML parsing, documentation links, repository boundary
+rules, secret patterns, `git diff --check`, GitHub Actions on the exact pushed
+commit, and the release tag. Dependabot triage, branch hygiene, branch
+protection, and release evidence operations are documented in the
+[maintainer guide](docs/maintainer-guide.md).
+
+## Documentation map
+
+The [documentation hub](docs/README.md) routes every reader — evaluator,
+template author, maintainer — to the right page. Core references:
+
+| Document | Purpose |
+| --- | --- |
+| [Using a ForgeBase Starter](docs/using-a-starter.md) | Select, copy out, rename, and verify a template |
+| [Template specification](docs/template-specification.md) | The MUST/SHOULD baseline every starter provides |
+| [Architecture](docs/architecture.md) | Repository layout, design decisions, boundaries |
+| [Verification matrix](docs/verification-matrix.md) | Generated evidence index for starter status |
+| [Conventions](docs/conventions.md) | Naming, commits, versioning, git workflow |
+| [Development workflow](docs/development-workflow.md) | Evidence-based change and release process |
+| [Maintainer guide](docs/maintainer-guide.md) | Day-to-day repository operations |
+| [Roadmap](docs/roadmap.md) | Planned work and explicit non-goals |
+| [Changelog](CHANGELOG.md) | Human release history, separate from evidence |
+
+To add a starter, see [Adding a framework](docs/adding-a-framework.md) or
+[Adding a language](docs/adding-a-language.md).
+
+## Repository layout
 
 ```text
 ForgeBase/
 ├── languages/        # one self-contained starter per <language>/<framework>
-│   ├── python/
-│   ├── typescript/
-│   ├── java/
-│   ├── go/
-│   ├── rust/
-│   ├── csharp/
-│   ├── php/
-│   ├── ruby/
-│   ├── kotlin/
-│   ├── dart/
-│   ├── c/
-│   ├── cpp/
-│   └── ...
-├── docs/             # architecture, template spec, conventions, roadmap
-│   ├── README.md
-│   ├── using-a-starter.md
-│   ├── verification-matrix.md
-│   ├── template-specification.md
-│   └── architecture.md
-├── scripts/          # repository tooling (validation, matrix, copy/create)
+├── docs/             # architecture, template spec, conventions, guides, roadmap
+│   ├── README.md     # documentation hub
+│   └── adr/          # architectural decision records
+├── scripts/          # repository tooling (validator, matrix, copy/create CLI)
 └── .github/          # path-filtered CI workflows per language
 ```
 
-## Development Philosophy
+## Development philosophy
 
-1. Simplicity 2. Correctness 3. Maintainability 4. Developer Experience
-5. Security 6. Observability 7. Performance 8. Scalability
+Simplicity · Correctness · Maintainability · Developer experience ·
+Security · Observability · Performance · Scalability
 
-Details: [docs/architecture.md](docs/architecture.md) and
-[docs/template-specification.md](docs/template-specification.md).
+How these are applied: [architecture](docs/architecture.md) and
+[template specification](docs/template-specification.md).
 
-## Adding a New Template
+## Contributing, support, and security
 
-See [docs/adding-a-language.md](docs/adding-a-language.md) and
-[docs/adding-a-framework.md](docs/adding-a-framework.md).
-For the release and review workflow, see
-[docs/development-workflow.md](docs/development-workflow.md) and the
-[maintainer guide](docs/maintainer-guide.md).
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Support
-
-See [SUPPORT.md](SUPPORT.md).
-
-## Security
-
-See [SECURITY.md](SECURITY.md).
-
-## License
-
-[MIT](LICENSE)
+Contributions of all sizes are welcome — start with
+[CONTRIBUTING.md](CONTRIBUTING.md). Questions and reports are routed by
+[SUPPORT.md](SUPPORT.md); suspected vulnerabilities follow
+[SECURITY.md](SECURITY.md) through private reporting. This project follows the
+[Code of Conduct](CODE_OF_CONDUCT.md) and is licensed under
+[MIT](LICENSE).
