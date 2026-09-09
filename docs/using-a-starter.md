@@ -90,7 +90,7 @@ additional production variants are tracked in the [roadmap](roadmap.md).
 | Missing local toolchain | Use the Docker or CI route documented by the template. Report local checks as `NOT_RUN` rather than as a pass. |
 | Mobile native build not observed | React Native and Flutter starters can pass source-level checks without proving a real device build; keep that distinction in project docs and release notes. |
 
-## Related Documents
+## Related documents
 
 - Root [README](../README.md) — catalog and quick start.
 - [Verification matrix](verification-matrix.md) — per-starter evidence.

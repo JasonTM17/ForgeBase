@@ -7,7 +7,7 @@ code and template READMEs own the runnable details; the documents here own
 navigation, decisions, the evidence vocabulary, and the maintainer workflow
 that make the catalog reviewable and reproducible.
 
-## Start Here By Role
+## Start here by role
 
 | Role | Read first | Then use |
 | --- | --- | --- |
@@ -18,7 +18,7 @@ that make the catalog reviewable and reproducible.
 | Contribute a change | [Contributing](../CONTRIBUTING.md) | [Development workflow](development-workflow.md), [conventions](conventions.md) |
 | Maintain releases or dependency updates | [Maintainer guide](maintainer-guide.md) | [Development workflow](development-workflow.md), [roadmap](roadmap.md) |
 
-## Source Of Truth Map
+## Source of truth map
 
 Each question has exactly one authoritative page. If two documents disagree,
 the source of truth below wins, and the other one is a bug to fix.
@@ -37,7 +37,7 @@ the source of truth below wins, and the other one is a bug to fix.
 | Where should support requests go? | Root [SUPPORT](../SUPPORT.md) |
 | How are security reports handled? | Root [SECURITY](../SECURITY.md) |
 
-## Evidence Model
+## Evidence model
 
 ForgeBase uses four public evidence labels:
 
@@ -51,7 +51,7 @@ ForgeBase uses four public evidence labels:
 Keep release evidence exact. A local command, a pushed branch, a GitHub
 Actions run, a tag, and a published artifact are separate proof points.
 
-## Documentation Standards
+## Documentation standards
 
 - English is the canonical documentation language; `.vi.md` files are faithful
   translations kept aligned in meaning, not literal word-for-word copies.
@@ -65,7 +65,7 @@ Actions run, a tag, and a published artifact are separate proof points.
 - Commands in docs must be copy-pasteable and portable — no personal paths,
   no hostnames.
 
-## Keeping Docs Healthy
+## Keeping docs healthy
 
 For documentation-only changes, run the cheapest checks that prove the edit:
 

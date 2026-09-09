@@ -1,6 +1,6 @@
 # ForgeBase
 
-**Bộ starter production-grade cho 12 ngôn ngữ và 38 stack.**
+**Bộ starter production-grade cho 12 ngôn ngữ và 38 starter.**
 
 [![Repository checks](https://github.com/JasonTM17/ForgeBase/actions/workflows/repository-check.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/repository-check.yml)
 [![TypeScript](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml)
@@ -101,7 +101,8 @@ bao giờ được trình bày như bằng chứng của CI, hành vi trên thi�
 một release đã publish.
 
 Trước mọi claim release, maintainer kiểm tra validator của template cùng
-selftest, parsing YAML của workflow, link tài liệu, ranh giới repository, secret
+selftest, parsing YAML của workflow, kiểm link Markdown
+(`scripts/check_docs_links.py`), ranh giới repository, secret
 pattern, `git diff --check`, GitHub Actions trên đúng commit đã push và release
 tag. Thao tác vận hành như triage Dependabot, vệ sinh branch, bảo vệ `main` và
 bằng chứng release nằm trong [maintainer guide](docs/maintainer-guide.vi.md).

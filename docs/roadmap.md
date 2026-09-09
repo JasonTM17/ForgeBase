@@ -8,7 +8,7 @@ deliberately out of scope. Product identity lives in the root
 exact commits, tags, and GitHub Actions evidence rather than to headings in
 this document.
 
-## Current Baseline: Phase 1 Starter Catalog
+## Current baseline: Phase 1 starter catalog
 
 Phase 1 delivers 38 starters across 12 languages — backend APIs, frontend
 SPAs/SSR, and mobile — with per-language path-filtered CI, a template
@@ -16,7 +16,7 @@ validator, complete open-source governance documentation, repo-local
 copy/create tooling, and a generated public verification matrix. See the root
 [README](../README.md) for the full availability table.
 
-## Guiding Principles
+## Guiding principles
 
 - **Self-contained first.** A template never reaches outside its own directory
   at runtime. Copy it out and it runs.
@@ -31,7 +31,7 @@ copy/create tooling, and a generated public verification matrix. See the root
 - **Atomic Conventional Commits.** History is reviewable commit by commit. See
   [conventions](conventions.md).
 
-## In Scope (Phase 1, Shipped)
+## In scope (Phase 1, shipped)
 
 - 38 starters: Python (vanilla, FastAPI, Flask, Django), TypeScript (node,
   express, NestJS, Fastify, React, Next.js, Vue, Nuxt, Angular, Svelte,
@@ -46,7 +46,7 @@ copy/create tooling, and a generated public verification matrix. See the root
 - `docs/verification-matrix.md` generated from template metadata.
 - Open-source governance docs (CONTRIBUTING, SECURITY, CODE_OF_CONDUCT).
 
-## Explicitly Out Of Scope (Phase 1)
+## Explicitly out of scope (Phase 1)
 
 - Packaged or global `forgebase` installation; the current CLI is repo-local.
 - Database / ORM layers in starters (a roadmap item for production variants).
@@ -55,7 +55,7 @@ copy/create tooling, and a generated public verification matrix. See the root
 - E2E Playwright suites; PWA, i18n, and analytics scaffolding.
 - Mobile native builds beyond CI-first checks (Flutter / React Native).
 
-## Post-Phase 1 Roadmap
+## Post-Phase 1 roadmap
 
 | Priority | Item | Notes |
 | --- | --- | --- |
@@ -66,7 +66,7 @@ copy/create tooling, and a generated public verification matrix. See the root
 | P3 | E2E testing harness | Playwright suites for the frontend starters |
 | P3 | Template publishing | Versioned, per-template release artifacts |
 
-## Deferred Quality Backlog
+## Deferred quality backlog
 
 These items were deliberately kept out of Phase 1 or the current hardening
 pass so the shipped starter contract remains bounded:
@@ -84,7 +84,7 @@ pass so the shipped starter contract remains bounded:
 - Decide whether the Quarkus starter should adopt a MicroProfile-style
   response envelope before changing its public response contract.
 
-## Contributing Toward The Roadmap
+## Contributing toward the roadmap
 
 - To add a **framework**: follow [Adding a framework](adding-a-framework.md).
 - To add a **language**: follow [Adding a language](adding-a-language.md).

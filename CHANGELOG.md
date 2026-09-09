@@ -23,6 +23,10 @@ runs, tags, and published artifacts remain separate evidence.
 
 ### Changed
 
+- Final documentation consistency pass: English doc headings normalized to
+  sentence case, "38 starters" terminology unified in the tagline, and the
+  root README release-gate summary now names `scripts/check_docs_links.py`
+  explicitly (en + vi).
 - Rewrote the repository documentation (root README in English and
   Vietnamese, documentation hub, development workflow, maintainer guide,
   copy-out guide, roadmap, and contribution guide) with a consistent

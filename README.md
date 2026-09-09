@@ -1,6 +1,6 @@
 # ForgeBase
 
-**Production-grade starter templates for 12 languages and 38 stacks.**
+**Production-grade starter templates for 12 languages and 38 starters.**
 
 [![Repository checks](https://github.com/JasonTM17/ForgeBase/actions/workflows/repository-check.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/repository-check.yml)
 [![TypeScript](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml/badge.svg)](https://github.com/JasonTM17/ForgeBase/actions/workflows/typescript.yml)
@@ -101,10 +101,11 @@ test, review, then release. Public claims use four evidence labels —
 as proof of CI, device behavior, or a published release.
 
 Before any release claim, maintainers verify the template validator and its
-selftest, workflow YAML parsing, documentation links, repository boundary
-rules, secret patterns, `git diff --check`, GitHub Actions on the exact pushed
-commit, and the release tag. Dependabot triage, branch hygiene, branch
-protection, and release evidence operations are documented in the
+selftest, workflow YAML parsing, Markdown link checks
+(`scripts/check_docs_links.py`), repository boundary rules, secret patterns,
+`git diff --check`, GitHub Actions on the exact pushed commit, and the release
+tag. Dependabot triage, branch hygiene, branch protection, and release
+evidence operations are documented in the
 [maintainer guide](docs/maintainer-guide.md).
 
 ## Documentation map

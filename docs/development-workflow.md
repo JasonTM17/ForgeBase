@@ -8,7 +8,7 @@ creation, maintenance, and verification for everyone who changes the
 repository. For repeatable day-to-day operations, pair this workflow with the
 [maintainer guide](maintainer-guide.md).
 
-## The Evidence Path
+## The evidence path
 
 Every material change follows the same six-phase path:
 
@@ -29,7 +29,7 @@ Reviewer findings do not automatically expand scope. They become immediate
 work only when they expose an in-scope defect, invalidate a release claim, or
 block the current acceptance signal.
 
-## Roles and Responsibilities
+## Roles and responsibilities
 
 - **Author / implementer** scopes the change, performs the implementation,
   runs the local verification gates, and opens the pull request with honest
@@ -57,7 +57,7 @@ These labels carry exactly these meanings. A local test pass does not prove
 GitHub Actions, Docker publishing, device behavior, or production deployment;
 treat each as a separate evidence boundary.
 
-## Repository Boundaries
+## Repository boundaries
 
 Contributors and maintainers keep local development noise and secrets out of
 the published repository:
@@ -71,7 +71,7 @@ the published repository:
 If a change needs process or architectural documentation, write it under
 `docs/` instead of committing local or private tooling artifacts.
 
-## Release Gate
+## Release gate
 
 Before any release claim, maintainers verify all of the following:
 
@@ -90,7 +90,7 @@ Before any release claim, maintainers verify all of the following:
 If any gate is unavailable, report `NOT_RUN` or `BLOCKED` with the exact scope
 instead of weakening the claim.
 
-## Contributor Checklist
+## Contributor checklist
 
 Use this checklist for non-trivial template, CI, or documentation changes:
 
@@ -104,7 +104,7 @@ Use this checklist for non-trivial template, CI, or documentation changes:
 - [ ] Push, then verify exact-head GitHub Actions before calling the work
   complete.
 
-## Related Documents
+## Related documents
 
 - [Maintainer guide](maintainer-guide.md) — Dependabot triage, branch hygiene,
   branch protection, release operations.

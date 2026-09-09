@@ -6,7 +6,7 @@ This guide turns the [development workflow](development-workflow.md) into
 day-to-day repository operations. It is written for maintainers handling
 dependency updates, branch hygiene, release evidence, and repository settings.
 
-## Operating Principles
+## Operating principles
 
 - Keep template changes small, idiomatic, and independently reviewable.
 - Prefer one dependency-update group per ecosystem, matching
@@ -18,7 +18,7 @@ dependency updates, branch hygiene, release evidence, and repository settings.
 - Treat a local pass, a pushed branch, a GitHub Actions run, and a release tag
   as separate evidence boundaries.
 
-## Dependabot Triage
+## Dependabot triage
 
 1. Fetch and inspect every open dependency branch before merging.
 2. Read the changed manifests, lockfiles, and workflow files for that group.
@@ -38,7 +38,7 @@ gh pr list --state open \
 git merge-base --is-ancestor origin/<branch> HEAD
 ```
 
-## Branch Hygiene
+## Branch hygiene
 
 Before deleting a remote branch, prove its head is already contained in the
 intended base:
@@ -52,7 +52,7 @@ Only delete branches that return `ahead=0` and have no unmerged work. If the
 proof is unavailable, keep the branch and report `NOT_RUN` or `BLOCKED`
 instead of guessing.
 
-## Main Branch Protection
+## Main branch protection
 
 `main` should be protected before a release is called complete. Recommended
 settings:
@@ -71,7 +71,7 @@ settings:
 When changing repository settings, record the date, the exact setting changed,
 and whether the change was verified through the GitHub UI or API.
 
-## Release Evidence
+## Release evidence
 
 Use this release sequence:
 
@@ -90,7 +90,7 @@ Use this release sequence:
 Do not say "release-ready" when exact-head CI, a tag, provenance, or another
 required external gate has not been observed.
 
-## Documentation Updates
+## Documentation updates
 
 Update docs when a change affects setup, supported runtime versions, commands,
 CI behavior, verification evidence, repository policy, or maintainer workflow.
@@ -100,7 +100,7 @@ source of truth instead.
 Keep English and Vietnamese documentation aligned in meaning — a translation
 should stay faithful to the contract, even where the wording is not literal.
 
-## Related Documents
+## Related documents
 
 - [Development workflow](development-workflow.md) — the six-phase evidence
   path and release gate.

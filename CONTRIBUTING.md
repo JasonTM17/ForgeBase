@@ -6,7 +6,7 @@ guide explains how to change the repository so that contract holds; the full
 process lives in [docs/development-workflow.md](docs/development-workflow.md)
 ([Tiếng Việt](docs/development-workflow.vi.md)).
 
-## Ways to Contribute
+## Ways to contribute
 
 - **Add a template** — follow
   [docs/adding-a-language.md](docs/adding-a-language.md) or
@@ -19,7 +19,7 @@ process lives in [docs/development-workflow.md](docs/development-workflow.md)
   documentation-only changes, `python scripts/check_docs_links.py` and a clean
   diff are enough.
 
-## Ground Rules
+## Ground rules
 
 1. **Read the spec first.**
    [docs/template-specification.md](docs/template-specification.md) defines
@@ -38,7 +38,7 @@ process lives in [docs/development-workflow.md](docs/development-workflow.md)
 7. **Verify honestly.** Claim only what you actually ran; use the evidence
    labels `PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED` with their exact meanings.
 
-## Development Process
+## Development process
 
 1. Branch from `main` using `feature/*`, `fix/*`, `docs/*`, `refactor/*`, or
    `chore/*`.
@@ -54,7 +54,7 @@ process lives in [docs/development-workflow.md](docs/development-workflow.md)
 5. Open a pull request. The PR template asks for the same scope, verification,
    and evidence-boundary information maintainers use during review.
 
-## Verification Discipline
+## Verification discipline
 
 - State exactly what changed and which template(s), workflow(s), or docs are
   affected.
@@ -69,7 +69,7 @@ protection, and release evidence — live in
 [docs/maintainer-guide.md](docs/maintainer-guide.md)
 ([Tiếng Việt](docs/maintainer-guide.vi.md)).
 
-## Commit Messages
+## Commit messages
 
 Conventional Commits with a template, language, or repo scope:
 `feat(fastapi): ...`, `fix(react): ...`, `docs(repo): ...`. One logical change
@@ -88,7 +88,7 @@ Maintainers review for:
 Reviewer findings do not automatically expand scope; they become immediate
 work only when they expose an in-scope defect or block acceptance.
 
-## Getting Help
+## Getting help
 
 Report bugs, request templates, or raise documentation issues through the
 repository [issue templates](https://github.com/JasonTM17/ForgeBase/issues/new/choose);
