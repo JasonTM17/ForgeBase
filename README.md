@@ -118,6 +118,7 @@ template author, maintainer — to the right page. Core references:
 | [Using a ForgeBase Starter](docs/using-a-starter.md) | Select, copy out, rename, and verify a template |
 | [Template specification](docs/template-specification.md) | The MUST/SHOULD baseline every starter provides |
 | [Architecture](docs/architecture.md) | Repository layout, design decisions, boundaries |
+| [Repository documentation](docs/repo-documentation.md) | Comprehensive technical, architectural, and operational specification |
 | [Verification matrix](docs/verification-matrix.md) | Generated evidence index for starter status |
 | [Conventions](docs/conventions.md) | Naming, commits, versioning, git workflow |
 | [Development workflow](docs/development-workflow.md) | Evidence-based change and release process |

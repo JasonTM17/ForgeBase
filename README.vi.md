@@ -117,6 +117,7 @@ giá, người viết template, maintainer — tới đúng trang. Tài liệu c
 | [Dùng ForgeBase Starter](docs/using-a-starter.vi.md) | Chọn, copy, đổi tên và kiểm chứng template |
 | [Template specification](docs/template-specification.md) | Chuẩn MUST/SHOULD mà mọi starter phải cung cấp |
 | [Architecture](docs/architecture.md) | Layout repository, quyết định thiết kế và ranh giới |
+| [Tài liệu toàn diện](docs/repo-documentation.vi.md) | Đặc tả kỹ thuật, kiến trúc và vận hành repository toàn diện |
 | [Verification matrix](docs/verification-matrix.md) | Chỉ mục bằng chứng sinh tự động cho trạng thái starter |
 | [Conventions](docs/conventions.md) | Đặt tên, commit, versioning và git workflow |
 | [Development workflow](docs/development-workflow.vi.md) | Quy trình thay đổi và release dựa trên bằng chứng |

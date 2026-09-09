@@ -12,7 +12,7 @@ catalog dễ review và có thể tái lập.
 | Vai trò | Đọc trước | Sau đó dùng |
 | --- | --- | --- |
 | Dùng một starter | [Dùng ForgeBase Starter](using-a-starter.vi.md) | README của template đã chọn và [verification matrix](verification-matrix.md) |
-| Evaluate repository | [Architecture](architecture.md) | [Template specification](template-specification.md), [verification matrix](verification-matrix.md), [quy trình phát triển](development-workflow.vi.md) |
+| Evaluate repository | [Architecture](architecture.md) | [Tài liệu toàn diện](repo-documentation.vi.md), [template specification](template-specification.md), [verification matrix](verification-matrix.md), [quy trình phát triển](development-workflow.vi.md) |
 | Thêm framework | [Adding a framework](adding-a-framework.md) | [Conventions](conventions.md), [template specification](template-specification.md), README của một language hiện có |
 | Thêm language | [Adding a language](adding-a-language.md) | [Architecture](architecture.md), [ADR 0001](adr/0001-template-directory-layout.md), [ADR 0002](adr/0002-template-metadata.md) |
 | Đóng góp thay đổi | [Đóng góp](../CONTRIBUTING.md) | [Quy trình phát triển](development-workflow.vi.md), [conventions](conventions.md) |
@@ -28,6 +28,7 @@ of truth dưới đây thắng và tài liệu kia là bug cần sửa.
 | Starter nào đang có? | Root [README](../README.vi.md) cho bảng dễ đọc; `python scripts/forgebase.py list` cho catalog chạy được bằng CLI |
 | Một starter gồm những gì? | README riêng trong `languages/<language>/<framework>/README.md` |
 | Mỗi starter bắt buộc có gì? | [Template specification](template-specification.md) và `scripts/validate_templates.py` |
+| Tổng quan kỹ thuật toàn diện nằm ở đâu? | [Tài liệu toàn diện repository](repo-documentation.vi.md) |
 | Vì sao repo sắp xếp như hiện tại? | [Architecture](architecture.md) và [ADR](adr/) |
 | Bằng chứng nào hỗ trợ status table? | [Verification matrix](verification-matrix.md), sinh bởi `scripts/update_verification_matrix.py` |
 | Việc gì còn nằm trên roadmap? | [Roadmap](roadmap.md) |
