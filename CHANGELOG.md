@@ -8,6 +8,9 @@ runs, tags, and published artifacts remain separate evidence.
 
 ### Added
 
+- `scripts/check_docs_links.py`, a stdlib-only checker for relative Markdown
+  links and ASCII anchor headings, enforced by a new `repository-check` CI
+  step so documented navigation cannot silently rot.
 - Bilingual repository documentation hub pages for users, evaluators,
   contributors, and maintainers.
 - Bilingual starter copy-out guidance covering template selection, renaming,

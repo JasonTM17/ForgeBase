@@ -79,8 +79,9 @@ Use this release sequence:
 2. Run the repository gates:
    `python scripts/validate_templates.py --quiet`,
    `python scripts/validate_templates.py --selftest`,
-   `python scripts/update_verification_matrix.py --check`, Markdown link
-   checks, workflow YAML parsing, a secret scan, and `git diff --check`.
+   `python scripts/update_verification_matrix.py --check`,
+   `python scripts/check_docs_links.py --quiet`, workflow YAML parsing,
+   a secret scan, and `git diff --check`.
 3. Run the affected ecosystem gates from the template README or workflow.
 4. Push the exact commit.
 5. Verify GitHub Actions for that exact commit.

@@ -16,7 +16,8 @@ process lives in [docs/development-workflow.md](docs/development-workflow.md)
 - **Improve repository tooling or CI** — anything under `scripts/` or
   `.github/`.
 - **Fix or extend documentation** — small doc fixes are genuinely welcome; for
-  documentation-only changes, link checks and a clean diff are enough.
+  documentation-only changes, `python scripts/check_docs_links.py` and a clean
+  diff are enough.
 
 ## Ground Rules
 

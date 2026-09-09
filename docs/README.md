@@ -58,7 +58,8 @@ Actions run, a tag, and a published artifact are separate proof points.
 - Section heading `## 5. README requirements (per template)` in the
   [template specification](template-specification.md) is referenced by anchor
   from [conventions](conventions.md) — do not renumber or reword it without
-  fixing the link.
+  fixing the link. Anchor links into local Markdown are enforced by
+  `scripts/check_docs_links.py`.
 - The [verification matrix](verification-matrix.md) is generated; edit
   template metadata or the generator, never the matrix rows by hand.
 - Commands in docs must be copy-pasteable and portable — no personal paths,
@@ -71,8 +72,11 @@ For documentation-only changes, run the cheapest checks that prove the edit:
 ```bash
 python scripts/update_verification_matrix.py --check
 python scripts/validate_templates.py --quiet
+python scripts/check_docs_links.py --quiet
 git diff --check
 ```
 
-When links or navigation change, also run a Markdown relative-link check
-before opening or merging a PR.
+`scripts/check_docs_links.py` verifies every relative file link in tracked
+Markdown — and, for pure-ASCII anchors into local Markdown files, that a
+matching heading exists. Repository CI runs it on every change, so broken
+navigation fails instead of being caught in review.

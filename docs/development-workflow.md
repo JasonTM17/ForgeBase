@@ -79,7 +79,7 @@ Before any release claim, maintainers verify all of the following:
 - [ ] `python scripts/validate_templates.py --quiet` passes.
 - [ ] `python scripts/validate_templates.py --selftest` passes.
 - [ ] Every `.github/workflows/*.yml` file parses.
-- [ ] Tracked Markdown relative links resolve.
+- [ ] Tracked Markdown relative links resolve (`python scripts/check_docs_links.py`).
 - [ ] Tracked generated artifacts and private files are absent.
 - [ ] Staged and tracked content has no obvious secret patterns.
 - [ ] `git diff --check` passes.

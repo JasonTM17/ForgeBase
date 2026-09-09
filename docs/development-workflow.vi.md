@@ -75,7 +75,7 @@ Trước mọi claim release, maintainer xác minh toàn bộ:
 - [ ] `python scripts/validate_templates.py --quiet` pass.
 - [ ] `python scripts/validate_templates.py --selftest` pass.
 - [ ] Mọi file `.github/workflows/*.yml` parse được.
-- [ ] Link tương đối trong Markdown tracked resolve đúng.
+- [ ] Link tương đối trong Markdown tracked resolve đúng (`python scripts/check_docs_links.py`).
 - [ ] Không có generated artifact và file riêng tư được tracked.
 - [ ] Nội dung staged/tracked không có secret pattern rõ ràng.
 - [ ] `git diff --check` pass.

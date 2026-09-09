@@ -16,6 +16,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import check_copy_out
+import check_docs_links
 import forgebase
 import update_verification_matrix
 
@@ -112,6 +113,42 @@ class ForgeBaseToolTests(unittest.TestCase):
         )
         self.assertEqual(0, proc.returncode, proc.stderr)
         self.assertIn('"id": "python-fastapi"', proc.stdout)
+
+
+class DocsLinkCheckTests(unittest.TestCase):
+    def test_relative_links_resolve(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "guide.md").write_text("# Guide\n\n## Some Heading\n\nbody\n", encoding="utf-8")
+            (root / "index.md").write_text(
+                "[ok](guide.md) [anchor](guide.md#some-heading) [ext](https://example.com)\n",
+                encoding="utf-8",
+            )
+            self.assertEqual([], check_docs_links.check_file(root / "index.md"))
+
+    def test_missing_file_and_anchor_are_reported(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "guide.md").write_text("# Guide\n\n## Some Heading\n", encoding="utf-8")
+            (root / "index.md").write_text(
+                "[gone](missing.md) [anchor](guide.md#nope)\n", encoding="utf-8"
+            )
+            problems = check_docs_links.check_file(root / "index.md")
+            self.assertEqual(2, len(problems))
+            self.assertTrue(any("missing relative" in p or "broken" in p for p in problems))
+            self.assertTrue(any("anchor" in p for p in problems))
+
+    def test_links_inside_code_fences_are_ignored(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "index.md").write_text(
+                "text\n\n```md\n[placeholder](docs/nonexistent.md)\n```\n", encoding="utf-8"
+            )
+            self.assertEqual([], check_docs_links.check_file(root / "index.md"))
+
+    def test_repository_markdown_passes(self) -> None:
+        rc = run_cli(check_docs_links.main, ["--quiet"])
+        self.assertEqual(0, rc)
 
 
 if __name__ == "__main__":

@@ -41,6 +41,9 @@ jobs:
           python scripts/check_copy_out.py --all --quiet
           python -m unittest scripts/test_forgebase_tools.py
 
+      - name: Check documentation links
+        run: python scripts/check_docs_links.py --quiet
+
   lint-workflows:
     name: Workflow and Dependabot YAML validity
     runs-on: ubuntu-latest

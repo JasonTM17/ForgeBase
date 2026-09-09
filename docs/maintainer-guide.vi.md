@@ -79,8 +79,9 @@ Dùng trình tự release sau:
 2. Chạy các gate của repository:
    `python scripts/validate_templates.py --quiet`,
    `python scripts/validate_templates.py --selftest`,
-   `python scripts/update_verification_matrix.py --check`, kiểm link Markdown,
-   parsing YAML workflow, secret scan và `git diff --check`.
+   `python scripts/update_verification_matrix.py --check`,
+   `python scripts/check_docs_links.py --quiet`, parsing YAML workflow,
+   secret scan và `git diff --check`.
 3. Chạy các gate ecosystem bị ảnh hưởng từ README của template hoặc từ workflow.
 4. Push đúng commit.
 5. Xác minh GitHub Actions trên đúng commit đó.

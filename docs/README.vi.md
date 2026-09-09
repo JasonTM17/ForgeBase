@@ -58,7 +58,8 @@ GitHub Actions, một tag và một artifact đã publish là các proof point r
 - Heading `## 5. README requirements (per template)` trong
   [template specification](template-specification.md) được
   [conventions](conventions.md) tham chiếu bằng anchor — không đánh số lại hoặc
-  đổi câu chữ khi chưa sửa link.
+  đổi câu chữ khi chưa sửa link. Anchor link vào file Markdown cục bộ được
+  kiểm tra buộc bởi `scripts/check_docs_links.py`.
 - [Verification matrix](verification-matrix.md) được sinh tự động; sửa metadata
   của template hoặc generator, không tay-sửa các dòng trong matrix.
 - Lệnh trong docs phải copy-paste được và di chuyển được — không đường dẫn cá
@@ -71,8 +72,11 @@ Với thay đổi chỉ-về-tài-liệu, chạy các check rẻ nhất chứng 
 ```bash
 python scripts/update_verification_matrix.py --check
 python scripts/validate_templates.py --quiet
+python scripts/check_docs_links.py --quiet
 git diff --check
 ```
 
-Khi link hoặc navigation thay đổi, chạy thêm kiểm tra link tương đối Markdown
-trước khi mở hoặc merge PR.
+`scripts/check_docs_links.py` kiểm mọi relative file link trong Markdown
+tracked — và với anchor pure-ASCII trỏ vào file Markdown cục bộ, xác nhận
+heading tương ứng tồn tại. CI của repository chạy check này với mọi thay đổi,
+nên navigation gãy sẽ fail ở CI thay vì chờ tới lúc review.
